@@ -8,9 +8,6 @@ jobs:
   lhci:
     name: Lighthouse 점수 자동 측정기
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: './pokr-web'
     steps:
       - uses: actions/checkout@v3
 
@@ -42,7 +39,7 @@ jobs:
           script: |
             const fs = require('fs');
             const results = JSON.parse(
-              fs.readFileSync('./pokr-web/lhci_reports/manifest.json'),
+              fs.readFileSync('./lhci_reports/manifest.json'),
             );
 
             let comments = '';
