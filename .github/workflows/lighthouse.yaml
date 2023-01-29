@@ -1,16 +1,13 @@
 name: 라이트하우스 CI - develop으로 PR 생성될 때 측정
 
 on:
-  push:
+  pull_request:
     branches:
-      - test/lhci
-
+      - develop
 jobs:
   lhci:
     name: Lighthouse 점수 자동 측정기
     runs-on: ubuntu-latest
-    defaults:
-      run: working-directory:"./POKR/pokr-web"
     steps:
       - uses: actions/checkout@v3
 
