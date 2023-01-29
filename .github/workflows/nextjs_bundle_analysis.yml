@@ -1,4 +1,4 @@
-name: 'Next.js Bundle Analysis'
+name: 번들 크기 분석기
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node.js 16.18.0
         uses: actions/setup-node@v3
@@ -21,23 +21,17 @@ jobs:
           yarn
 
       - name: Restore next build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: restore-build-cache
         env:
           cache-name: cache-next-build
         with:
-          # if you use a custom build directory, replace all instances of `.next` in this file with your build directory
-          # ex: if your app builds to `dist`, replace `.next` with `dist`
           path: .next/cache
-          # change this if you prefer a more strict cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}
 
       - name: Build next.js app
-        # change this if your site requires a custom build command
-        run: ./node_modules/.bin/next build
+        run: yarn build
 
-      # Here's the first place where next-bundle-analysis' own script is used
-      # This step pulls the raw bundle stats for the current bundle
       - name: Analyze bundle
         run: npx -p nextjs-bundle-analysis report
 
