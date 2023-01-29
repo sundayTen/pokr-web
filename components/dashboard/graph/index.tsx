@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import useIsMobile from '@hooks/useIsMobile';
 const data = [
   { name: '1월', '사용자 평균': 10, '이용자 평균 달성도': 53 },
   { name: '2월', '사용자 평균': 14, '이용자 평균 달성도': 40 },
@@ -19,6 +20,7 @@ const data = [
 ];
 
 const Graph = () => {
+  const { isMobile } = useIsMobile();
   return (
     <section className={styles.root}>
       <div className={styles.container}>
@@ -27,7 +29,7 @@ const Graph = () => {
       </div>
 
       <div className={styles.timer}>2023년 상반기 62일 남음</div>
-      <ResponsiveContainer width={'100%'} aspect={4}>
+      <ResponsiveContainer width={'100%'} aspect={isMobile ? 1.3 : 4}>
         <AreaChart data={data} margin={{ top: 20, bottom: 0 }}>
           <defs>
             <linearGradient id="color-my'" x1="0" y1="0" x2="0" y2="1">
