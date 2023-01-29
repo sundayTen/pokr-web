@@ -2,7 +2,7 @@
 import './globals.scss';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import GlobalLayout from '@components/common/GlobalLayout';
+import GlobalLayout from '@components/common/globalLayout';
 import React from 'react';
 
 const queryClient = new QueryClient();
