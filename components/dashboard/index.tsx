@@ -4,12 +4,16 @@ import React from 'react';
 import DashBoardHeader from './header';
 import DashBoardPeriod from './period';
 import styles from '@components/dashboard/header/DashBoardHeader.module.scss';
-import DashBoardGraph from './graph';
+
 import { useQuery } from '@tanstack/react-query';
 import { fetchOkr } from '@api/okr';
 import { OKR } from '@api/path';
 import DashboardAside from './aside';
+import dynamic from 'next/dynamic';
 
+const DynamicGraph = dynamic(() => import('./graph'), {
+  loading: () => <>그래프 로딩중</>,
+});
 interface DashBoardProps {
   okrData: any;
 }
@@ -29,7 +33,7 @@ const DashBoard = ({ okrData }: DashBoardProps) => {
     <div className={styles.dashBoard}>
       <DashBoardHeader />
       <DashBoardPeriod />
-      <DashBoardGraph />
+      <DynamicGraph />
       <DashboardAside okr={data} />
     </div>
   );
