@@ -1,5 +1,7 @@
+import { HOST, OKR } from './path';
+
 export const fetchOkr = async () => {
-  const res = await fetch('http://localhost:8080/api/me/okr', {
+  const res = await fetch(`${HOST}${OKR}`, {
     method: 'GET',
     cache: 'default', // SSR 타입에 따라 분기
     headers: {
