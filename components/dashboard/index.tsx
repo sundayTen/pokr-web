@@ -1,41 +1,55 @@
 'use client';
 
-import React from 'react';
+import React, { Profiler, Suspense } from 'react';
 import DashBoardHeader from './header';
-import DashBoardPeriod from './period';
-import styles from '@components/dashboard/header/DashBoardHeader.module.scss';
 
 import { useQuery } from '@tanstack/react-query';
 import { fetchOkr } from '@api/okr';
 import { OKR } from '@api/path';
 import DashboardAside from './aside';
-import dynamic from 'next/dynamic';
+import DashboardMain from './main';
+import { OKR as OKR_TYPE } from '@type/okr';
+import ErrorBoundary from '@components/error/ErrorBoundary';
 
-const DynamicGraph = dynamic(() => import('./graph'), {
-  loading: () => <>그래프 로딩중</>,
-});
 interface DashBoardProps {
-  okrData: any;
+  okrData?: OKR_TYPE[];
 }
 
 const DashBoard = ({ okrData }: DashBoardProps) => {
-  const { data, isError, isLoading } = useQuery({
-    queryKey: [OKR],
-    queryFn: fetchOkr,
-    initialData: okrData,
-  });
+  // const { data, isError, isLoading } = useQuery([OKR], fetchOkr, {
+  //   suspense: true,
+  //   staleTime: 3000,
+  // });
 
-  if (isError || isLoading) {
-    return <></>;
-  }
+  // if (isError || isLoading) {
+  //   return <></>;
+  // }
 
   return (
-    <div className={styles.dashBoard}>
-      <DashBoardHeader />
-      <DashBoardPeriod />
-      <DynamicGraph />
-      <DashboardAside okr={data} />
-    </div>
+    <>
+      <Profiler
+        id="Header"
+        onRender={(
+          id,
+          phase,
+          actualDuration,
+          baseDuration,
+          startTime,
+          commitTime,
+          interactions,
+        ) => {}}
+      >
+        <DashBoardHeader />
+      </Profiler>
+
+      <DashboardMain />
+
+      <DashboardAside okr={[]} />
+      {/* <Suspense fallback={<p>로딩중</p>}>
+        <ErrorBoundary>
+        </ErrorBoundary>
+      </Suspense> */}
+    </>
   );
 };
 

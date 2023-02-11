@@ -1,0 +1,16 @@
+.root {
+  display: grid;
+  padding: 50px;
+  grid-template-areas:
+    'header header header'
+    'main main aside';
+  grid-column-gap: 40px;
+  grid-row-gap: 10px;
+
+  @screen mobile {
+    grid-template-areas:
+      'header'
+      'main'
+      'aside';
+  }
+}

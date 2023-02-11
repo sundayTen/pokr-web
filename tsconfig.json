@@ -30,7 +30,7 @@
       "@public/*": ["public/*"],
       "@store/*": ["store/*"],
       "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"]
+      "@type/*": ["types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
