@@ -28,11 +28,10 @@ const Graph = () => {
         <p>이번 달은 전체 사용자의 평균 보다 15% 높게 달성했어요!</p>
       </div>
 
-      <div className={styles.timer}>2023년 상반기 62일 남음</div>
       <ResponsiveContainer width={'100%'} aspect={isMobile ? 1.3 : 4}>
         <AreaChart data={data} margin={{ top: 20, bottom: 0 }}>
           <defs>
-            <linearGradient id="color-my'" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="color-my" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#9be8cd" stopOpacity={0.5} />
               <stop offset="100%" stopColor="#9be8cd" stopOpacity={0} />
             </linearGradient>
@@ -44,7 +43,7 @@ const Graph = () => {
           <XAxis dataKey="name" />
           <YAxis tickCount={6} />
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <Tooltip content={CustomTooltip} />
+          <Tooltip content={CustomTooltip} wrapperStyle={{ outline: 'none' }} />
           <Area
             type="monotone"
             dataKey="사용자 평균"
@@ -56,7 +55,7 @@ const Graph = () => {
           <Area
             type="monotone"
             dataKey="이용자 평균 달성도"
-            stroke="#82ca9d"
+            stroke="#18cb8c"
             strokeWidth={3}
             fillOpacity={1}
             fill="url(#color-user-average)"
