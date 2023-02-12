@@ -13,18 +13,29 @@ const DashBoardPeriod = () => {
   return (
     <div className={styles.root}>
       <div className={styles.periodContainer}>
-        <label>
-          <span>기간</span>
-          <Select value={period} setValue={setPeriod} options={periodArr} />
-        </label>
-        <label>
-          <span className={styles.categorize}>분류</span>
-          <Select
-            value={categorize}
-            setValue={setCategorize}
-            options={categorizeArr}
+        <div className={styles.periodCategory}>
+          <label>
+            <span>기간</span>
+            <Select value={period} setValue={setPeriod} options={periodArr} />
+          </label>
+          <label>
+            <span className={styles.categorize}>분류</span>
+            <Select
+              value={categorize}
+              setValue={setCategorize}
+              options={categorizeArr}
+            />
+          </label>
+        </div>
+        <div className={styles.periodOfTime}>
+          <AutoHeightImage
+            src="/images/time-clock.png"
+            alt="검색"
+            width={20}
+            height={20}
           />
-        </label>
+          48일 5시간 45분 남았어요
+        </div>
       </div>
       <ul className={styles.categoryContainer}>
         <li className={styles.objectives}>
