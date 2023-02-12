@@ -2,28 +2,45 @@
   @apply mobile:bg-white;
 
   & .periodContainer {
-    @apply text-base;
+    @apply flex justify-between items-center;
 
-    margin: 40px 0 20px;
+    & > .periodCategory {
+      @apply flex text-base;
 
-    & select {
-      margin-right: 16px;
+      margin: 40px 0 20px;
+
+      & label {
+        margin-right: 16px;
+      }
+
+      & span {
+        margin-right: 6px;
+      }
     }
 
-    & span {
-      margin-right: 6px;
+    & > .periodOfTime {
+      @apply flex items-center text-sm;
+
+      color: var(--text-body);
+
+      & > div:first-child {
+        width: 20px;
+        margin-right: 6px;
+      }
     }
 
     @screen mobile {
       margin: 12px 0 0;
       padding: 32px 24px 24px;
 
-      & select {
-        margin-right: 8px;
-      }
+      & > .periodCategory {
+        & label {
+          margin-right: 8px;
+        }
 
-      & span {
-        @apply hidden;
+        & span {
+          @apply hidden;
+        }
       }
     }
   }
