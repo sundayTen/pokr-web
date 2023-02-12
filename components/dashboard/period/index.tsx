@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import AutoHeightImage from '@components/common/image';
 import Select from '@components/common/select';
+import ToolTip from '@components/common/tooltip';
 import styles from '@components/dashboard/period/DashBoardPeriod.module.scss';
 
 const periodArr = ['반기', '분기'];
 const categorizeArr = ['상반기', '하반기'];
 
 const DashBoardPeriod = () => {
+  const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
   const [period, setPeriod] = useState<string>(periodArr[0]);
   const [categorize, setCategorize] = useState<string>(categorizeArr[0]);
 
@@ -28,13 +30,20 @@ const DashBoardPeriod = () => {
           </label>
         </div>
         <div className={styles.periodOfTime}>
-          <AutoHeightImage
-            src="/images/time-clock.png"
-            alt="검색"
-            width={20}
-            height={20}
-          />
-          48일 5시간 45분 남았어요
+          <button type="button" onClick={() => setTooltipOpen(!tooltipOpen)}>
+            <AutoHeightImage
+              src="/images/time-clock.png"
+              alt="검색"
+              width={20}
+              height={20}
+            />
+            <ToolTip
+              text="목표 기간 : 2023.01.01 ~ 2023.12.31"
+              open={tooltipOpen}
+              clasName={styles.tooltip}
+            />
+          </button>
+          148일 15시간 45분 남았어요
         </div>
       </div>
       <ul className={styles.categoryContainer}>
