@@ -1,5 +1,5 @@
 .root {
-  @apply mobile:bg-white;
+  @apply mobile:bg-white mobile:hidden;
 
   & .periodContainer {
     @apply flex justify-between items-center;
@@ -19,13 +19,26 @@
     }
 
     & > .periodOfTime {
-      @apply flex items-center text-sm;
+      @apply flex items-center text-sm relative;
 
       color: var(--text-body);
 
       & > div:first-child {
         width: 20px;
         margin-right: 6px;
+      }
+
+      & button {
+        @apply relative;
+
+        & .tooltip {
+          @apply absolute;
+
+          left: -111px;
+          // left: 0;
+          min-width: 234px;
+          top: -45px;
+        }
       }
     }
 
