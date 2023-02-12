@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from '@components/dashboard/aside/DashBoardAside.module.scss';
 import { OKR } from '@type/okr';
+import Calendar from './WeekCalendar';
+import InitiativeList from './InitiativeList';
 
 interface DashboardAsideProps {
   okr: OKR[];
@@ -14,9 +16,8 @@ const DashboardAside = ({ okr }: DashboardAsideProps) => {
       </div>
 
       <div className={styles.card}>
-        {okr.map((o) => (
-          <p key={o.objectiveId}>{o.objectiveTitle}</p>
-        ))}
+        <Calendar />
+        <InitiativeList />
       </div>
     </aside>
   );

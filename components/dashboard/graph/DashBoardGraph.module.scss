@@ -40,10 +40,12 @@
   }
 
   & h1 {
-    @apply text-2xl font-bold mobile:text-base;
+    @apply text-2xl font-bold mobile:text-base mb-3;
   }
 
-  & p {
-    @apply text-lg;
+  .highlight {
+    @apply font-normal mb-10;
+    color: var(--pri-400);
+    font-weight: bold;
   }
 }
