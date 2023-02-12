@@ -16,14 +16,15 @@ interface DashBoardProps {
 }
 
 const DashBoard = ({ okrData }: DashBoardProps) => {
-  // const { data, isError, isLoading } = useQuery([OKR], fetchOkr, {
-  //   suspense: true,
-  //   staleTime: 3000,
-  // });
+  const { data, isError, isLoading } = useQuery([OKR], fetchOkr, {
+    suspense: true,
+    staleTime: 3000,
+    initialData: okrData,
+  });
 
-  // if (isError || isLoading) {
-  //   return <></>;
-  // }
+  if (isError || isLoading) {
+    return <></>;
+  }
 
   return (
     <>
@@ -44,11 +45,11 @@ const DashBoard = ({ okrData }: DashBoardProps) => {
 
       <DashboardMain />
 
-      <DashboardAside okr={[]} />
-      {/* <Suspense fallback={<p>로딩중</p>}>
+      <Suspense fallback={<p>로딩중</p>}>
         <ErrorBoundary>
+          <DashboardAside okr={data} />
         </ErrorBoundary>
-      </Suspense> */}
+      </Suspense>
     </>
   );
 };

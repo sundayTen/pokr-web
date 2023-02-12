@@ -1,6 +1,6 @@
 .root {
   display: grid;
-  padding: 50px;
+  padding: 90px 0px 0px 90px;
   grid-template-areas:
     'header header header'
     'main main aside';
@@ -8,6 +8,7 @@
   grid-row-gap: 10px;
 
   @screen mobile {
+    padding: 20px;
     grid-template-areas:
       'header'
       'main'

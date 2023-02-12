@@ -1,6 +1,11 @@
 .root {
+  @apply w-96 mobile:w-full;
   grid-area: aside;
-  width: 500px;
+
+  .header {
+    @apply mb-6;
+    display: flex;
+  }
 
   & h1 {
     @apply font-bold;
