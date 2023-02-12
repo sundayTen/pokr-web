@@ -1,4 +1,6 @@
 .root {
+  grid-area: 'header';
+
   & h2 {
     @apply text-xl font-bold text-pri-400 mobile:text-base;
   }
