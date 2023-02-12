@@ -1,4 +1,4 @@
-import { OKR, KEY_RESULT, INITIATIVE } from './../okr';
+import { OKR, KEY_RESULT, INITIATIVE } from '../okr';
 
 export const isOkr = (okr: unknown): okr is OKR => {
   return !!okr && typeof (okr as OKR).objectiveId === 'number';
