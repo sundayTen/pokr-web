@@ -3,48 +3,88 @@ import AutoHeightImage from '@components/common/image';
 import Select from '@components/common/select';
 import ToolTip from '@components/common/tooltip';
 import styles from '@components/dashboard/period/DashBoardPeriod.module.scss';
+import useMountEffect from '@hooks/useMountEffect';
+import { useQuery } from '@tanstack/react-query';
+import { METRICS_HALF } from '@api/path';
+import { fetchMetrics } from '@api/metrics';
+import useIsMobile from '@hooks/useIsMobile';
 
 const periodArr = ['반기', '분기'];
-const categorizeArr = ['상반기', '하반기'];
+const halfPeriodArr = ['상반기', '하반기'];
+const quarterPeriodArr = ['1분기', '2분기', '3분기', '4분기'];
 
 const DashBoardPeriod = () => {
+  const { isMobile } = useIsMobile();
   const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
   const [period, setPeriod] = useState<string>(periodArr[0]);
-  const [categorize, setCategorize] = useState<string>(categorizeArr[0]);
+  const [categorize, setCategorize] = useState<string>(halfPeriodArr[0]);
+  const { data, isError, isLoading, refetch } = useQuery(
+    [METRICS_HALF],
+    () =>
+      fetchMetrics(`${METRICS_HALF}/${categorize === '상반기' ? '1' : '2'}`),
+    {
+      suspense: true,
+      staleTime: 3000,
+      initialData: [],
+      enabled: period === '반기',
+    },
+  );
+
+  useMountEffect(() => {
+    setCategorize(period === '반기' ? halfPeriodArr[0] : quarterPeriodArr[0]);
+
+    return () => {};
+  }, [period]);
+
+  if (isError || isLoading) {
+    return <></>;
+  }
 
   return (
     <div className={styles.root}>
       <div className={styles.periodContainer}>
-        <div className={styles.periodCategory}>
-          <label>
-            <span>기간</span>
-            <Select value={period} setValue={setPeriod} options={periodArr} />
-          </label>
-          <label>
-            <span className={styles.categorize}>분류</span>
-            <Select
-              value={categorize}
-              setValue={setCategorize}
-              options={categorizeArr}
-            />
-          </label>
-        </div>
-        <div className={styles.periodOfTime}>
-          <button type="button" onClick={() => setTooltipOpen(!tooltipOpen)}>
-            <AutoHeightImage
-              src="/images/time-clock.png"
-              alt="검색"
-              width={20}
-              height={20}
-            />
-            <ToolTip
-              text="목표 기간 : 2023.01.01 ~ 2023.12.31"
-              open={tooltipOpen}
-              clasName={styles.tooltip}
-            />
-          </button>
-          148일 15시간 45분 남았어요
-        </div>
+        {isMobile ? (
+          <div>
+            <button type="button">반기</button>
+            <button type="button">상반기</button>
+          </div>
+        ) : (
+          <div className={styles.periodCategory}>
+            <label>
+              <span>기간</span>
+              <Select value={period} setValue={setPeriod} options={periodArr} />
+            </label>
+            <label>
+              <span className={styles.categorize}>분류</span>
+              <Select
+                value={categorize}
+                options={period === '반기' ? halfPeriodArr : quarterPeriodArr}
+                onChange={(e) => {
+                  setCategorize(e);
+                  if (period === '반기') refetch(e);
+                }}
+              />
+            </label>
+          </div>
+        )}
+        {!isMobile && (
+          <div className={styles.periodOfTime}>
+            <button type="button" onClick={() => setTooltipOpen(!tooltipOpen)}>
+              <AutoHeightImage
+                src="/images/time-clock.png"
+                alt="검색"
+                width={20}
+                height={20}
+              />
+              <ToolTip
+                text="목표 기간 : 2023.01.01 ~ 2023.12.31"
+                open={tooltipOpen}
+                clasName={styles.tooltip}
+              />
+            </button>
+            148일 15시간 45분 남았어요
+          </div>
+        )}
       </div>
       <ul className={styles.categoryContainer}>
         <li className={styles.objectives}>
