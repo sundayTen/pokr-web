@@ -4,14 +4,15 @@ import styles from '@components/common/select/Select.module.scss';
 
 interface SelectProps {
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  setValue?: React.Dispatch<React.SetStateAction<string>>;
   options: any;
   defaultValue?: string | number | readonly string[] | undefined;
+  onChange?: (e: any) => void;
 }
 
 const Select = (props: SelectProps) => {
   const [open, setOpen] = useState<boolean>(false);
-  const { value, setValue, options, defaultValue = '' } = props;
+  const { value, setValue, options, defaultValue = '', onChange } = props;
   const btnRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
@@ -46,7 +47,8 @@ const Select = (props: SelectProps) => {
                 [styles.selected]: option === value || option === defaultValue,
               })}
               onClick={() => {
-                setValue(option);
+                if (onChange) onChange(option);
+                if (setValue) setValue(option);
                 setOpen(false);
               }}
             >

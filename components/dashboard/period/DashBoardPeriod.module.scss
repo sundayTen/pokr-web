@@ -1,5 +1,5 @@
 .root {
-  @apply mobile:bg-white mobile:hidden;
+  @apply mobile:bg-white;
 
   & .periodContainer {
     @apply flex justify-between items-center;
