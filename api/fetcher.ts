@@ -28,7 +28,7 @@ const defaultConfig: FetchConfig = {
   headers: {
     'Content-Type': 'application/json',
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6bnVsbCwibmlja25hbWUiOm51bGwsImVtYWlsIjpudWxsLCJleHAiOjE3MDkwMjE5NjN9.BB5PZHeCu3Lp41E1l_I059Z7HmK7rwDh57iVHeRARag',
+      'Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6bnVsbCwibmlja25hbWUiOm51bGwsImVtYWlsIjpudWxsLCJleHAiOjE3MDkwMjE5NjN9.BB5PZHeCu3Lp41E1l_I059Z7HmK7rwDh57iVHeRARag',
   },
   mode: 'cors',
 };
@@ -52,13 +52,14 @@ export const fetcher = async <T>({
     if (response.ok) {
       return await response.json();
     }
+
+    handleError(response.status);
   } catch (error) {
-    handleError(error);
     throw error;
   }
 };
 
-const handleError = (status) => {
+const handleError = (status: number) => {
   switch (status) {
     case 401:
       throw new Error('인증 문제 발생');
