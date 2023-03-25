@@ -1,0 +1,27 @@
+.root {
+  .input[type='checkbox'] {
+    display: none;
+  }
+
+  input[type='checkbox']:checked + label {
+    background-image: url('/public/images/checkbox/checkbox_checked.png');
+  }
+
+  input[type='checkbox']:disabled + label {
+    background-image: url('/public/images/checkbox/checkbox_disabled.png');
+  }
+
+  label {
+    @apply text-label1;
+    color: var(--text-body);
+    display: inline-block;
+    background-image: url('/public/images/checkbox/checkbox_unchecked.png');
+    background-size: cover;
+
+    //if checkbox input is disabled, change label color to --text-disabled, text-decoration to line-through
+    &.input[type='checkbox']:checked:disabled {
+      color: var(--text-disabled);
+      text-decoration: line-through;
+    }
+  }
+}
