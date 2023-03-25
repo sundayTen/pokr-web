@@ -1,0 +1,31 @@
+.root {
+  .container {
+    @apply flex mb-6 items-center justify-between;
+  }
+
+  .buttons {
+    @apply flex items-center;
+
+    .left {
+      @apply rounded-l-lg;
+      padding: 8px;
+    }
+
+    .right {
+      @apply rounded-r-lg;
+      padding: 8px;
+    }
+  }
+
+  .buttonContainer {
+    @apply font-bold cursor-pointer;
+
+    border: 1px solid var(--content-gray3);
+    color: var(--text-body);
+  }
+
+  .todayButton {
+    @apply rounded-lg mr-2;
+    padding: 8px 20px;
+  }
+}

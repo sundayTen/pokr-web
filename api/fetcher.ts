@@ -28,13 +28,14 @@ const defaultConfig: FetchConfig = {
   headers: {
     'Content-Type': 'application/json',
     Authorization:
-      'Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6bnVsbCwibmlja25hbWUiOm51bGwsImVtYWlsIjpudWxsLCJleHAiOjE3MDkwMjE5NjN9.BB5PZHeCu3Lp41E1l_I059Z7HmK7rwDh57iVHeRARag',
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6bnVsbCwibmlja25hbWUiOm51bGwsImVtYWlsIjpudWxsLCJleHAiOjE3MTEyNjYxMDl9.OGFa42EVj5vpShh7smt561mSV7w2neA7jLp-YMDBGpI',
   },
   mode: 'cors',
 };
 
 /**
  * fetchApi 활용을 위한 fetcher 모듈
+ * API 요청에 성공하면 response 객체를. 아니면 falsy한 값을 리턴한다.
  * @param {string} path
  * @param {FetcherRequest?} config
  * @returns {Promise<T>}
