@@ -1,2 +1,6 @@
 .root {
+  @apply flex flex-col gap-y-4 rounded-lg cursor-pointer;
+  border: 1px solid var(--content-gray3);
+  margin-bottom: 6px;
+  padding: 16px 12px;
 }
