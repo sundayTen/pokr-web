@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '@components/dashboard/aside/DashBoardAside.module.scss';
 import { OKR } from '@type/okr';
 import Calendar from './WeekCalendar';
-import InitiativeList from './InitiativeList';
+import InitiativeList from './KeyResultList';
 import { useQuery } from '@tanstack/react-query';
 import { fetchOkr } from '@api/okr';
 
@@ -24,7 +24,9 @@ const DashboardAside = ({ okr }: DashboardAsideProps) => {
 
       <div className={styles.card}>
         <Calendar />
+
         <InitiativeList />
+
         {data?.map((datum) => (
           <p>{datum.objectiveTitle}</p>
         ))}

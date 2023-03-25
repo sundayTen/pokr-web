@@ -1,0 +1,20 @@
+.root {
+  @apply flex flex-1 items-center justify-between;
+
+  .additionalDataContainer {
+    @apply flex ml-3;
+    span + span {
+      margin-left: 6px;
+    }
+  }
+
+  .deadline {
+    @apply text-label2;
+    color: #ed3e3e;
+  }
+
+  .count {
+    @apply text-label2;
+    color: var(--text-heading);
+  }
+}
