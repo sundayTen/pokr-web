@@ -28,7 +28,7 @@ const Graph = () => {
   return (
     <section className={styles.root}>
       <div className={styles.container}>
-        <h1>반기 달성 지표</h1>
+        <h1>{graphData.length > 6 ? '분기' : '반기'} 달성 지표</h1>
         <Text weight="NORMAL" variant="BODY">
           이번 달은 전체 사용자의 평균 보다
           <span className={styles.highlight}> 15% </span>
