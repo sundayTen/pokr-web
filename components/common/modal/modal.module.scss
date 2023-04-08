@@ -29,6 +29,7 @@
   }
 
   .titleContainer {
+    @apply flex justify-between items-center;
     padding-bottom: 19px;
     margin: 0 -24px 20px;
     border-bottom: 0.4px solid #181818;
@@ -61,5 +62,9 @@
     button + button {
       margin-left: 20px;
     }
+  }
+
+  .close {
+    @apply cursor-pointer mr-6;
   }
 }
