@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import { useEffect } from 'react';
 import Button from '../button';
 import styles from './modal.module.scss';
 
@@ -9,13 +11,23 @@ export interface ModalContents {
   confirmButtonLabel?: string;
   cancelButtonPressed?: () => void;
   confirmButtonPressed?: () => void;
+  close?: () => void;
 }
 
 interface ModalProps {
   modalContent?: ModalContents | null;
 }
 const ModalPortal = ({ modalContent = null }: ModalProps) => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
   if (modalContent === null) return <></>;
+
   const {
     title,
     content,
@@ -24,6 +36,7 @@ const ModalPortal = ({ modalContent = null }: ModalProps) => {
     confirmButtonLabel,
     cancelButtonPressed,
     confirmButtonPressed,
+    close,
   } = modalContent;
   return (
     <div className={styles.root}>
@@ -32,7 +45,13 @@ const ModalPortal = ({ modalContent = null }: ModalProps) => {
         <div className={styles.contents}>
           <div className={styles.titleContainer}>
             <span className={styles.title}>{title}</span>
-            {/* <CloseIcon onClick={close} /> */}
+            <Image
+              src={'/images/close.png'}
+              width={24}
+              height={24}
+              alt="닫기 버튼"
+              className={styles.close}
+            />
           </div>
           <div className={styles.mainContainer}>
             {content && <span className={styles.contentFont}>{content}</span>}
@@ -45,6 +64,7 @@ const ModalPortal = ({ modalContent = null }: ModalProps) => {
                   label={cancelButtonLabel}
                   onClick={() => {
                     cancelButtonPressed && cancelButtonPressed();
+                    close && close();
                   }}
                 />
               )}
