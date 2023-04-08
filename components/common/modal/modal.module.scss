@@ -57,10 +57,10 @@
   }
 
   .buttonGroup {
-    text-align: center;
-    margin-top: 40px;
+    @apply mt-10 text-center flex justify-end;
+
     button + button {
-      margin-left: 20px;
+      margin-left: 12px;
     }
   }
 

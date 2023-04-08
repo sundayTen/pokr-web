@@ -46,6 +46,7 @@ const ModalPortal = ({ modalContent = null }: ModalProps) => {
           <div className={styles.titleContainer}>
             <span className={styles.title}>{title}</span>
             <Image
+              onClick={close}
               src={'/images/close.png'}
               width={24}
               height={24}
@@ -59,7 +60,7 @@ const ModalPortal = ({ modalContent = null }: ModalProps) => {
             <div className={styles.buttonGroup}>
               {cancelButtonLabel && (
                 <Button
-                  buttonStyle="BLACK"
+                  buttonStyle="BORDER"
                   size="MEDIUM"
                   label={cancelButtonLabel}
                   onClick={() => {
