@@ -4,7 +4,8 @@
   }
 
   input[type='checkbox']:checked + label {
-    background-image: url('/public/images/checkbox/checkbox_checked.png');
+    // background-image: url('/public/images/checkbox/checkbox_checked.png');
+    background-color: blue;
   }
 
   input[type='checkbox']:disabled + label {

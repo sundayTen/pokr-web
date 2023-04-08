@@ -1,0 +1,8 @@
+.root {
+  @apply flex flex-col items-start;
+
+  .selectLabel {
+    @apply text-label1 mt-6;
+    color: var(--text-body);
+  }
+}

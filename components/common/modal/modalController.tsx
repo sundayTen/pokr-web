@@ -64,6 +64,7 @@ class ModalController extends Component<ModalProps, ModalState> {
           confirmButtonPressed,
           cancelButtonPressed,
           children,
+          close: this.close,
         }}
       />
     );
