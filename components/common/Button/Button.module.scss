@@ -38,32 +38,40 @@
   &.painted {
     @apply text-white;
 
-    background-color: #efa03d;
+    background-color: var(--pri-400);
 
     &:hover {
       @apply text-white;
 
-      background-color: #ef8f16;
+      background-color: var(--pri-400);
     }
     &:disabled {
-      background-color: #f8d6ab;
+      background-color: var(--content-gray2);
+    }
+
+    &:active {
+      background-color: var(--pri-600);
     }
   }
 
   &.border {
     @apply bg-transparent;
 
-    border: 1px solid #efa03d;
-    color: #efa03d;
+    border: 1px solid var(--content-gray3);
+    color: var(--text-body);
 
-    &:hover {
-      border-color: #ef8f16;
-      color: #ef8f16;
+    &:active {
+      border: 1px solid var(--content-gray2);
     }
-    &:disabled {
-      border-color: #f8d6ab;
-      color: #f8d6ab;
-    }
+
+    // &:hover {
+    //   border-color: #ef8f16;
+    //   color: #ef8f16;
+    // }
+    // &:disabled {
+    //   border-color: #f8d6ab;
+    //   color: #f8d6ab;
+    // }
   }
 
   &.black {
