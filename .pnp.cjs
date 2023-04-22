@@ -36,6 +36,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.11.9"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.8"],\
+            ["@vercel/analytics", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.0.0"],\
+            ["add", "npm:2.0.6"],\
             ["autoprefixer", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:10.4.13"],\
             ["classnames", "npm:2.3.2"],\
             ["cypress", "npm:12.3.0"],\
@@ -59,6 +61,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["size-limit", "npm:8.1.2"],\
             ["tailwindcss", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:3.2.4"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=0102e9"],\
+            ["yarn", "npm:1.22.19"],\
             ["zustand", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.3.2"]\
           ],\
           "linkType": "SOFT"\
@@ -1139,6 +1142,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@vercel/analytics", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/@vercel-analytics-npm-1.0.0-0bc9a3ea25-e9badd995a.zip/node_modules/@vercel/analytics/",\
+          "packageDependencies": [\
+            ["@vercel/analytics", "npm:1.0.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/@vercel-analytics-virtual-0f0bdbf3f3/0/cache/@vercel-analytics-npm-1.0.0-0bc9a3ea25-e9badd995a.zip/node_modules/@vercel/analytics/",\
+          "packageDependencies": [\
+            ["@vercel/analytics", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.0.0"],\
+            ["@types/react", "npm:18.0.25"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["abbrev", [\
         ["npm:1.1.1", {\
           "packageLocation": "./.yarn/cache/abbrev-npm-1.1.1-3659247eab-a4a97ec07d.zip/node_modules/abbrev/",\
@@ -1210,6 +1235,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/acorn-walk-npm-8.2.0-2f2cac3177-1715e76c01.zip/node_modules/acorn-walk/",\
           "packageDependencies": [\
             ["acorn-walk", "npm:8.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["add", [\
+        ["npm:2.0.6", {\
+          "packageLocation": "./.yarn/cache/add-npm-2.0.6-c96b78d852-e2d23d4049.zip/node_modules/add/",\
+          "packageDependencies": [\
+            ["add", "npm:2.0.6"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6054,6 +6088,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.11.9"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.8"],\
+            ["@vercel/analytics", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.0.0"],\
+            ["add", "npm:2.0.6"],\
             ["autoprefixer", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:10.4.13"],\
             ["classnames", "npm:2.3.2"],\
             ["cypress", "npm:12.3.0"],\
@@ -6077,6 +6113,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["size-limit", "npm:8.1.2"],\
             ["tailwindcss", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:3.2.4"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=0102e9"],\
+            ["yarn", "npm:1.22.19"],\
             ["zustand", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.3.2"]\
           ],\
           "linkType": "SOFT"\
@@ -8186,6 +8223,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/yaml-npm-2.2.1-b7f7f5e84d-84f68cbe46.zip/node_modules/yaml/",\
           "packageDependencies": [\
             ["yaml", "npm:2.2.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["yarn", [\
+        ["npm:1.22.19", {\
+          "packageLocation": "./.yarn/unplugged/yarn-npm-1.22.19-6ba13b96dc/node_modules/yarn/",\
+          "packageDependencies": [\
+            ["yarn", "npm:1.22.19"]\
           ],\
           "linkType": "HARD"\
         }]\
