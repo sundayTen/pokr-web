@@ -17,7 +17,7 @@ export interface ModalContents {
 interface ModalProps {
   modalContent?: ModalContents | null;
 }
-const ModalPortal = ({ modalContent = null }: ModalProps) => {
+const Modal = ({ modalContent = null }: ModalProps) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -87,4 +87,4 @@ const ModalPortal = ({ modalContent = null }: ModalProps) => {
   );
 };
 
-export default ModalPortal;
+export default Modal;
