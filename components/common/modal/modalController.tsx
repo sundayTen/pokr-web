@@ -12,12 +12,14 @@ const initialState: ModalState = {
   content: '',
 };
 
+type ModalControllerRef = ModalController | null;
+
 class ModalController extends Component<ModalProps, ModalState> {
   state = initialState;
 
-  static _ref = null;
+  static _ref: ModalControllerRef = null;
 
-  static setRef = (ref = null) => {
+  static setRef = (ref: ModalControllerRef) => {
     ModalController._ref = ref;
   };
 
@@ -31,7 +33,7 @@ class ModalController extends Component<ModalProps, ModalState> {
     this.setState({ visible: true, ...props });
   };
 
-  static update = (props: ModalContents) => ModalController._ref.update(props);
+  static update = (props: ModalContents) => ModalController._ref?.update(props);
 
   close = () => {
     this.setState(initialState);
