@@ -836,6 +836,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vercel/analytics@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@vercel/analytics@npm:1.0.0"
+  peerDependencies:
+    react: ^16.8||^17||^18
+  checksum: e9badd995ac67ef971250a93f6e03c5628923337a1ea5be821becb3afa3f4ceda13e9cc989b4a5432039851c82bd0695fd7e690c0373e31eb555ee30ce0384a7
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^1.0.0":
   version: 1.1.1
   resolution: "abbrev@npm:1.1.1"
@@ -892,6 +901,13 @@ __metadata:
   bin:
     acorn: bin/acorn
   checksum: f790b99a1bf63ef160c967e23c46feea7787e531292bb827126334612c234ed489a0dc2c7ba33156416f0ffa8d25bf2b0fdb7f35c2ba60eb3e960572bece4001
+  languageName: node
+  linkType: hard
+
+"add@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "add@npm:2.0.6"
+  checksum: e2d23d40494565dfed4acd65e478570c444db5ac6c053551ed429c39ea0f2c99d83df63e7befec936df601827d2254d06a2fb6f7dcfd2022e810b25eab818b8c
   languageName: node
   linkType: hard
 
@@ -5030,6 +5046,8 @@ __metadata:
     "@types/node": 18.11.9
     "@types/react": 18.0.25
     "@types/react-dom": 18.0.8
+    "@vercel/analytics": ^1.0.0
+    add: ^2.0.6
     autoprefixer: ^10.4.13
     classnames: ^2.3.2
     cypress: 12.3.0
@@ -5053,6 +5071,7 @@ __metadata:
     size-limit: ^8.1.0
     tailwindcss: ^3.2.4
     typescript: 4.8.4
+    yarn: ^1.22.19
     zustand: ^4.1.4
   dependenciesMeta:
     next@13.2.0:
@@ -6818,6 +6837,16 @@ __metadata:
   version: 2.2.1
   resolution: "yaml@npm:2.2.1"
   checksum: 84f68cbe462d5da4e7ded4a8bded949ffa912bc264472e5a684c3d45b22d8f73a3019963a32164023bdf3d83cfb6f5b58ff7b2b10ef5b717c630f40bd6369a23
+  languageName: node
+  linkType: hard
+
+"yarn@npm:^1.22.19":
+  version: 1.22.19
+  resolution: "yarn@npm:1.22.19"
+  bin:
+    yarn: bin/yarn.js
+    yarnpkg: bin/yarn.js
+  checksum: b43d2cc5fee7e933beb12a8aee7dfceca9e9ef2dd17c5d04d15a12ab7bec5f5744ea34a07b86e013da7f291a18c4e1ad8f70e150f5ed2f4666e6723c7f0a8452
   languageName: node
   linkType: hard
 
