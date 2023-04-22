@@ -28,7 +28,7 @@ const defaultConfig: FetchConfig = {
   headers: {
     'Content-Type': 'application/json',
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6bnVsbCwibmlja25hbWUiOm51bGwsImVtYWlsIjpudWxsLCJleHAiOjE3MTEyNjYxMDl9.OGFa42EVj5vpShh7smt561mSV7w2neA7jLp-YMDBGpI',
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6bnVsbCwibmlja25hbWUiOiJyYW5kb21fbmlja25hbWUiLCJlbWFpbCI6bnVsbCwiZXhwIjoxNjgzODYxNzc0fQ.TYb3x0EIA49jAIO2ZS_DNZhV-ok7Z4Y6CYz1zdco-bU',
   },
   mode: 'cors',
 };

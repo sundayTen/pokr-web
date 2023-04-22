@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:8080';
+export const BASE_URL = 'http://15.165.75.44';
 
 // API path
 export const OKR = 'api/okr';
