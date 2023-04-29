@@ -1,3 +1,4 @@
+import userStore from '@store/user';
 import { BASE_URL } from './path';
 
 interface FetcherRequest {
@@ -11,8 +12,8 @@ interface FetchConfig {
     'Content-Type': string;
     Authorization?: string;
   };
-  mode: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
-  cache:
+  mode?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
+  cache?:
     | 'default'
     | 'force-cache'
     | 'no-cache'
@@ -25,12 +26,10 @@ interface FetchConfig {
 const defaultConfig: FetchConfig = {
   method: 'GET',
   cache: 'default', // SSR 타입에 따라 분기
+  mode: 'cors',
   headers: {
     'Content-Type': 'application/json',
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6bnVsbCwibmlja25hbWUiOiJyYW5kb21fbmlja25hbWUiLCJlbWFpbCI6bnVsbCwiZXhwIjoxNjgzODYxNzc0fQ.TYb3x0EIA49jAIO2ZS_DNZhV-ok7Z4Y6CYz1zdco-bU',
   },
-  mode: 'cors',
 };
 
 /**
@@ -44,6 +43,12 @@ export const fetcher = async <T>({
   path,
   config,
 }: FetcherRequest): Promise<T> => {
+  const store = userStore.getState();
+
+  if (store.userToken) {
+    defaultConfig.headers.Authorization = `Bearer ${store.userToken}`;
+  }
+
   try {
     const response = await fetch(`${BASE_URL}/${path}`, {
       ...defaultConfig,
@@ -63,6 +68,8 @@ export const fetcher = async <T>({
 const handleError = (status: number) => {
   switch (status) {
     case 401:
+      window?.localStorage?.removeItem('accessToken');
+      userStore.setState({ userToken: null });
       throw new Error('인증 문제 발생');
     case 404:
       throw new Error('데이터를 찾을 수 없음');

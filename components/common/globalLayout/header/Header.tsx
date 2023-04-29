@@ -1,50 +1,68 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styles from '@components/common/globalLayout/header/Header.module.scss';
 import Link from 'next/link';
-import AutoHeightImage from '@components/common/image';
-import useInput from 'hooks/useInput';
+import Script from 'next/script';
+import NaverLogin from '@components/common/login/naver';
+import userStore from '@store/user';
+
+export interface NaverUserProps {
+  age?: any;
+  birthday?: any;
+  email: string;
+  gender?: any;
+  id: string;
+  name: string;
+  nickname: any;
+  profile_image: string;
+}
 
 const Header = () => {
-  const searchText = useInput({ initialValue: '', maxLength: 20 });
+  const { userToken, changeUserToken } = userStore();
+  const [userInfo, setUserInfo] = useState(userToken ? true : false);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+
+  useEffect(() => {
+    if (userToken) setUserInfo(true);
+    else setUserInfo(false);
+  }, [userToken]);
+
+  const handleLogout = useCallback(() => {
+    window?.localStorage?.removeItem('accessToken');
+
+    changeUserToken(null);
+    setUserInfo(false);
+  }, [userInfo]);
 
   return (
-    <header className={styles.root}>
-      <Link href="/">POKR Project</Link>
-      <div className={styles.searchContainer}>
-        <div className={styles.searchIcon}>
-          <AutoHeightImage
-            src="/images/search.png"
-            alt="검색"
-            width={20}
-            height={20}
-          />
+    <>
+      <Script
+        src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+        defer
+        onLoad={() => setScriptLoaded(true)}
+      />
+      <header className={styles.root}>
+        <Link href="/">POKR Project</Link>
+        <div className={styles.user}>
+          {scriptLoaded && !userInfo && (
+            <div className={styles.naverLoginBtn}>
+              <NaverLogin setUserInfo={setUserInfo} />
+            </div>
+          )}
+          {userInfo && (
+            <>
+              <div className={styles.profile} />
+              <button
+                type="button"
+                className={styles.logoutBtn}
+                onClick={handleLogout}
+              >
+                로그아웃
+              </button>
+            </>
+          )}
         </div>
-        <input
-          type="text"
-          placeholder="목표명, 태그 등을 검색해보세요 :)"
-          value={searchText.value}
-          onChange={(e) => searchText.onChangeInput(e)}
-        />
-        {searchText.value.length > 0 && (
-          <button
-            type="button"
-            className={styles.searchBtn}
-            onClick={searchText.reset}
-          >
-            <AutoHeightImage
-              src="/images/close.png"
-              alt="검색"
-              width={18}
-              height={18}
-            />
-          </button>
-        )}
-      </div>
-      <div className={styles.user}>
-        김아무개
-        <div className={styles.profile} />
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 

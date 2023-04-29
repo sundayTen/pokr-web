@@ -10,50 +10,30 @@
     @apply text-pri-400 text-xl font-bold;
   }
 
-  & > .searchContainer {
-    @apply relative flex items-center;
-
-    max-width: 400px;
-    width: calc(100% - 225px);
-
-    & .searchIcon {
-      @apply absolute;
-
-      left: 20px;
-    }
-
-    & input {
-      @apply w-full outline-none;
-
-      height: 40px;
-      padding: 0 48px;
-      background-color: #f6f7f9;
-      border-radius: 20px;
-      border: 1px solid var(--border-gray);
-
-      &::placeholder {
-        color: var(--text-body);
-      }
-    }
-
-    & .searchBtn {
-      @apply absolute;
-
-      right: 16px;
-    }
-  }
-
   & > .user {
     @apply text-sm flex items-center font-medium;
 
     color: var(--text-body);
 
+    & .naverLoginBtn {
+      height: 45px;
+
+      & img {
+        width: 45px;
+      }
+    }
+
     & .profile {
+      @apply overflow-hidden;
+
       width: 40px;
       height: 40px;
-      margin-left: 8px;
+      margin: 0 8px;
       border-radius: 40px;
       background-color: var(--pri-100);
+      border: 1px solid var(--border-gray);
     }
+
+    // & .logoutBtn {}
   }
 }

@@ -8,3 +8,5 @@ export const METRICS_HALF = 'api/metrics/graph/half';
 export const METRICS_QUARTER = 'api/metrics/graph/quarter';
 
 export const OBJECTIVES = 'api/objectives';
+
+export const NAVER_LOGIN = 'api/auth/login/naver';
