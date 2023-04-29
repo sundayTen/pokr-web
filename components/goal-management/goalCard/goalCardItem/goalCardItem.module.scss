@@ -1,3 +1,59 @@
 .root {
+  @apply bg-white;
+
   width: 350px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-gray);
+
+  & .top {
+    @apply relative flex justify-end;
+
+    & .tag {
+      @apply absolute text-white inline-block text-sm left-0;
+
+      height: 28px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background-color: var(--pri-400);
+    }
+    & .editButton {
+      margin-right: 8px;
+    }
+
+    & .moreButton {
+    }
+
+    & .moreInner {
+      @apply absolute bg-white;
+
+      top: 28px;
+      padding: 6px 0;
+      border-radius: 8px;
+      box-shadow: 0 8px 12px 0 rgba(102, 102, 102, 0.08),
+        0 0 6px 0 rgba(102, 102, 102, 0.02);
+      border: 1px solid var(--border-gray);
+
+      & button {
+        @apply text-left text-lg;
+
+        height: 40px;
+        min-width: 100px;
+        padding: 0 12px;
+
+        &:hover {
+          background-color: #f6f7f9;
+        }
+      }
+    }
+  }
+
+  & > .title {
+    @apply border-0 resize-none bg-transparent outline-none font-bold text-lg;
+
+    line-height: 1.44;
+  }
+
+  & .bottom {
+  }
 }

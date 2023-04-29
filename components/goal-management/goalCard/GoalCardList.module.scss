@@ -1,3 +1,7 @@
 .root {
   @apply relative;
+
+  & .lists {
+    @apply flex flex-wrap;
+  }
 }
