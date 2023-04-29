@@ -1,0 +1,24 @@
+.root {
+  & .header {
+    @apply flex justify-between items-center w-full;
+
+    & > .left {
+      //   @apply flex items-center;
+
+      & strong {
+        @apply text-base;
+
+        margin-left: 12px;
+
+        & span {
+          @apply font-normal text-sm;
+
+          color: var(--text-body);
+        }
+      }
+    }
+
+    & > .right {
+    }
+  }
+}

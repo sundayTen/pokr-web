@@ -17,3 +17,32 @@ export interface INITIATIVE {
   initiativeId: ID;
   initiativeTitle: string;
 }
+
+export interface OKY_KEY_RESULT_TYPE {
+  achievementScore: number;
+  description: string;
+  dueDate: string;
+  id: number;
+  initiatives: any[];
+  openDate: string;
+  title: string;
+}
+
+export interface OKR_TYPE {
+  achievement: boolean;
+  id: number;
+  keyResults: OKY_KEY_RESULT_TYPE[];
+  title: string;
+  year: number;
+}
+
+export interface OKR_OBJECTIVES_TYPE {
+  id: number;
+  title: string;
+  year: number;
+  achievement: boolean;
+  keyResultCount: number;
+  initiativeCount: number;
+  createdAt: string;
+  updatedAt: string;
+}

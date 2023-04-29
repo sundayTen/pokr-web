@@ -51,7 +51,7 @@ const DashBoardPeriod = () => {
     },
   );
 
-  const { isLoading } = useQuery<METRICS_OBJECTIVES_DATA[]>(
+  const { isLoading, data: d } = useQuery<METRICS_OBJECTIVES_DATA[]>(
     ['objectives'],
     fetchMetricsObjects,
     {
@@ -59,6 +59,7 @@ const DashBoardPeriod = () => {
       useErrorBoundary: true,
       initialData: [],
       onSuccess: (data: METRICS_OBJECTIVES_DATA[]) => {
+        // console.log('data ; ', data);
         const objectivesData = data.reduce(
           (acc, cur: METRICS_OBJECTIVES_DATA) => {
             return {
@@ -113,7 +114,7 @@ const DashBoardPeriod = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // console.log(leftDays);
+  // console.log('d : ', d);
 
   return (
     <div className={styles.root}>

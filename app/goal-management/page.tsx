@@ -1,7 +1,8 @@
+import GoalManagement from '@components/goal-management';
 import React from 'react';
 
-const GoalManagement = () => {
-  return <div>goal-management</div>;
+const Page = () => {
+  return <GoalManagement />;
 };
 
-export default GoalManagement;
+export default Page;
