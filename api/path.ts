@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://15.165.75.44';
+export const BASE_URL = 'https://api.myokr-routine.com';
 
 // API path
 export const OKR = 'api/okr';
