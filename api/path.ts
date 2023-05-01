@@ -2,6 +2,7 @@ export const BASE_URL = 'https://api.myokr-routine.com';
 
 // API path
 export const OKR = 'api/okr';
+export const OKR_YEARS = 'api/okr/years';
 
 export const METRICS_OBJECTIVES = 'api/metrics/objectives';
 export const METRICS_HALF = 'api/metrics/graph/half';

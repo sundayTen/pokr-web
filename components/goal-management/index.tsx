@@ -1,29 +1,37 @@
 'use client';
-import { fetchOkr } from '@api/okr';
+import { fetchOkr, fetchOkrYears } from '@api/okr';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { OKR_TYPE } from '@type/okr';
 import GoalCardList from './goalCard';
 import GoalManagementHeader from './header';
 import goalManagementStore from '@store/goal-management';
+import { getObjectives } from '@api/objectives';
+import userStore from '@store/user';
 
 const GoalManagement = () => {
-  const { data } = useQuery(['okr'], fetchOkr, {
-    suspense: true,
-    useErrorBoundary: true,
-  });
-  const { currentYear } = goalManagementStore();
+  const { currentYear, changeCurrentYear } = goalManagementStore();
+  const { userToken } = userStore();
 
   return (
     <>
-      <GoalManagementHeader okrData={data} />
-      <GoalCardList
-        cards={
-          data &&
-          data.filter((okr: any) => okr.year === Number(currentYear))[0]
-            ?.keyResults
-        }
-      />
+      <GoalManagementHeader objectiveLgneth={0} />
+      {
+        <GoalCardList
+          cards={[
+            {
+              id: 4,
+              title: 'test',
+              year: 2023,
+              achievement: false,
+              keyResultCount: 2,
+              initiativeCount: 0,
+              createdAt: '2023-04-30T06:17:19',
+              updatedAt: '2023-04-30T06:17:19',
+            },
+          ]}
+        />
+      }
     </>
   );
 };

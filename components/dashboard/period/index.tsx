@@ -55,8 +55,6 @@ const DashBoardPeriod = () => {
     ['objectives'],
     fetchMetricsObjects,
     {
-      suspense: true,
-      useErrorBoundary: true,
       initialData: [],
       onSuccess: (data: METRICS_OBJECTIVES_DATA[]) => {
         // console.log('data ; ', data);

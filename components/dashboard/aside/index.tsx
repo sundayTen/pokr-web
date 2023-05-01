@@ -11,10 +11,7 @@ interface DashboardAsideProps {
 }
 
 const DashboardAside = ({ okr }: DashboardAsideProps) => {
-  const { data } = useQuery(['okr'], fetchOkr, {
-    suspense: true,
-    useErrorBoundary: true,
-  });
+  const { data } = useQuery(['okr'], fetchOkr, {});
 
   return (
     <aside className={styles.root}>

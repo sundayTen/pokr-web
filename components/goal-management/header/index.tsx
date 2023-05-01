@@ -4,27 +4,31 @@ import Button from '@components/common/button';
 import Select from '@components/common/select';
 import styles from './GoalManagementHeader.module.scss';
 import goalManagementStore from '@store/goal-management';
+import { useQuery } from '@tanstack/react-query';
 
-const GoalManagementHeader = ({ okrData }: { okrData: any }) => {
-  const [years, setYears] = useState<number[]>([]);
-  const [totalKeyResult, setTotalKeyResult] = useState<number>(0);
+import userStore from '@store/user';
+import { fetchOkrYears } from '@api/okr';
+
+const GoalManagementHeader = ({
+  objectiveLgneth,
+}: {
+  objectiveLgneth: number;
+}) => {
+  const { userToken } = userStore();
   const { currentYear, changeCurrentYear } = goalManagementStore();
+  const [years, setYears] = useState<number[]>([]);
 
-  // console.log(okrData);
-
-  useEffect(() => {
-    if (okrData.length > 0) {
-      const getYears = okrData.reduce((acc: string[], cur: OKR_TYPE) => {
-        return [...acc, String(cur.year)];
-      }, []);
-
-      setYears(getYears);
-      changeCurrentYear(getYears[0]);
-      setTotalKeyResult(okrData[0].keyResults.length);
-    }
-
-    return () => {};
-  }, []);
+  const { data } = useQuery(['okr_years'], fetchOkrYears, {
+    // enabled: !!userToken,
+    suspense: true,
+    useErrorBoundary: true,
+    onSuccess: (res) => {
+      if (res.length > 0) {
+        setYears(res);
+        changeCurrentYear(res[0]);
+      }
+    },
+  });
 
   return (
     <div className={styles.root}>
@@ -35,14 +39,10 @@ const GoalManagementHeader = ({ okrData }: { okrData: any }) => {
             options={years.sort((a: number, b: number) => a - b)}
             onChange={(e) => {
               changeCurrentYear(e);
-              setTotalKeyResult(
-                okrData.filter((okr: OKR_TYPE) => okr.year === Number(e))[0]
-                  ?.keyResults?.length,
-              );
             }}
           />
           <strong>
-            목표 <span>{totalKeyResult}</span>
+            목표 <span>{objectiveLgneth}</span>
           </strong>
         </div>
         <div className={styles.right}>
@@ -54,14 +54,6 @@ const GoalManagementHeader = ({ okrData }: { okrData: any }) => {
           />
         </div>
       </section>
-      {/* <section className={styles.goalCardList}>
-        <GoalCardList
-          cards={
-            okrData.filter((okr: OKR_TYPE) => okr.year === Number(e))[0]
-              ?.keyResults
-          }
-        />
-      </section> */}
     </div>
   );
 };

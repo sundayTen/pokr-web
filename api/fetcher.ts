@@ -49,6 +49,8 @@ export const fetcher = async <T>({
     defaultConfig.headers.Authorization = `Bearer ${store.userToken}`;
   }
 
+  console.log(path, 'path!!', store.userToken);
+
   try {
     const response = await fetch(`${BASE_URL}/${path}`, {
       ...defaultConfig,
@@ -68,8 +70,9 @@ export const fetcher = async <T>({
 const handleError = (status: number) => {
   switch (status) {
     case 401:
-      window?.localStorage?.removeItem('accessToken');
-      userStore.setState({ userToken: null });
+      // window?.localStorage?.removeItem('accessToken');
+      // userStore.setState({ userToken: null });
+      // window.history.pushState('', '', `/`);
       throw new Error('인증 문제 발생');
     case 404:
       throw new Error('데이터를 찾을 수 없음');

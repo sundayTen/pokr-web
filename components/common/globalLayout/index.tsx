@@ -10,6 +10,9 @@ interface GlobalLayoutProps {
 
 const GlobalLayout = ({ children }: GlobalLayoutProps) => {
   // const { isMobile, isApp } = useIsMobile();
+
+  // console.log('global');
+
   return (
     <main className={styles.root}>
       {/* {isMobile ? isApp ? <></> : <MobileHeader /> : <Header />}

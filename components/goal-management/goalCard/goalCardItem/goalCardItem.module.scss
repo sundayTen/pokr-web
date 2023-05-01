@@ -27,6 +27,7 @@
     & .moreInner {
       @apply absolute bg-white;
 
+      width: 100px;
       top: 28px;
       padding: 6px 0;
       border-radius: 8px;
@@ -35,7 +36,7 @@
       border: 1px solid var(--border-gray);
 
       & button {
-        @apply text-left text-lg;
+        @apply text-left text-lg w-full;
 
         height: 40px;
         min-width: 100px;
@@ -51,7 +52,14 @@
   & > .title {
     @apply border-0 resize-none bg-transparent outline-none font-bold text-lg;
 
-    line-height: 1.44;
+    margin-top: 12px;
+    line-height: 26px;
+  }
+
+  & .period {
+    @apply text-sm;
+
+    color: var(--text-body);
   }
 
   & .bottom {

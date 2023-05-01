@@ -1,12 +1,12 @@
 'use client';
 import './globals.scss';
+import React, { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import GlobalLayout from '@components/common/globalLayout';
-import React, { useEffect } from 'react';
-import ModalController from '@components/common/modal/modalController';
-import { Analytics } from '@vercel/analytics/react';
 import userStore from '@store/user';
+import GlobalLayout from '@components/common/globalLayout';
+import ModalController from '@components/common/modal/modalController';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,7 +28,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const { changeUserToken } = userStore();
 
   useEffect(() => {
-    const getStorageToken = window?.localStorage?.getItem('accessToken');
+    const getStorageToken = localStorage.getItem('accessToken');
 
     if (getStorageToken) changeUserToken(getStorageToken);
   }, []);
