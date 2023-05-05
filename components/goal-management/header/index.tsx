@@ -10,9 +10,9 @@ import userStore from '@store/user';
 import { fetchOkrYears } from '@api/okr';
 
 const GoalManagementHeader = ({
-  objectiveLgneth,
+  objectiveLength,
 }: {
-  objectiveLgneth: number;
+  objectiveLength: number;
 }) => {
   const { userToken } = userStore();
   const { currentYear, changeCurrentYear } = goalManagementStore();
@@ -42,7 +42,7 @@ const GoalManagementHeader = ({
             }}
           />
           <strong>
-            목표 <span>{objectiveLgneth}</span>
+            목표 <span>{objectiveLength}</span>
           </strong>
         </div>
         <div className={styles.right}>
