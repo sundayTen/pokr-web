@@ -1,0 +1,51 @@
+.root {
+  @apply flex flex-col relative;
+
+  .colorBlock {
+    @apply bg-blue-700 w-1 h-10 absolute left-0 top-3;
+    border-radius: 0px 3px 3px 0px;
+  }
+
+  .parent {
+    @apply flex w-full rounded-lg bg-white cursor-pointer;
+    padding: 18px 25px;
+
+    .titleContainer {
+      @apply flex;
+
+      flex: 4;
+    }
+  }
+
+  .children {
+    @apply flex flex-col;
+    // animation: slide-down 2s forwards;
+  }
+
+  .active .icon {
+    transform: rotate(180deg);
+  }
+
+  .icon {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+
+  .label {
+    @apply text-bodyR;
+  }
+
+  .initiativesContainer {
+    @apply flex flex-col rounded-md bg-white mt-2;
+    padding: 12px 24px;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: auto;
+  }
+}

@@ -10,6 +10,7 @@ import { getObjectives } from '@api/objectives';
 import userStore from '@store/user';
 import SuspenseComponent from '@components/common/suspenseComponent';
 import PeriodTab from './period-tab';
+import KeyResultsList from './KeyResultsList';
 
 const GoalManagement = () => {
   const { currentYear, changeCurrentYear } = goalManagementStore();
@@ -38,6 +39,9 @@ const GoalManagement = () => {
       </SuspenseComponent>
       <SuspenseComponent>
         <PeriodTab />
+      </SuspenseComponent>
+      <SuspenseComponent>
+        <KeyResultsList />
       </SuspenseComponent>
     </>
   );
