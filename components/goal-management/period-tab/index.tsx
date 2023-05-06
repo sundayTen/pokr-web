@@ -18,11 +18,19 @@ const PeriodTab = (props: PeriodTabProps) => {
           key={period}
           className={cn([
             styles.tab,
-            activeTab === period ? styles.active : {},
+            {
+              [styles.active]: activeTab === period,
+            },
           ])}
           onClick={() => onClickTab(period)}
         >
-          {period}
+          <span
+            className={cn(styles.label, {
+              [styles.active]: activeTab === period,
+            })}
+          >
+            {period}
+          </span>
         </div>
       ))}
     </div>

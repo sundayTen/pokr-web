@@ -41,7 +41,7 @@ const Header = () => {
         onLoad={() => setScriptLoaded(true)}
       />
       <header className={styles.root}>
-        <Link href="/">POKR Project</Link>
+        <Link href="/">MyOKR</Link>
         <div className={styles.user}>
           {scriptLoaded && !userInfo && (
             <div className={styles.naverLoginBtn}>
