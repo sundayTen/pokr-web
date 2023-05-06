@@ -1,0 +1,32 @@
+.root {
+  @apply flex flex-1;
+
+  .circleGraph {
+    @apply w-6 h-6 rounded-full relative;
+    background-color: var(--border-gray);
+  }
+
+  .void {
+    @apply w-4 h-4 rounded-full absolute bg-white;
+    top: 4px;
+    left: 4px;
+  }
+
+  .clip {
+    @apply w-6 h-6 rounded-full absolute left-0 top-0 bg-cyan-300;
+    clip: rect(0px, 24px, 24px, 0px);
+  }
+
+  .labelContainer {
+    @apply ml-2;
+
+    .currentLabel {
+      @apply text-label1;
+    }
+
+    .totalLabel {
+      @apply text-label2;
+      color: var(--text-body);
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.root {
+  @apply flex items-center justify-center w-5 h-5 ml-2 rounded-full;
+  border: 1px solid var(--border-gray);
+  background-color: #f6f7f9;
+
+  .p {
+    @apply text-label2;
+    color: var(--text-body);
+  }
+}
