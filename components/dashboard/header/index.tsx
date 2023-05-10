@@ -1,17 +1,17 @@
 import React from 'react';
 import styles from '@components/dashboard/header/DashBoardHeader.module.scss';
 import Image from 'next/image';
-import ModalController from '@components/common/modal/modalController';
+// import ModalController from '@components/common/modal/modalController';
 import CreateObjective from '@components/shared/createObjective';
 
 const DashBoardHeader = () => {
   const onClickEdit = () => {
-    ModalController.show({
-      title: '목표 추가하기',
-      children: <CreateObjective />,
-      cancelButtonLabel: '취소',
-      confirmButtonLabel: '확인',
-    });
+    // ModalController.show({
+    //   title: '목표 추가하기',
+    //   children: <CreateObjective />,
+    //   cancelButtonLabel: '취소',
+    //   confirmButtonLabel: '확인',
+    // });
   };
   return (
     <div className={styles.root}>
