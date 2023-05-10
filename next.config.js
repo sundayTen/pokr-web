@@ -1,4 +1,3 @@
-const { withSentryConfig } = require('@sentry/nextjs');
 const path = require('path');
 const withImages = require('next-images');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -28,11 +27,6 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  sentry: {
-    hideSourceMaps: process.env.NODE_ENV === 'production',
-  },
 };
 
-module.exports = withSentryConfig(withBundleAnalyzer(withImages(nextConfig)), {
-  silent: true,
-});
+module.exports = withBundleAnalyzer(withImages(nextConfig));
