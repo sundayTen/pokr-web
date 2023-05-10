@@ -1,7 +1,8 @@
 const path = require('path');
 const withImages = require('next-images');
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.NODE_ENV === 'production',
+  // enabled: process.env.NODE_ENV === 'production',
+  enabled: false, // 임시조치
 });
 
 /** @type {import('next').NextConfig} */

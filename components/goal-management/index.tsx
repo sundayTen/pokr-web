@@ -1,24 +1,24 @@
 'use client';
-import { fetchOkr, fetchOkrYears } from '@api/okr';
-import { useQuery } from '@tanstack/react-query';
+// import { fetchOkr, fetchOkrYears } from '@api/okr';
+// import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { OKR_TYPE } from '@type/okr';
-import GoalCardList from './goalCard';
-import GoalManagementHeader from './header';
-import goalManagementStore from '@store/goal-management';
-import { getObjectives } from '@api/objectives';
-import userStore from '@store/user';
+// import { OKR_TYPE } from '@type/okr';
+// import GoalCardList from './goalCard';
+// import GoalManagementHeader from './header';
+// import goalManagementStore from '@store/goal-management';
+// import { getObjectives } from '@api/objectives';
+// import userStore from '@store/user';
 import SuspenseComponent from '@components/common/suspenseComponent';
 import PeriodTab from './period-tab';
 import KeyResultsList from './KeyResultsList';
 
 const GoalManagement = () => {
-  const { currentYear, changeCurrentYear } = goalManagementStore();
-  const { userToken } = userStore();
+  // const { currentYear, changeCurrentYear } = goalManagementStore();
+  // const { userToken } = userStore();
 
   return (
     <>
-      <SuspenseComponent errorMessage="목표 리스트를 가져오는 중 에러">
+      {/* <SuspenseComponent errorMessage="목표 리스트를 가져오는 중 에러">
         <GoalManagementHeader objectiveLength={0} />
         {
           <GoalCardList
@@ -36,7 +36,7 @@ const GoalManagement = () => {
             ]}
           />
         }
-      </SuspenseComponent>
+      </SuspenseComponent> */}
       <SuspenseComponent>
         <PeriodTab />
       </SuspenseComponent>
