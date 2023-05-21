@@ -3,8 +3,6 @@
     @apply flex justify-between items-center w-full;
 
     & > .left {
-      //   @apply flex items-center;
-
       & strong {
         @apply text-base;
 
@@ -19,6 +17,7 @@
     }
 
     & > .right {
+      padding-right: 88px;
     }
   }
 }

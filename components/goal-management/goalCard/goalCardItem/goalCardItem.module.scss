@@ -1,10 +1,15 @@
 .root {
-  @apply bg-white;
+  @apply bg-white cursor-pointer;
 
   width: 350px;
+  height: 200px;
   padding: 20px;
   border-radius: 8px;
   border: 1px solid var(--border-gray);
+
+  &.selected {
+    border: 3px solid var(--pri-400);
+  }
 
   & .top {
     @apply relative flex justify-end;
@@ -50,10 +55,12 @@
   }
 
   & > .title {
-    @apply border-0 resize-none bg-transparent outline-none font-bold text-lg;
+    @apply border-0 resize-none bg-transparent outline-none font-bold text-lg overflow-hidden;
 
     margin-top: 12px;
     line-height: 26px;
+    padding-top: 2px;
+    max-height: 50px;
   }
 
   & .period {
@@ -63,5 +70,23 @@
   }
 
   & .bottom {
+    @apply flex items-center text-sm absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    & > div {
+      @apply flex;
+
+      color: var(--text-heading);
+
+      &.initiative {
+        margin-left: 12px;
+      }
+
+      & > div {
+        margin-right: 4px;
+      }
+    }
   }
 }

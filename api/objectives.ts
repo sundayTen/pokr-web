@@ -28,13 +28,10 @@ export const createObjectives = async ({
       path: OBJECTIVES,
       config: {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: {
+        body: JSON.stringify({
           title,
           year,
-        },
+        }),
       },
     });
     return res;
@@ -44,20 +41,48 @@ export const createObjectives = async ({
   }
 };
 
-export const copyObjectives = async (id: number) => {
+export const copyObjectives = async (id: number): Promise<{ id: number }> => {
   try {
-    const res = await fetcher({
+    const res: { id: number } = await fetcher({
       path: `${OBJECTIVES}/${id}/copy`,
       config: {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       },
     });
     return res;
   } catch (error) {
     throw error;
+    // 에러 핸들링
+  }
+};
+
+export const editObjectives = async ({
+  id,
+  title,
+  year,
+  achievement,
+}: {
+  id: number;
+  title: string;
+  year: number;
+  achievement: boolean;
+}) => {
+  try {
+    const res = await fetcher({
+      path: `${OBJECTIVES}/${id}`,
+      config: {
+        method: 'PATCH',
+        body: JSON.stringify({
+          title,
+          achievement,
+          year,
+        }),
+      },
+    });
+    return res;
+  } catch (error) {
+    throw error;
+
     // 에러 핸들링
   }
 };
@@ -68,9 +93,6 @@ export const deleteObjectives = async (id: number) => {
       path: `${OBJECTIVES}/${id}`,
       config: {
         method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       },
     });
     return res;

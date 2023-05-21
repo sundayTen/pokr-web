@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { OKR_TYPE } from '@type/okr';
-import Button from '@components/common/button';
 import Select from '@components/common/select';
 import styles from './GoalManagementHeader.module.scss';
 import goalManagementStore from '@store/goal-management';
 import { useQuery } from '@tanstack/react-query';
-
 import userStore from '@store/user';
 import { fetchOkrYears } from '@api/okr';
+import Button from '@components/common/Button';
 
 const GoalManagementHeader = ({
   objectiveLength,
@@ -18,17 +17,18 @@ const GoalManagementHeader = ({
   const { currentYear, changeCurrentYear } = goalManagementStore();
   const [years, setYears] = useState<number[]>([]);
 
-  const { data } = useQuery(['okr_years'], fetchOkrYears, {
-    // enabled: !!userToken,
+  const { data, isSuccess } = useQuery(['okr_years'], fetchOkrYears, {
+    enabled: !!userToken,
     suspense: true,
     useErrorBoundary: true,
-    onSuccess: (res) => {
-      if (res.length > 0) {
-        setYears(res);
-        changeCurrentYear(res[0]);
-      }
-    },
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      setYears(data);
+      changeCurrentYear(data?.[0]);
+    }
+  }, [data]);
 
   return (
     <div className={styles.root}>

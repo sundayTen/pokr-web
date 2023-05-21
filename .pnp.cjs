@@ -29,6 +29,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@next/bundle-analyzer", "npm:13.4.1"],\
+            ["@splidejs/react-splide", "npm:0.7.12"],\
             ["@tanstack/react-query", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.29.5"],\
             ["@tanstack/react-query-devtools", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.29.6"],\
             ["@toss/use-overlay", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.3.4"],\
@@ -372,6 +373,25 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@rushstack-eslint-patch-npm-1.2.0-917f402e4e-faa749faae.zip/node_modules/@rushstack/eslint-patch/",\
           "packageDependencies": [\
             ["@rushstack/eslint-patch", "npm:1.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@splidejs/react-splide", [\
+        ["npm:0.7.12", {\
+          "packageLocation": "./.yarn/cache/@splidejs-react-splide-npm-0.7.12-424f59f4d5-715517b0ac.zip/node_modules/@splidejs/react-splide/",\
+          "packageDependencies": [\
+            ["@splidejs/react-splide", "npm:0.7.12"],\
+            ["@splidejs/splide", "npm:4.1.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@splidejs/splide", [\
+        ["npm:4.1.4", {\
+          "packageLocation": "./.yarn/cache/@splidejs-splide-npm-4.1.4-574032679c-919f6e1e5d.zip/node_modules/@splidejs/splide/",\
+          "packageDependencies": [\
+            ["@splidejs/splide", "npm:4.1.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4626,6 +4646,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["pokr-web", "workspace:."],\
             ["@next/bundle-analyzer", "npm:13.4.1"],\
+            ["@splidejs/react-splide", "npm:0.7.12"],\
             ["@tanstack/react-query", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.29.5"],\
             ["@tanstack/react-query-devtools", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.29.6"],\
             ["@toss/use-overlay", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.3.4"],\

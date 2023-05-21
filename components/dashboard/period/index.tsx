@@ -10,12 +10,14 @@ import { fetchMetrics, fetchMetricsObjects } from '@api/metrics';
 import useIsMobile from '@hooks/useIsMobile';
 import dashBoardStore, { GRAPH_DATA } from '@store/dashboard';
 import { METRICS, METRICS_OBJECTIVES_DATA } from '@type/metrics';
+import userStore from '@store/user';
 
 const periodArr = ['반기', '분기'];
 const halfPeriodArr = ['상반기', '하반기'];
 const quarterPeriodArr = ['1분기', '2분기', '3분기', '4분기'];
 
 const DashBoardPeriod = () => {
+  const { userToken } = userStore();
   const { isMobile } = useIsMobile();
   const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
   const [period, setPeriod] = useState<string>(periodArr[0]);
@@ -51,13 +53,13 @@ const DashBoardPeriod = () => {
     },
   );
 
-  const { isLoading, data: d } = useQuery<METRICS_OBJECTIVES_DATA[]>(
+  const { isLoading } = useQuery<METRICS_OBJECTIVES_DATA[]>(
     ['objectives'],
     fetchMetricsObjects,
     {
+      enabled: !!userToken,
       initialData: [],
       onSuccess: (data: METRICS_OBJECTIVES_DATA[]) => {
-        // console.log('data ; ', data);
         const objectivesData = data.reduce(
           (acc, cur: METRICS_OBJECTIVES_DATA) => {
             return {
@@ -111,8 +113,6 @@ const DashBoardPeriod = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  // console.log('d : ', d);
 
   return (
     <div className={styles.root}>

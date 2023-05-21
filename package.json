@@ -13,6 +13,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@splidejs/react-splide": "^0.7.12",
     "@tanstack/react-query": "^4.15.0",
     "@toss/use-overlay": "^1.3.4",
     "@vercel/analytics": "^1.0.0",

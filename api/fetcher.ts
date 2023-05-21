@@ -8,10 +8,7 @@ interface FetcherRequest {
 
 interface FetchConfig {
   method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
-  headers: {
-    'Content-Type': string;
-    Authorization?: string;
-  };
+  headers?: any;
   mode?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
   cache?:
     | 'default'
@@ -49,8 +46,6 @@ export const fetcher = async <T>({
     defaultConfig.headers.Authorization = `Bearer ${store.userToken}`;
   }
 
-  console.log(path, 'path!!', store.userToken);
-
   try {
     const response = await fetch(`${BASE_URL}/${path}`, {
       ...defaultConfig,
@@ -61,7 +56,7 @@ export const fetcher = async <T>({
       return await response.json();
     }
 
-    handleError(response.status);
+    return handleError(response.status);
   } catch (error) {
     throw error;
   }
@@ -80,7 +75,6 @@ const handleError = (status: number) => {
       throw new Error('서버가 응답하지 않음');
     case 503:
       throw new Error('타임아웃');
-
     default:
       throw new Error('데이터 페칭 실패');
   }

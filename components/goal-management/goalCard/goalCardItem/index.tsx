@@ -1,20 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { OKR_OBJECTIVES_TYPE } from '@type/okr';
-import { copyObjectives, deleteObjectives } from '@api/objectives';
+import {
+  copyObjectives,
+  deleteObjectives,
+  editObjectives,
+} from '@api/objectives';
 import AutoHeightImage from '@components/common/image';
 import cn from 'classnames';
 import dayjs from 'dayjs';
 import styles from './goalCardItem.module.scss';
+import goalManagementStore from '@store/goal-management';
 
 const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
-  const [title, setTitle] = useState(data.title);
-  const [disabledTitle, setDisabledTitle] = useState(true);
+  const { objectivesList, changeObjectivesList } = goalManagementStore();
+  const [title, setTitle] = useState<string>(data.title);
   const [showMore, setShowMore] = useState(false);
+  const [edit, setEdit] = useState(false);
   const titleRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
   const btnRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
   const today = dayjs().format('YYYY-MM-DD');
   const lastDay = dayjs().format('YYYY.12.31');
+
+  const { mutate: editObjectiveMutate } = useMutation(editObjectives, {
+    onError: (err) => {
+      if (err) setTitle(data.title);
+    },
+  });
 
   const { mutate: copyMutate } = useMutation(copyObjectives, {
     onError: (err) => {
@@ -22,21 +34,54 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
     },
     onSuccess: (res) => {
       if (res) {
-        console.log('res', res!!!!);
+        const {
+          title,
+          year,
+          achievement,
+          keyResultCount,
+          initiativeCount,
+          createdAt,
+          updatedAt,
+        } = data;
+        const item = {
+          id: res.id,
+          title,
+          year,
+          achievement,
+          keyResultCount,
+          initiativeCount,
+          createdAt,
+          updatedAt,
+        };
+        changeObjectivesList([...objectivesList, item]);
+        console.log(res, data.id);
       }
     },
   });
 
   const { mutate: deleteMutate } = useMutation(deleteObjectives, {
     onError: (err) => {
-      console.log(err, 'copy error!!!');
+      console.log(err, 'deleteMutate error!!!');
     },
-    onSuccess: (res) => {
-      if (res) {
-        console.log('res', res!!!!);
-      }
+    onSuccess: () => {
+      changeObjectivesList(
+        objectivesList.filter((list) => list.id !== data.id),
+      );
     },
   });
+
+  const handleSaveTitle = useCallback(() => {
+    const { id, year, achievement } = data;
+
+    editObjectiveMutate({
+      id: id,
+      title: title,
+      year: year,
+      achievement: achievement,
+    });
+
+    setEdit(false);
+  }, [title, edit]);
 
   useEffect(() => {
     const handleCloseSelect = (e: React.BaseSyntheticEvent | MouseEvent) => {
@@ -52,11 +97,15 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
     };
   }, [showMore]);
 
-  if (!data) return <div />;
+  useEffect(() => {
+    if (edit) titleRef.current.focus();
+  }, [edit]);
+
+  if (!data) return <React.Fragment />;
 
   return (
     <div
-      className={cn(styles.root)}
+      className={cn(styles.root, { [styles.selected]: data.id === 5 })}
       onClick={() => {
         // keyResults
       }}
@@ -76,8 +125,7 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
           type="button"
           className={styles.editButton}
           onClick={() => {
-            setDisabledTitle(false);
-            titleRef.current.focus();
+            setEdit(true);
           }}
         >
           <AutoHeightImage
@@ -116,18 +164,13 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
           ref={titleRef}
           className={styles.title}
           value={title}
-          // onKeyPress={(e) => {
-          //   if (e.key === 'Enter') {
-          //     setDisabledTitle(true);
-          //   }
-          // }}
-          // rows={2}
+          rows={2}
+          maxLength={40}
           onChange={(e) => {
             const str = e.target.value?.split('\n');
             if (str?.length <= 2) {
               setTitle(e.target.value);
             }
-            // setTitle(true);
           }}
           onKeyDown={(e) => {
             let numberOfLines =
@@ -138,13 +181,33 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
               return false;
             }
           }}
-          disabled={disabledTitle}
+          disabled={!edit}
+          onBlur={handleSaveTitle}
         />
       )}
       <p className={styles.period}>
         {dayjs(data.createdAt).format('YYYY.MM.DD')} ~ {lastDay}
       </p>
-      <div className={styles.bottom}></div>
+      <div className={styles.bottom}>
+        <div>
+          <AutoHeightImage
+            src="/images/card/flag.png"
+            alt=""
+            width="24"
+            height="24"
+          />
+          {data.keyResultCount}
+        </div>
+        <div className={styles.initiative}>
+          <AutoHeightImage
+            src="/images/card/check.png"
+            alt=""
+            width="24"
+            height="24"
+          />
+          {data.initiativeCount}
+        </div>
+      </div>
     </div>
   );
 };
