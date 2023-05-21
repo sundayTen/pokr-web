@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import userStore from '@store/user';
 import GlobalLayout from '@components/common/globalLayout';
-// import ModalController from '@components/common/modal/modalController';
+import { OverlayProvider } from '@toss/use-overlay';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,8 +38,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <body>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
-          <GlobalLayout>{children}</GlobalLayout>
-          {/* <ModalController ref={(ref) => ModalController.setRef(ref)} /> */}
+          <OverlayProvider>
+            <GlobalLayout>{children}</GlobalLayout>
+          </OverlayProvider>
           <Analytics />
         </QueryClientProvider>
       </body>

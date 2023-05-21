@@ -15,9 +15,25 @@ export interface ModalContents {
 }
 
 interface ModalProps {
-  modalContent?: ModalContents | null;
+  title?: string;
+  content?: string;
+  children?: JSX.Element | null;
+  cancelButtonLabel?: string;
+  confirmButtonLabel?: string;
+  cancelButtonPressed?: () => void;
+  confirmButtonPressed?: () => void;
+  close?: () => void;
 }
-const Modal = ({ modalContent = null }: ModalProps) => {
+const Modal = ({
+  title,
+  content,
+  children,
+  cancelButtonLabel,
+  confirmButtonLabel,
+  cancelButtonPressed,
+  confirmButtonPressed,
+  close,
+}: ModalProps) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -26,18 +42,6 @@ const Modal = ({ modalContent = null }: ModalProps) => {
     };
   }, []);
 
-  if (modalContent === null) return <></>;
-
-  const {
-    title,
-    content,
-    children,
-    cancelButtonLabel,
-    confirmButtonLabel,
-    cancelButtonPressed,
-    confirmButtonPressed,
-    close,
-  } = modalContent;
   return (
     <div className={styles.root}>
       <div className={styles.backdrop} />

@@ -31,6 +31,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@next/bundle-analyzer", "npm:13.4.1"],\
             ["@tanstack/react-query", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.29.5"],\
             ["@tanstack/react-query-devtools", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.29.6"],\
+            ["@toss/use-overlay", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.3.4"],\
             ["@types/node", "npm:18.11.9"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.8"],\
@@ -474,6 +475,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@tootallnate-once-npm-2.0.0-e36cf4f140-ad87447820.zip/node_modules/@tootallnate/once/",\
           "packageDependencies": [\
             ["@tootallnate/once", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@toss/use-overlay", [\
+        ["npm:1.3.4", {\
+          "packageLocation": "./.yarn/cache/@toss-use-overlay-npm-1.3.4-d4d64843d0-9df1da405d.zip/node_modules/@toss/use-overlay/",\
+          "packageDependencies": [\
+            ["@toss/use-overlay", "npm:1.3.4"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.3.4", {\
+          "packageLocation": "./.yarn/__virtual__/@toss-use-overlay-virtual-28f4dc3b32/0/cache/@toss-use-overlay-npm-1.3.4-d4d64843d0-9df1da405d.zip/node_modules/@toss/use-overlay/",\
+          "packageDependencies": [\
+            ["@toss/use-overlay", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.3.4"],\
+            ["@types/react", "npm:18.0.25"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4605,6 +4628,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@next/bundle-analyzer", "npm:13.4.1"],\
             ["@tanstack/react-query", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.29.5"],\
             ["@tanstack/react-query-devtools", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:4.29.6"],\
+            ["@toss/use-overlay", "virtual:9de8acb59b79c6c5e4f9e29ee07709eab1f843287516e86151a44875b64a9ca142fa0ffb3d5e61b87354b940fa1456c928028c55486bd7249291b31114a5387a#npm:1.3.4"],\
             ["@types/node", "npm:18.11.9"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.8"],\
