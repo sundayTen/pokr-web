@@ -1,4 +1,4 @@
-import Button from '@components/common/button';
+import Button from '@components/common/Button';
 import Text from '@components/common/text';
 import React from 'react';
 

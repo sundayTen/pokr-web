@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 import NaverLogin from '@components/common/login/naver';
 import userStore from '@store/user';
+import Image from 'next/image';
 
 export interface NaverUserProps {
   age?: any;
@@ -41,7 +42,15 @@ const Header = () => {
         onLoad={() => setScriptLoaded(true)}
       />
       <header className={styles.root}>
-        <Link href="/">MyOKR</Link>
+        <Link href="/" className={styles.logoContainer}>
+          <Image
+            src="/images/logo.png"
+            width={24}
+            height={24}
+            alt="myOKR 로고"
+          />
+          myOKR
+        </Link>
         <div className={styles.user}>
           {scriptLoaded && !userInfo && (
             <div className={styles.naverLoginBtn}>
