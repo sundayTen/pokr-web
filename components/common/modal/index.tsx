@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useEffect } from 'react';
 import Button from '@components/common/Button';
-import styles from '@components/common/modal/Modal.module.scss';
+import styles from '@components/common/Modal/Modal.module.scss';
 
 export interface ModalContents {
   title?: string;
