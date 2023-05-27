@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { OKR_TYPE } from '@type/okr';
-import Select from '@components/common/select';
+import Select from '@components/common/Select';
 import styles from './GoalManagementHeader.module.scss';
 import goalManagementStore from '@store/goal-management';
 import { useQuery } from '@tanstack/react-query';

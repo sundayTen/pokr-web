@@ -5,7 +5,7 @@ import cn from 'classnames';
 import KeyResultsListItem from '../KeyResultsListItem';
 import LabelsHeader from '../labelHeader';
 import CountBall from './CountBall';
-import Text from '@components/common/text';
+import Text from '@components/common/Text';
 import { YYYYMMDD } from '@utils/date';
 import ProgressBar from './ProgressBar';
 import ToggleArrow from '@components/common/toggleArrow';

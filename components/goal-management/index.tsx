@@ -9,7 +9,7 @@ import goalManagementStore from '@store/goal-management';
 import { getObjectives } from '@api/objectives';
 import userStore from '@store/user';
 import { OKR_OBJECTIVES_TYPE } from '@type/okr';
-import SuspenseComponent from '@components/common/suspenseComponent';
+import SuspenseComponent from '@components/common/SuspenseComponent';
 import PeriodTab from './period-tab';
 import KeyResultsList from './KeyResultsList';
 

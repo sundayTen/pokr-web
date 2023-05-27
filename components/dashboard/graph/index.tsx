@@ -10,7 +10,7 @@ import {
   YAxis,
 } from 'recharts';
 import useIsMobile from '@hooks/useIsMobile';
-import Text from '@components/common/text';
+import Text from '@components/common/Text';
 import dashBoardStore from '@store/dashboard';
 import useMountEffect from '@hooks/useMountEffect';
 

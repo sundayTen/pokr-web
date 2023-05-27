@@ -6,7 +6,7 @@ import DashBoardHeader from './header';
 import DashboardAside from './aside';
 import DashboardMain from './main';
 import { OKR as OKR_TYPE } from '@type/okr';
-import SuspenseComponent from '@components/common/suspenseComponent';
+import SuspenseComponent from '@components/common/SuspenseComponent';
 import AsideLoading from './aside/asideLoading';
 
 interface DashBoardProps {

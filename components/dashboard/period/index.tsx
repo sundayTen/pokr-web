@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import AutoHeightImage from '@components/common/image';
-import Select from '@components/common/select';
+import Select from '@components/common/Select';
 import ToolTip from '@components/common/tooltip';
 import styles from '@components/dashboard/period/DashBoardPeriod.module.scss';
 import useMountEffect from '@hooks/useMountEffect';
