@@ -3,7 +3,7 @@ import styles from './CreateObjective.module.scss';
 import Input from '@components/common/input';
 import useInput from '@hooks/useInput';
 import Select from '@components/common/select';
-import Modal from '@components/common/modal';
+import Modal from '@components/common/Modal';
 
 const YEARS = ['2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'];
 
