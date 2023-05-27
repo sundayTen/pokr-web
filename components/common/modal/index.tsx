@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useEffect } from 'react';
-import styles from '../Modal/Modal.module.scss';
+import styles from '../modal/Modal.module.scss';
 import Button from '../Button';
 
 export interface ModalContents {
