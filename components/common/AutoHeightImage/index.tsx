@@ -1,6 +1,6 @@
 import React from 'react';
 import Image, { ImageProps } from 'next/image';
-import styles from '@components/common/image/Image.module.scss';
+import styles from '@components/common/AutoHeightImage/Image.module.scss';
 
 const AutoHeightImage = ({ src, alt, ...props }: ImageProps) => {
   return (

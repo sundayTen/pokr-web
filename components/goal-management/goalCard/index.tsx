@@ -5,7 +5,7 @@ import { OKR_OBJECTIVES_TYPE } from '@type/okr';
 import React from 'react';
 import GoalCardItem from './goalCardItem';
 import styles from './GoalCardList.module.scss';
-import AutoHeightImage from '@components/common/image';
+import AutoHeightImage from '@components/common/AutoHeightImage';
 
 const GoalCardList = ({ cards }: { cards: OKR_OBJECTIVES_TYPE[] }) => {
   const option = {

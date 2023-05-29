@@ -22,9 +22,9 @@ export const createObjectives = async ({
 }: {
   title: string;
   year: number;
-}) => {
+}): Promise<{ id: number }> => {
   try {
-    const res = await fetcher({
+    const res: { id: number } = await fetcher({
       path: OBJECTIVES,
       config: {
         method: 'POST',

@@ -1,5 +1,5 @@
 import React from 'react';
-import AutoHeightImage from '@components/common/image';
+import AutoHeightImage from '@components/common/AutoHeightImage';
 import styles from '@components/common/globalLayout/navbar/Navbar.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

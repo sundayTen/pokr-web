@@ -1,5 +1,5 @@
 import React from 'react';
-import AutoHeightImage from '@components/common/image';
+import AutoHeightImage from '@components/common/AutoHeightImage';
 import styles from './MobileHeader.module.scss';
 
 const MobileHeader = () => {

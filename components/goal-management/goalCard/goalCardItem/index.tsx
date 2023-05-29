@@ -6,7 +6,7 @@ import {
   deleteObjectives,
   editObjectives,
 } from '@api/objectives';
-import AutoHeightImage from '@components/common/image';
+import AutoHeightImage from '@components/common/AutoHeightImage';
 import cn from 'classnames';
 import dayjs from 'dayjs';
 import styles from './goalCardItem.module.scss';
@@ -22,6 +22,8 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
   const today = dayjs().format('YYYY-MM-DD');
   const lastDay = dayjs().format('YYYY.12.31');
 
+  console.log(objectivesList);
+
   const { mutate: editObjectiveMutate } = useMutation(editObjectives, {
     onError: (err) => {
       if (err) setTitle(data.title);
@@ -34,15 +36,8 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
     },
     onSuccess: (res) => {
       if (res) {
-        const {
-          title,
-          year,
-          achievement,
-          keyResultCount,
-          initiativeCount,
-          createdAt,
-          updatedAt,
-        } = data;
+        const { title, year, achievement, keyResultCount, initiativeCount } =
+          data;
         const item = {
           id: res.id,
           title,
@@ -50,11 +45,10 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
           achievement,
           keyResultCount,
           initiativeCount,
-          createdAt,
-          updatedAt,
+          createdAt: dayjs().format('YYYY-MM-DD'),
+          updatedAt: dayjs().format('YYYY-MM-DD'),
         };
         changeObjectivesList([...objectivesList, item]);
-        console.log(res, data.id);
       }
     },
   });

@@ -38,8 +38,6 @@ const GoalManagement = () => {
     return () => {};
   }, [data]);
 
-  console.log(data);
-
   return (
     <>
       <SuspenseComponent errorMessage="목표 리스트를 가져오는 중 에러">
