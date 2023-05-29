@@ -55,12 +55,19 @@
   }
 
   & > .title {
-    @apply border-0 resize-none bg-transparent outline-none font-bold text-lg overflow-hidden;
+    @apply border-0 resize-none bg-transparent outline-none font-bold text-lg overflow-hidden w-full;
 
-    margin-top: 12px;
+    margin: 12px 0 8px;
     line-height: 26px;
     padding-top: 2px;
     max-height: 50px;
+    display: -webkit-box;
+    white-space: normal;
+
+    &.normal {
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
 
   & .period {

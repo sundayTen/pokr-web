@@ -11,18 +11,33 @@ import cn from 'classnames';
 import dayjs from 'dayjs';
 import styles from './goalCardItem.module.scss';
 import goalManagementStore from '@store/goal-management';
+import { useOverlay } from '@toss/use-overlay';
+import Alert from '@components/common/alert';
 
 const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
   const { objectivesList, changeObjectivesList } = goalManagementStore();
   const [title, setTitle] = useState<string>(data.title);
   const [showMore, setShowMore] = useState(false);
+  // const [errorText, setErrorText] = useState('');
   const [edit, setEdit] = useState(false);
   const titleRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
   const btnRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
   const today = dayjs().format('YYYY-MM-DD');
   const lastDay = dayjs().format('YYYY.12.31');
-
-  console.log(objectivesList);
+  const { open } = useOverlay();
+  const onOpenAlert = (errorText: string, fn: () => void) => {
+    open(({ isOpen, exit, close }) => {
+      return (
+        <Alert
+          content={errorText}
+          confirmButtonPressed={() => {
+            // fn();
+            close();
+          }}
+        />
+      );
+    });
+  };
 
   const { mutate: editObjectiveMutate } = useMutation(editObjectives, {
     onError: (err) => {
@@ -64,17 +79,30 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
     },
   });
 
+  const handleTitleAlert = () => {
+    onOpenAlert('목표명은 200자까지 입력 가능합니다.', () =>
+      titleRef.current.focus(),
+    );
+  };
+
   const handleSaveTitle = useCallback(() => {
-    const { id, year, achievement } = data;
+    if (title.length === 0) {
+      titleRef.current.focus();
+    } else if (title.length > 200) {
+      titleRef.current.focus();
+    } else {
+      const { id, year, achievement } = data;
 
-    editObjectiveMutate({
-      id: id,
-      title: title,
-      year: year,
-      achievement: achievement,
-    });
+      editObjectiveMutate({
+        id: id,
+        title: title,
+        year: year,
+        achievement: achievement,
+      });
+      titleRef.current.scrollTo({ top: 0 });
 
-    setEdit(false);
+      setEdit(false);
+    }
   }, [title, edit]);
 
   useEffect(() => {
@@ -155,16 +183,13 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
       </div>
       {data.title && (
         <textarea
+          placeholder="목표를 입력해주세요."
           ref={titleRef}
-          className={styles.title}
+          className={cn(styles.title, { [styles.normal]: !edit })}
           value={title}
           rows={2}
-          maxLength={40}
           onChange={(e) => {
-            const str = e.target.value?.split('\n');
-            if (str?.length <= 2) {
-              setTitle(e.target.value);
-            }
+            if (e.target.value.length <= 200) setTitle(e.target.value);
           }}
           onKeyDown={(e) => {
             let numberOfLines =

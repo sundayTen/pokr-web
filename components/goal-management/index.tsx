@@ -14,15 +14,11 @@ import PeriodTab from './period-tab';
 import KeyResultsList from './KeyResultsList';
 
 const GoalManagement = () => {
-  const {
-    currentYear,
-    changeCurrentYear,
-    objectivesList,
-    changeObjectivesList,
-  } = goalManagementStore();
+  const { currentYear, objectivesList, changeObjectivesList } =
+    goalManagementStore();
   const { userToken } = userStore();
 
-  const { data } = useQuery<OKR_OBJECTIVES_TYPE[]>(
+  const { data, isSuccess } = useQuery<OKR_OBJECTIVES_TYPE[]>(
     ['objectives'],
     () => getObjectives(Number(currentYear)),
     {
@@ -33,7 +29,7 @@ const GoalManagement = () => {
   );
 
   useEffect(() => {
-    if (data) changeObjectivesList(data);
+    if (data && userToken) changeObjectivesList(data);
 
     return () => {};
   }, [data]);

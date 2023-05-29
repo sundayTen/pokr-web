@@ -1,0 +1,7 @@
+.root {
+  padding: 90px 0px 0px 90px;
+
+  @screen mobile {
+    padding: 0;
+  }
+}

@@ -7,8 +7,6 @@ import { useQuery } from '@tanstack/react-query';
 import userStore from '@store/user';
 import { fetchOkrYears } from '@api/okr';
 import Button from '@components/common/Button';
-import CreateObjective from '@components/shared/createObjective';
-import { useOverlay } from '@toss/use-overlay';
 
 const GoalManagementHeader = ({
   objectiveLength,
@@ -18,12 +16,6 @@ const GoalManagementHeader = ({
   const { userToken } = userStore();
   const { currentYear, changeCurrentYear } = goalManagementStore();
   const [years, setYears] = useState<number[]>([]);
-  const { open } = useOverlay();
-  const onClickEdit = () => {
-    open(({ isOpen, exit, close }) => {
-      return <CreateObjective close={exit} />;
-    });
-  };
 
   const { data, isSuccess } = useQuery(['okr_years'], fetchOkrYears, {
     enabled: !!userToken,
@@ -36,7 +28,7 @@ const GoalManagementHeader = ({
       setYears(data);
       changeCurrentYear(data?.[0]);
     }
-  }, [data, isSuccess]);
+  }, [data]);
 
   return (
     <div className={styles.root}>
@@ -58,7 +50,7 @@ const GoalManagementHeader = ({
             label="+ 목표 추가하기"
             size="SMALL"
             buttonStyle="PAINTED"
-            onClick={onClickEdit}
+            onClick={() => console.log('d')}
           />
         </div>
       </section>
