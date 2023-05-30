@@ -6,7 +6,7 @@ import {
   deleteObjectives,
   editObjectives,
 } from '@api/objectives';
-import AutoHeightImage from '@components/common/AutoHeightImage';
+import AutoHeightImage from '@components/common/autoHeightImage';
 import cn from 'classnames';
 import dayjs from 'dayjs';
 import styles from './goalCardItem.module.scss';

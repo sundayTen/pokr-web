@@ -3,7 +3,6 @@ import styles from './CreateObjective.module.scss';
 import useInput from '@hooks/useInput';
 import Select from '@components/common/select';
 import Input from '@components/common/input';
-import Modal from '@components/common/modal';
 import { useMutation } from '@tanstack/react-query';
 import { createObjectives } from '@api/objectives';
 import goalManagementStore from '@store/goal-management';
@@ -55,30 +54,21 @@ const CreateObjective = ({ close }: { close: () => void }) => {
   }, [value, error, targetYear]);
 
   return (
-    <Modal
-      title="목표 추가하기"
-      cancelButtonLabel="취소"
-      confirmButtonLabel="확인"
-      cancelButtonPressed={close}
-      confirmButtonPressed={addObjectives}
-      close={close}
-    >
-      <div className={styles.root}>
-        <Input
-          label="목표명"
-          placeholder="이루고 싶은 목표를 입력해주세요"
-          value={value}
-          onChange={onChangeInput}
-        />
-        {error && <p className={styles.errorText}>{error}</p>}
-        <label className={styles.selectLabel}>목표 연도</label>
-        <Select
-          value={targetYear}
-          options={YEARS}
-          onChange={(e) => setTargetYear(e)}
-        />
-      </div>
-    </Modal>
+    <div className={styles.root}>
+      <Input
+        label="목표명"
+        placeholder="이루고 싶은 목표를 입력해주세요"
+        value={value}
+        onChange={onChangeInput}
+      />
+      {error && <p className={styles.errorText}>{error}</p>}
+      <label className={styles.selectLabel}>목표 연도</label>
+      <Select
+        value={targetYear}
+        options={YEARS}
+        onChange={(e) => setTargetYear(e)}
+      />
+    </div>
   );
 };
 

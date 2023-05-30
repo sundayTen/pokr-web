@@ -1,8 +1,8 @@
 'use client';
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import Button from '../Button';
 import styles from '@components/common/alert/alert.module.scss';
+import Button from '../button';
 
 interface ModalProps {
   content: string;

@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import ComponentErrorBoundary from './ComponentErrorBoundary';
+import ComponentErrorBoundary from '@components/common/suspenseComponent/ComponentErrorBoundary';
 
 interface SuspenseComponentProps {
   errorMessage?: string;

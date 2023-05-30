@@ -1,11 +1,9 @@
-import Image from 'next/image';
 import React from 'react';
 import styles from './KeyResultsParentItem.module.scss';
-import cn from 'classnames';
 import KeyResultsListItem from '../KeyResultsListItem';
 import LabelsHeader from '../labelHeader';
 import CountBall from './CountBall';
-import Text from '@components/common/Text';
+import Text from '@components/common/text';
 import { YYYYMMDD } from '@utils/date';
 import ProgressBar from './ProgressBar';
 import ToggleArrow from '@components/common/toggleArrow';
@@ -31,10 +29,10 @@ const KeyResultsParentItem = ({
           <CountBall count={6} />
         </div>
         <Text variant="BODY" weight="BOLD" style={{ flex: 1 }}>
-          {YYYYMMDD(Date.now())}
+          {YYYYMMDD(Date.now().toString())}
         </Text>
         <Text variant="BODY" weight="BOLD" style={{ flex: 1 }}>
-          {YYYYMMDD(Date.now())}
+          {YYYYMMDD(Date.now().toString())}
         </Text>
 
         <ProgressBar total={30} current={11} />

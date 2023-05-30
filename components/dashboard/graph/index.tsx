@@ -10,9 +10,8 @@ import {
   YAxis,
 } from 'recharts';
 import useIsMobile from '@hooks/useIsMobile';
-import Text from '@components/common/Text';
+import Text from '@components/common/text';
 import dashBoardStore from '@store/dashboard';
-import useMountEffect from '@hooks/useMountEffect';
 
 const Graph = () => {
   const { isMobile } = useIsMobile();

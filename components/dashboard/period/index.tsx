@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import AutoHeightImage from '@components/common/AutoHeightImage';
+import AutoHeightImage from '@components/common/autoHeightImage';
 import Select from '@components/common/select';
 import ToolTip from '@components/common/tooltip';
 import styles from '@components/dashboard/period/DashBoardPeriod.module.scss';

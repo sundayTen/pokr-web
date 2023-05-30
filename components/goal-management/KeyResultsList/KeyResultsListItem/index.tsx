@@ -1,5 +1,5 @@
-import CheckboxIcon, { CheckBoxType } from '@components/common/CheckBoxIcon';
-import Text from '@components/common/Text';
+import CheckboxIcon, { CheckBoxType } from '@components/common/checkBoxIcon';
+import Text from '@components/common/text';
 import React from 'react';
 import styles from './KeyResultsListItem.module.scss';
 import cn from 'classnames';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import styles from '@components/common/bottomSheep/BottomSheep.module.scss';
-import AutoHeightImage from '../AutoHeightImage';
+import AutoHeightImage from '../autoHeightImage';
 
 interface BottomSheepProps {
   children: React.ReactNode;
