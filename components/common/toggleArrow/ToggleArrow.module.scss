@@ -1,0 +1,14 @@
+.toggleArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.arrowIcon {
+  transition: transform 0.2s ease-in-out;
+}
+
+.arrowIconToggled {
+  transform: rotate(180deg);
+}

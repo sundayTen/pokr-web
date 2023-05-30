@@ -1,0 +1,27 @@
+.root {
+  @apply flex flex-col items-center;
+  width: 40px;
+
+  .dayOfWeek {
+    @apply text-bodyR;
+    color: var(--text-body);
+  }
+
+  .day {
+    @apply w-10 h-10 flex items-center justify-center text-subtitle rounded-full text-center cursor-pointer;
+    color: var(--text-heading);
+    margin: 6px 0px;
+  }
+
+  .balls {
+    @apply flex;
+
+    div + div {
+      @apply mr-1;
+    }
+  }
+
+  .ball {
+    @apply w-1 h-1 bg-yellow-400 rounded-full;
+  }
+}

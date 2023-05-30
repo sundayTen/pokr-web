@@ -2,28 +2,58 @@
   @apply mobile:bg-white;
 
   & .periodContainer {
-    @apply text-base;
+    @apply flex justify-between items-center;
 
-    margin: 40px 0 20px;
+    & > .periodCategory {
+      @apply flex text-base;
 
-    & select {
-      margin-right: 16px;
+      margin: 40px 0 20px;
+
+      & label {
+        margin-right: 16px;
+      }
+
+      & span {
+        margin-right: 6px;
+      }
     }
 
-    & span {
-      margin-right: 6px;
+    & > .periodOfTime {
+      @apply flex items-center text-sm relative;
+
+      color: var(--text-body);
+
+      & > div:first-child {
+        width: 20px;
+        margin-right: 6px;
+      }
+
+      & button {
+        @apply relative;
+
+        & .tooltip {
+          @apply absolute;
+
+          left: -111px;
+          // left: 0;
+          min-width: 234px;
+          top: -45px;
+        }
+      }
     }
 
     @screen mobile {
       margin: 12px 0 0;
       padding: 32px 24px 24px;
 
-      & select {
-        margin-right: 8px;
-      }
+      & > .periodCategory {
+        & label {
+          margin-right: 8px;
+        }
 
-      & span {
-        @apply hidden;
+        & span {
+          @apply hidden;
+        }
       }
     }
   }
@@ -47,6 +77,10 @@
         & > .progress > span {
           background-color: var(--sub-blue-400);
         }
+
+        & .icon {
+          background-color: var(--sub-blue-100);
+        }
       }
 
       &.keyResult {
@@ -56,6 +90,10 @@
 
         & > .progress > span {
           background-color: var(--sub-purple-400);
+        }
+
+        & .icon {
+          background-color: var(--sub-purple-100);
         }
       }
 
@@ -67,20 +105,31 @@
         & > .progress > span {
           background-color: var(--sub-orange-400);
         }
+
+        & .icon {
+          background-color: var(--sub-orange-100);
+        }
       }
 
       &:not(:last-child) {
-        margin-right: 30px;
+        margin-right: 20px;
       }
 
-      & > div:first-child {
+      & > .icon {
+        @apply flex justify-center items-center;
+
         width: 48px;
         height: 48px;
         margin: 8px 16px 0 0;
+        border-radius: 48px;
+
+        & > div {
+          max-width: 24px;
+        }
       }
 
       & strong {
-        font-size: 26px;
+        font-size: 28px;
       }
 
       & p {
@@ -93,7 +142,7 @@
         @apply w-full absolute bottom-0 left-0 mobile:hidden;
 
         height: 8px;
-        background-color: #f6f7f9;
+        background-color: var(--border-gray);
 
         & > span {
           @apply inline-block absolute left-0 bottom-0 h-full;

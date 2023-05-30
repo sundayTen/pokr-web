@@ -1,8 +1,8 @@
 import React from 'react';
-import AutoHeightImage from '@components/common/image';
 import styles from '@components/common/globalLayout/navbar/Navbar.module.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import AutoHeightImage from '@components/common/autoHeightImage';
 
 const Navbar = () => {
   const currentPath = usePathname();

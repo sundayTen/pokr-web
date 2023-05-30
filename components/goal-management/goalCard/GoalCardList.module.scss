@@ -1,0 +1,38 @@
+.root {
+  @apply relative;
+
+  margin: 20px 0 32px;
+
+  & .lists {
+    @apply flex flex-wrap;
+  }
+
+  & .arrows {
+    @apply absolute bg-white overflow-hidden flex;
+
+    right: 0;
+    top: -60px;
+    z-index: 2;
+    border-radius: 8px;
+    border: 1px solid var(--border-gray);
+
+    & button {
+      @apply flex items-center justify-center;
+
+      width: 40px;
+      height: 40px;
+
+      &:disabled {
+        opacity: 0.3;
+      }
+
+      &:first-child {
+        border-right: 1px solid var(--border-gray);
+      }
+
+      & > div {
+        width: 24px;
+      }
+    }
+  }
+}

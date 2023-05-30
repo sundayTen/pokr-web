@@ -1,0 +1,7 @@
+.accordionContainer {
+  @apply flex flex-col p-4;
+
+  .listContainer {
+    @apply flex flex-col mt-3 w-full gap-y-3;
+  }
+}

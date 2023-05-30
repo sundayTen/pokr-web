@@ -1,7 +1,9 @@
+'use client';
 import React from 'react';
+import GoalManagement from '@components/goal-management';
 
-const GoalManagement = () => {
-  return <div>goal-management</div>;
+const Page = () => {
+  return <GoalManagement />;
 };
 
-export default GoalManagement;
+export default Page;

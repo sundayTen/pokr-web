@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react';
+import React, { HTMLProps, ReactNode } from 'react';
 import cn from 'classnames';
 import styles from './Text.module.scss';
 
-interface TextProps {
+interface TextProps extends HTMLProps<'span'> {
   variant:
     | 'H1'
     | 'H2'

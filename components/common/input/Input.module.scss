@@ -1,0 +1,29 @@
+.root {
+  @apply w-full;
+
+  label {
+    @apply text-label1;
+    color: var(--text-body);
+  }
+
+  input {
+    @apply text-bodyB p-3 rounded-lg bg-white w-full;
+    border: 1px solid var(--content-gray3);
+  }
+
+  input:focus {
+    border: 1px solid var(--pri-400);
+    outline: none;
+  }
+
+  input:disabled {
+    @apply text-bodyB;
+    color: var(--text-disabled);
+    background-color: var(--content-gray3);
+  }
+
+  input::placeholder {
+    @apply text-bodyB;
+    color: var(--text-disabled);
+  }
+}

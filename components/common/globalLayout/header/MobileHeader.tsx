@@ -1,5 +1,6 @@
+import AutoHeightImage from '@components/common/autoHeightImage';
 import React from 'react';
-import AutoHeightImage from '@components/common/image';
+
 import styles from './MobileHeader.module.scss';
 
 const MobileHeader = () => {
@@ -14,14 +15,14 @@ const MobileHeader = () => {
         />
       </button>
       <h1>대시보드</h1>
-      <button type="button">
+      {/* <button type="button">
         <AutoHeightImage
           src="/images/search-black.png"
           alt="검색"
           width={28}
           height={28}
         />
-      </button>
+      </button> */}
     </header>
   );
 };

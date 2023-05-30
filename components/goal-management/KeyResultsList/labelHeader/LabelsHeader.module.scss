@@ -1,0 +1,21 @@
+.root {
+  @apply flex w-full text-bodyR;
+  color: var(--text-body);
+
+  .indexLabel {
+    flex: 4;
+    cursor: pointer;
+  }
+
+  .startDateLabel {
+    @apply flex-1 cursor-pointer;
+  }
+
+  .endDateLabel {
+    @apply flex-1 cursor-pointer;
+  }
+
+  .achievementLabel {
+    @apply flex-1 cursor-pointer;
+  }
+}

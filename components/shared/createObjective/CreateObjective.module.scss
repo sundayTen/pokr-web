@@ -1,0 +1,15 @@
+.root {
+  @apply flex flex-col items-start;
+
+  .selectLabel {
+    @apply text-label1 mt-6;
+    color: var(--text-body);
+  }
+
+  & .errorText {
+    @apply text-xs font-bold;
+
+    margin-top: 4px;
+    color: #ed3e3e;
+  }
+}

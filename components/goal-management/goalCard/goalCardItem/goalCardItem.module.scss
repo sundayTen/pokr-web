@@ -1,0 +1,99 @@
+.root {
+  @apply bg-white cursor-pointer;
+
+  width: 350px;
+  height: 200px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-gray);
+
+  &.selected {
+    border: 3px solid var(--pri-400);
+  }
+
+  & .top {
+    @apply relative flex justify-end;
+
+    & .tag {
+      @apply absolute text-white inline-block text-sm left-0;
+
+      height: 28px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background-color: var(--pri-400);
+    }
+    & .editButton {
+      margin-right: 8px;
+    }
+
+    & .moreButton {
+    }
+
+    & .moreInner {
+      @apply absolute bg-white;
+
+      width: 100px;
+      top: 28px;
+      padding: 6px 0;
+      border-radius: 8px;
+      box-shadow: 0 8px 12px 0 rgba(102, 102, 102, 0.08),
+        0 0 6px 0 rgba(102, 102, 102, 0.02);
+      border: 1px solid var(--border-gray);
+
+      & button {
+        @apply text-left text-lg w-full;
+
+        height: 40px;
+        min-width: 100px;
+        padding: 0 12px;
+
+        &:hover {
+          background-color: #f6f7f9;
+        }
+      }
+    }
+  }
+
+  & > .title {
+    @apply border-0 resize-none bg-transparent outline-none font-bold text-lg overflow-hidden w-full;
+
+    margin: 12px 0 8px;
+    line-height: 26px;
+    padding-top: 2px;
+    max-height: 50px;
+    display: -webkit-box;
+    white-space: normal;
+
+    &.normal {
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  & .period {
+    @apply text-sm;
+
+    color: var(--text-body);
+  }
+
+  & .bottom {
+    @apply flex items-center text-sm absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    & > div {
+      @apply flex;
+
+      color: var(--text-heading);
+
+      &.initiative {
+        margin-left: 12px;
+      }
+
+      & > div {
+        margin-right: 4px;
+      }
+    }
+  }
+}

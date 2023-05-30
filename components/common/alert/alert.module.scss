@@ -1,0 +1,63 @@
+.root {
+  .backdrop {
+    @apply box-border block fixed top-0 left-0 right-0 bottom-0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1001;
+  }
+
+  .container {
+    @apply box-border block fixed top-0 left-0 right-0 bottom-0 outline-0 text-center overflow-auto;
+    z-index: 1001;
+  }
+
+  .contents {
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+    border-radius: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    padding: 21px 24px;
+    text-align: left;
+    max-height: calc(100% - 100px);
+    overflow-y: auto;
+    min-width: 400px;
+    max-width: 600px;
+  }
+
+  .titleContainer {
+    @apply flex justify-end items-center relative;
+    padding-bottom: 19px;
+    margin: 0 -24px 20px;
+  }
+
+  .title {
+    margin: 0 24px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .text {
+    @apply text-center overflow-auto text-base font-normal;
+    margin: 0 -24px;
+    padding: 0 24px;
+    color: --var(content-gray2);
+  }
+
+  .buttonGroup {
+    @apply mt-10 text-center flex justify-end;
+
+    button + button {
+      margin-left: 12px;
+    }
+  }
+
+  .close {
+    @apply cursor-pointer mr-6;
+  }
+}

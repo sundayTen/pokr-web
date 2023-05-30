@@ -1,0 +1,18 @@
+.root {
+  @apply flex flex-1 items-center;
+
+  .barContainer {
+    @apply flex flex-1 h-3 rounded-md relative;
+    background-color: var(--content-gray1);
+  }
+
+  .activeContainer {
+    @apply absolute left-0 h-3 rounded-md;
+    background-color: var(--pri-400);
+  }
+
+  .label {
+    @apply ml-2 text-label2;
+    color: var(--text-body);
+  }
+}

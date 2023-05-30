@@ -1,75 +1,221 @@
-import { useState } from 'react';
-import AutoHeightImage from '@components/common/image';
+import { useEffect, useState } from 'react';
+import AutoHeightImage from '@components/common/autoHeightImage';
 import Select from '@components/common/select';
+import ToolTip from '@components/common/tooltip';
 import styles from '@components/dashboard/period/DashBoardPeriod.module.scss';
+import useMountEffect from '@hooks/useMountEffect';
+import { useQuery } from '@tanstack/react-query';
+import { METRICS_HALF } from '@api/path';
+import { fetchMetrics, fetchMetricsObjects } from '@api/metrics';
+import useIsMobile from '@hooks/useIsMobile';
+import dashBoardStore, { GRAPH_DATA } from '@store/dashboard';
+import { METRICS, METRICS_OBJECTIVES_DATA } from '@type/metrics';
+import userStore from '@store/user';
 
 const periodArr = ['반기', '분기'];
-const categorizeArr = ['상반기', '하반기'];
+const halfPeriodArr = ['상반기', '하반기'];
+const quarterPeriodArr = ['1분기', '2분기', '3분기', '4분기'];
 
 const DashBoardPeriod = () => {
+  const { userToken } = userStore();
+  const { isMobile } = useIsMobile();
+  const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
   const [period, setPeriod] = useState<string>(periodArr[0]);
-  const [categorize, setCategorize] = useState<string>(categorizeArr[0]);
+  const [categorize, setCategorize] = useState<string>(halfPeriodArr[0]);
+  const [obejectStatus, setObejectStatus] = useState(false); // true: 달성완료? false: 달성중
+  const [keyResultPercent, setKeyResultPercent] = useState(0);
+  const [initiativePercent, setInitiativePercent] = useState(0);
+  const { changeGraphData } = dashBoardStore();
+
+  let metricsNumber = 1;
+
+  const { refetch } = useQuery<METRICS[]>(
+    [`${period === '반기' ? 'metricsHalf' : 'metricsQuarter'}`],
+    () => fetchMetrics(metricsNumber, period === '반기' ? 'half' : 'quarter'),
+    {
+      suspense: true,
+      staleTime: 3000,
+      initialData: [],
+      onSuccess: (data: METRICS[]) => {
+        const setGraphData = data.reduce((acc: GRAPH_DATA[], cur: METRICS) => {
+          return [
+            ...acc,
+            {
+              name: cur.label,
+              '사용자 평균': cur.me_api,
+              '이용자 평균 달성도': cur.all,
+            },
+          ];
+        }, []);
+
+        changeGraphData(setGraphData);
+      },
+    },
+  );
+
+  const { isLoading } = useQuery<METRICS_OBJECTIVES_DATA[]>(
+    ['objectives'],
+    fetchMetricsObjects,
+    {
+      enabled: !!userToken,
+      initialData: [],
+      onSuccess: (data: METRICS_OBJECTIVES_DATA[]) => {
+        const objectivesData = data.reduce(
+          (acc, cur: METRICS_OBJECTIVES_DATA) => {
+            return {
+              ...acc,
+              keyResult: acc.keyResult + cur.keyResultPercent,
+              initiative: acc.initiative + cur.initiativePercent,
+              achievement: cur.achievement ? true : false,
+            };
+          },
+          { keyResult: 0, initiative: 0, achievement: false },
+        );
+
+        if (objectivesData.keyResult > 0) {
+          setKeyResultPercent(
+            Math.floor(objectivesData.keyResult / data.length),
+          );
+        }
+        if (objectivesData.initiative > 0) {
+          setInitiativePercent(
+            Math.floor(objectivesData.initiative / data.length),
+          );
+        }
+
+        setObejectStatus(objectivesData.achievement);
+      },
+    },
+  );
+
+  useMountEffect(() => {
+    setCategorize(period === '반기' ? halfPeriodArr[0] : quarterPeriodArr[0]);
+    refetch();
+
+    return () => {};
+  }, [period]);
+
+  const [leftTimes, setLeftTimes] = useState<string>();
+  const deadline = `December, 31, ${new Date().getFullYear()}`;
+
+  const getTime = () => {
+    const time = Date.parse(deadline) - Date.now();
+
+    setLeftTimes(
+      `${Math.floor(time / (1000 * 60 * 60 * 24))}일 ${Math.floor(
+        (time / (1000 * 60 * 60)) % 24,
+      )}시간 ${Math.floor((time / 1000 / 60) % 60)}분 남았어요`,
+    );
+  };
+
+  useEffect(() => {
+    const interval = setInterval(getTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className={styles.root}>
       <div className={styles.periodContainer}>
-        <label>
-          <span>기간</span>
-          <Select value={period} setValue={setPeriod} options={periodArr} />
-        </label>
-        <label>
-          <span className={styles.categorize}>분류</span>
-          <Select
-            value={categorize}
-            setValue={setCategorize}
-            options={categorizeArr}
-          />
-        </label>
+        {isMobile ? (
+          <div>
+            <button type="button">반기</button>
+            <button type="button">상반기</button>
+          </div>
+        ) : (
+          <div className={styles.periodCategory}>
+            <label>
+              <span>기간</span>
+              <Select value={period} setValue={setPeriod} options={periodArr} />
+            </label>
+            <label>
+              <span className={styles.categorize}>분류</span>
+              <Select
+                value={categorize}
+                options={period === '반기' ? halfPeriodArr : quarterPeriodArr}
+                onChange={(e) => {
+                  setCategorize(e);
+
+                  if (e === '상반기' || e === '1분기') metricsNumber = 1;
+                  else if (e === '하반기' || e === '2분기') metricsNumber = 2;
+                  else if (e === '3분기') metricsNumber = 3;
+                  else if (e === '4분기') metricsNumber = 4;
+
+                  refetch();
+                }}
+              />
+            </label>
+          </div>
+        )}
+        {!isMobile && (
+          <div className={styles.periodOfTime}>
+            <button type="button" onClick={() => setTooltipOpen(!tooltipOpen)}>
+              <AutoHeightImage
+                src="/images/time-clock.png"
+                alt="검색"
+                width={20}
+                height={20}
+              />
+              <ToolTip
+                text={`목표 기간 : ${new Date().getFullYear()}.01.01 ~ ${new Date().getFullYear()}.12.31`}
+                open={tooltipOpen}
+                clasName={styles.tooltip}
+              />
+            </button>
+            {leftTimes}
+          </div>
+        )}
       </div>
       <ul className={styles.categoryContainer}>
         <li className={styles.objectives}>
-          <AutoHeightImage
-            src="/images/objectives.png"
-            alt="목표"
-            width={48}
-            height={48}
-          />
+          <div className={styles.icon}>
+            <AutoHeightImage
+              src="/images/trophy.png"
+              alt="목표"
+              width={24}
+              height={24}
+            />
+          </div>
           <div>
-            <strong>34%</strong>
-            <p>Objectives</p>
+            <strong>{obejectStatus ? '달성완료' : '달성중'}</strong>
+            <p>목표</p>
           </div>
           <div className={styles.progress}>
-            <span style={{ width: '34%' }} />
+            <span style={{ width: `${obejectStatus ? 100 : 0}%` }} />
           </div>
         </li>
         <li className={styles.keyResult}>
-          <AutoHeightImage
-            src="/images/key-result.png"
-            alt="결과"
-            width={48}
-            height={48}
-          />
+          <div className={styles.icon}>
+            <AutoHeightImage
+              src="/images/flag.png"
+              alt="결과"
+              width={24}
+              height={24}
+            />
+          </div>
           <div>
-            <strong>61%</strong>
-            <p>Key Results</p>
+            <strong>{keyResultPercent}%</strong>
+            <p>핵심 지표</p>
           </div>
           <div className={styles.progress}>
-            <span style={{ width: '61%' }} />
+            <span style={{ width: `${keyResultPercent}%` }} />
           </div>
         </li>
         <li className={styles.initiatives}>
-          <AutoHeightImage
-            src="/images/initiatives.png"
-            alt="계획"
-            width={48}
-            height={48}
-          />
+          <div className={styles.icon}>
+            <AutoHeightImage
+              src="/images/todo.png"
+              alt="계획"
+              width={24}
+              height={24}
+            />
+          </div>
           <div>
-            <strong>82%</strong>
-            <p>Initiatives</p>
+            <strong>{initiativePercent}%</strong>
+            <p>주요 행동</p>
           </div>
           <div className={styles.progress}>
-            <span style={{ width: '82%' }} />
+            <span style={{ width: `${initiativePercent}%` }} />
           </div>
         </li>
       </ul>

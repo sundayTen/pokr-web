@@ -1,10 +1,26 @@
 .root {
+  grid-area: header;
+
+  .inputContainer {
+    @apply flex items-center;
+  }
+
+  .buttonContainer {
+    @apply flex flex-row justify-between gap-x-2;
+
+    & button {
+      @apply flex w-10 h-10 p-2 items-center justify-center;
+      border: 1px solid var(--content-gray3);
+      background-color: var(--light-gray);
+    }
+  }
+
   & h2 {
     @apply text-xl font-bold text-pri-400 mobile:text-base;
   }
 
   & input {
-    @apply text-4xl font-bold bg-transparent border-0 outline-none cursor-default max-w-full;
+    @apply flex-1 text-4xl font-bold bg-transparent border-0 outline-none cursor-default max-w-full;
 
     margin-top: 8px;
     color: var(--text-heading);

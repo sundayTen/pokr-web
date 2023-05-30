@@ -1,0 +1,16 @@
+.root {
+  @apply mt-4;
+
+  .header {
+    @apply flex justify-between mb-4;
+
+    .labelContainer {
+      @apply flex;
+    }
+
+    .label {
+      @apply text-label1;
+      color: var(--text-body);
+    }
+  }
+}
