@@ -6,7 +6,7 @@ import goalManagementStore from '@store/goal-management';
 import { useQuery } from '@tanstack/react-query';
 import userStore from '@store/user';
 import { fetchOkrYears } from '@api/okr';
-import Button from '@components/common/Button';
+import Button from '@components/common/button';
 
 const GoalManagementHeader = ({
   objectiveLength,
