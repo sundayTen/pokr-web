@@ -1,5 +1,5 @@
-import Button from '@components/common/Button';
-import Text from '@components/common/Text';
+import Button from '@components/common/button';
+import Text from '@components/common/text';
 import React from 'react';
 
 interface ErrorBoundaryProps {
