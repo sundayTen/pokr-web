@@ -5,7 +5,7 @@ const AsideLoading = () => {
   return (
     <aside className={styles.root}>
       <div className={styles.header}>
-        <h1>어사이드 컴포넌트 로딩중이다</h1>
+        <h1>오늘 할 일을 로딩중이에요</h1>
       </div>
 
       <div className={styles.card}></div>

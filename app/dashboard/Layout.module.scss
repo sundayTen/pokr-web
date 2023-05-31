@@ -4,7 +4,6 @@
   grid-template-areas:
     'header header header'
     'main main aside';
-  grid-template-columns: calc(100vw - 24rem - 40px) 24rem;
   grid-column-gap: 40px;
   grid-row-gap: 10px;
 
