@@ -2,6 +2,7 @@
 
 import React from 'react';
 import DashBoardHeader from './header';
+import { Metadata } from 'next';
 
 import DashboardAside from './aside';
 import DashboardMain from './main';
