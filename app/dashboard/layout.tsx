@@ -1,4 +1,5 @@
 import React from 'react';
+import { Metadata } from 'next';
 import styles from '@app/dashboard/Layout.module.scss';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -6,3 +7,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default Layout;
+
+export const metadata: Metadata = {
+  title: '대시보드 | MyOKR',
+};

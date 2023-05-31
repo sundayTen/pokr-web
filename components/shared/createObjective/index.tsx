@@ -7,6 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import { createObjectives } from '@api/objectives';
 import goalManagementStore from '@store/goal-management';
 import dayjs from 'dayjs';
+import Modal from '@components/common/modal';
 
 const YEARS = ['2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'];
 
@@ -54,21 +55,30 @@ const CreateObjective = ({ close }: { close: () => void }) => {
   }, [value, error, targetYear]);
 
   return (
-    <div className={styles.root}>
-      <Input
-        label="목표명"
-        placeholder="이루고 싶은 목표를 입력해주세요"
-        value={value}
-        onChange={onChangeInput}
-      />
-      {error && <p className={styles.errorText}>{error}</p>}
-      <label className={styles.selectLabel}>목표 연도</label>
-      <Select
-        value={targetYear}
-        options={YEARS}
-        onChange={(e) => setTargetYear(e)}
-      />
-    </div>
+    <Modal
+      title="목표 추가하기"
+      cancelButtonLabel="취소"
+      cancelButtonPressed={close}
+      close={close}
+      confirmButtonLabel="확인"
+      confirmButtonPressed={addObjectives}
+    >
+      <div className={styles.root}>
+        <Input
+          label="목표명"
+          placeholder="이루고 싶은 목표를 입력해주세요"
+          value={value}
+          onChange={onChangeInput}
+        />
+        {error && <p className={styles.errorText}>{error}</p>}
+        <label className={styles.selectLabel}>목표 연도</label>
+        <Select
+          value={targetYear}
+          options={YEARS}
+          onChange={(e) => setTargetYear(e)}
+        />
+      </div>
+    </Modal>
   );
 };
 
