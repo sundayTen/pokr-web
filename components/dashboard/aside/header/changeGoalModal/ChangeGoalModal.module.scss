@@ -1,0 +1,21 @@
+.root {
+  @apply absolute top-12 right-0 w-72 rounded-lg;
+  border: 1px solid var(--border-gray);
+  background-color: white;
+
+  .titleContainer {
+    @apply flex items-center justify-center;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-gray);
+  }
+
+  .itemContainer {
+    @apply flex items-center cursor-pointer;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-gray);
+
+    &:hover {
+      background-color: #f6f7f9;
+    }
+  }
+}
