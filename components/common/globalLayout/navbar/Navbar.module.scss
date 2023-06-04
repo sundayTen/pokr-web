@@ -1,25 +1,50 @@
 .root {
-  @apply fixed left-0 top-0 h-full;
+  @apply fixed left-0 desktop:h-full desktop:top-0 mobile:bottom-0 mobile:w-full mobile:bg-white mobile:flex mobile:justify-center;
 
-  width: 68px;
-  padding-top: 68px;
-  background-image: linear-gradient(to bottom, #00bd90 0%, #58dba4 100%);
+  @screen desktop {
+    width: 68px;
+    padding-top: 68px;
+    background-image: linear-gradient(to bottom, #00bd90 0%, #58dba4 100%);
 
-  & > a {
-    @apply block text-center w-full text-white text-xs;
+    & > a {
+      @apply block text-center w-full text-white text-xs;
 
-    height: 68px;
-    padding-top: 12px;
+      height: 68px;
+      padding-top: 12px;
 
-    &.selected {
-      background-color: var(--pri-800);
+      &.selected {
+        background-color: var(--pri-800);
+      }
+
+      & > div {
+        @apply mx-auto;
+
+        width: 24px;
+        margin-bottom: 4px;
+      }
     }
+  }
 
-    & > div {
-      @apply mx-auto;
+  @screen mobile {
+    height: 75px;
+    z-index: 50;
+    border-top: 1px solid var(--border-gray);
+    padding: 0 5%;
 
-      width: 24px;
-      margin-bottom: 4px;
+    & > a {
+      @apply text-center text-xs w-1/3;
+
+      color: var(--text-disabled);
+      max-width: 150px;
+
+      & > div {
+        width: 24px;
+        margin: 8px auto 4px;
+      }
+
+      &.selected {
+        color: var(--pri-400);
+      }
     }
   }
 }

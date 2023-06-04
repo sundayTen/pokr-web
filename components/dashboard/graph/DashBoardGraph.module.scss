@@ -1,6 +1,9 @@
 .root {
-  @apply p-8 mobile:p-5 mt-6 rounded-md relative overflow-hidden;
+  @apply p-8 mobile:p-5 mt-6 relative overflow-hidden;
+
   background-color: white;
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
 
   & .container {
     background-color: #fff;

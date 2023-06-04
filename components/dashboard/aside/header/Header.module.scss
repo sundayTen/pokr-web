@@ -18,7 +18,7 @@
   }
 
   .buttonContainer {
-    @apply font-bold cursor-pointer;
+    @apply font-bold cursor-pointer bg-white;
 
     border: 1px solid var(--content-gray3);
     color: var(--text-body);

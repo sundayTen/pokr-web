@@ -74,7 +74,7 @@ const Graph = () => {
 
 export default Graph;
 
-const CustomTooltip = (props) => {
+const CustomTooltip = (props: any) => {
   const { active, payload, label } = props;
   if (active && payload && payload.length >= 2) {
     return (

@@ -14,7 +14,7 @@ const GlobalLayout = ({ children }: GlobalLayoutProps) => {
   return (
     <main className={styles.root}>
       {isMobile ? isApp ? <></> : <MobileHeader /> : <Header />}
-      {!isMobile && <Navbar />}
+      <Navbar />
       {children}
     </main>
   );
