@@ -1,9 +1,9 @@
 .root {
-  @apply p-8 mobile:p-5 mt-6 relative overflow-hidden;
+  @apply desktop:p-8 mobile:p-5 desktop:mt-6 relative overflow-hidden desktop:rounded-lg bg-white;
 
-  background-color: white;
-  border: 1px solid var(--border-gray);
-  border-radius: 8px;
+  @screen desktop {
+    border: 1px solid var(--border-gray);
+  }
 
   & .container {
     background-color: #fff;
@@ -43,7 +43,14 @@
   }
 
   & h1 {
-    @apply text-2xl font-bold mobile:text-base mb-3;
+    @apply text-2xl font-bold mobile:text-lg mb-3;
+  }
+
+  & .victory {
+    @apply text-base;
+
+    margin-bottom: 24px;
+    color: var(--text-body);
   }
 
   .highlight {
