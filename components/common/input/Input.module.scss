@@ -9,6 +9,12 @@
   input {
     @apply text-bodyB p-3 rounded-lg bg-white w-full;
     border: 1px solid var(--content-gray3);
+    color: var(--text-heading);
+
+    @screen mobile {
+      height: 48px;
+      margin-top: 2px;
+    }
   }
 
   input:focus {

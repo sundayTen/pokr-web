@@ -37,17 +37,16 @@ const BottomSheep = ({
 
   return (
     <div
-      onClick={onClose}
       className={cn(styles.root, {
         [styles.open]: open,
       })}
     >
-      <div className={styles.background} />
+      <div className={styles.background} onClick={onClose} />
       <div className={cn(styles.container)}>
         <div className={styles.header}>
           {title && <h2>{title}</h2>}
           {subTitle && <p>{subTitle}</p>}
-          <button type="button" className={styles.closeBtn}>
+          <button type="button" className={styles.closeBtn} onClick={onClose}>
             <AutoHeightImage
               src="/images/close.png"
               alt="검색"

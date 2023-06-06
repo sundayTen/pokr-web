@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
+import cn from 'classnames';
 import AutoHeightImage from '@components/common/autoHeightImage';
 import Select from '@components/common/select';
 import ToolTip from '@components/common/tooltip';
 import styles from '@components/dashboard/period/DashBoardPeriod.module.scss';
 import useMountEffect from '@hooks/useMountEffect';
 import { useQuery } from '@tanstack/react-query';
-import { METRICS_HALF } from '@api/path';
 import { fetchMetrics, fetchMetricsObjects } from '@api/metrics';
 import useIsMobile from '@hooks/useIsMobile';
 import dashBoardStore, { GRAPH_DATA } from '@store/dashboard';
 import { METRICS, METRICS_OBJECTIVES_DATA } from '@type/metrics';
 import userStore from '@store/user';
+import BottomSheep from '@components/common/bottomSheep';
 
 const periodArr = ['반기', '분기'];
 const halfPeriodArr = ['상반기', '하반기'];
@@ -25,6 +26,10 @@ const DashBoardPeriod = () => {
   const [obejectStatus, setObejectStatus] = useState(false); // true: 달성완료? false: 달성중
   const [keyResultPercent, setKeyResultPercent] = useState(0);
   const [initiativePercent, setInitiativePercent] = useState(0);
+  const [periodModal, setPeriodModal] = useState({
+    type: '',
+    show: false,
+  });
   const { changeGraphData } = dashBoardStore();
 
   let metricsNumber = 1;
@@ -114,32 +119,91 @@ const DashBoardPeriod = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleChangeCategorize = (e: string) => {
+    setCategorize(e);
+
+    if (e === '상반기' || e === '1분기') metricsNumber = 1;
+    else if (e === '하반기' || e === '2분기') metricsNumber = 2;
+    else if (e === '3분기') metricsNumber = 3;
+    else if (e === '4분기') metricsNumber = 4;
+
+    refetch();
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.periodContainer}>
-        <div className={styles.periodCategory}>
-          <label>
-            <span className={styles.title}>기간</span>
-            <Select value={period} setValue={setPeriod} options={periodArr} />
-          </label>
-          <label>
-            <span className={styles.title}>분류</span>
-            <Select
-              value={categorize}
-              options={period === '반기' ? halfPeriodArr : quarterPeriodArr}
-              onChange={(e) => {
-                setCategorize(e);
-
-                if (e === '상반기' || e === '1분기') metricsNumber = 1;
-                else if (e === '하반기' || e === '2분기') metricsNumber = 2;
-                else if (e === '3분기') metricsNumber = 3;
-                else if (e === '4분기') metricsNumber = 4;
-
-                refetch();
+        {isMobile ? (
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                setPeriodModal({ type: 'period', show: true });
               }}
-            />
-          </label>
-        </div>
+            >
+              {period}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setPeriodModal({ type: 'quarter', show: true });
+              }}
+            >
+              {categorize}
+            </button>
+            <BottomSheep
+              title="기간"
+              onClose={() => setPeriodModal({ type: '', show: false })}
+              open={periodModal.show}
+            >
+              {(periodModal.type === 'period'
+                ? periodArr
+                : period === '반기'
+                ? halfPeriodArr
+                : quarterPeriodArr
+              )?.map((v, i) => (
+                <button
+                  type="button"
+                  key={i}
+                  className={cn('select-btn', {
+                    ['selected']:
+                      periodModal.type === 'period'
+                        ? period === v
+                        : categorize === v,
+                  })}
+                  onClick={() => {
+                    if (periodModal.type === 'period') setPeriod(v);
+                    else handleChangeCategorize(v);
+
+                    setPeriodModal({ type: '', show: false });
+                  }}
+                >
+                  {v}
+                  {periodModal.type === 'period' && (
+                    <span className={styles.periodDescription}>
+                      {v === '분기' ? ' (3개월 단위)' : ' (6개월 단위)'}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </BottomSheep>
+          </div>
+        ) : (
+          <div className={styles.periodCategory}>
+            <label>
+              <span className={styles.title}>기간</span>
+              <Select value={period} setValue={setPeriod} options={periodArr} />
+            </label>
+            <label>
+              <span className={styles.title}>분류</span>
+              <Select
+                value={categorize}
+                options={period === '반기' ? halfPeriodArr : quarterPeriodArr}
+                onChange={(e) => handleChangeCategorize(e)}
+              />
+            </label>
+          </div>
+        )}
         {!isMobile && (
           <div className={styles.periodOfTime}>
             <button type="button" onClick={() => setTooltipOpen(!tooltipOpen)}>

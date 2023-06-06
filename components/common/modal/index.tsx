@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React, { useEffect } from 'react';
 import styles from './Modal.module.scss';
 import Button from '@components/common/button';
+import useIsMobile from '@hooks/useIsMobile';
 
 export interface ModalContents {
   title?: string;
@@ -35,6 +36,8 @@ const Modal = ({
   confirmButtonPressed,
   close,
 }: ModalProps) => {
+  const { isMobile } = useIsMobile();
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -52,7 +55,7 @@ const Modal = ({
             <span className={styles.title}>{title}</span>
             <Image
               onClick={close}
-              src={'/images/close.png'}
+              src={isMobile ? '/images/left-arrow.png' : '/images/close.png'}
               width={24}
               height={24}
               alt="닫기 버튼"
@@ -63,7 +66,7 @@ const Modal = ({
             {content && <span className={styles.contentFont}>{content}</span>}
             {children}
             <div className={styles.buttonGroup}>
-              {cancelButtonLabel && (
+              {cancelButtonLabel && !isMobile && (
                 <Button
                   buttonStyle="BORDER"
                   size="MEDIUM"
@@ -75,14 +78,16 @@ const Modal = ({
                 />
               )}
               {confirmButtonLabel && (
-                <Button
-                  buttonStyle="PAINTED"
-                  size="MEDIUM"
-                  label={confirmButtonLabel}
-                  onClick={() => {
-                    confirmButtonPressed && confirmButtonPressed();
-                  }}
-                />
+                <div className={styles.cancelBtn}>
+                  <Button
+                    buttonStyle="PAINTED"
+                    size={isMobile ? 'FULL' : 'MEDIUM'}
+                    label={confirmButtonLabel}
+                    onClick={() => {
+                      confirmButtonPressed && confirmButtonPressed();
+                    }}
+                  />
+                </div>
               )}
             </div>
           </div>

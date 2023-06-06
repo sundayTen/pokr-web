@@ -55,6 +55,12 @@
           @apply hidden;
         }
       }
+
+      & .periodDescription {
+        @apply text-base;
+
+        color: var(--text-body);
+      }
     }
   }
 
