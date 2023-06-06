@@ -117,36 +117,29 @@ const DashBoardPeriod = () => {
   return (
     <div className={styles.root}>
       <div className={styles.periodContainer}>
-        {isMobile ? (
-          <div>
-            <button type="button">반기</button>
-            <button type="button">상반기</button>
-          </div>
-        ) : (
-          <div className={styles.periodCategory}>
-            <label>
-              <span>기간</span>
-              <Select value={period} setValue={setPeriod} options={periodArr} />
-            </label>
-            <label>
-              <span className={styles.categorize}>분류</span>
-              <Select
-                value={categorize}
-                options={period === '반기' ? halfPeriodArr : quarterPeriodArr}
-                onChange={(e) => {
-                  setCategorize(e);
+        <div className={styles.periodCategory}>
+          <label>
+            <span className={styles.title}>기간</span>
+            <Select value={period} setValue={setPeriod} options={periodArr} />
+          </label>
+          <label>
+            <span className={styles.title}>분류</span>
+            <Select
+              value={categorize}
+              options={period === '반기' ? halfPeriodArr : quarterPeriodArr}
+              onChange={(e) => {
+                setCategorize(e);
 
-                  if (e === '상반기' || e === '1분기') metricsNumber = 1;
-                  else if (e === '하반기' || e === '2분기') metricsNumber = 2;
-                  else if (e === '3분기') metricsNumber = 3;
-                  else if (e === '4분기') metricsNumber = 4;
+                if (e === '상반기' || e === '1분기') metricsNumber = 1;
+                else if (e === '하반기' || e === '2분기') metricsNumber = 2;
+                else if (e === '3분기') metricsNumber = 3;
+                else if (e === '4분기') metricsNumber = 4;
 
-                  refetch();
-                }}
-              />
-            </label>
-          </div>
-        )}
+                refetch();
+              }}
+            />
+          </label>
+        </div>
         {!isMobile && (
           <div className={styles.periodOfTime}>
             <button type="button" onClick={() => setTooltipOpen(!tooltipOpen)}>
