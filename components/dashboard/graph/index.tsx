@@ -28,14 +28,21 @@ const Graph = () => {
     <section className={styles.root}>
       <div className={styles.container}>
         <h1>{graphData.length > 6 ? '분기' : '반기'} 달성 지표</h1>
-        <Text weight="NORMAL" variant="BODY">
-          이번 달은 전체 사용자의 평균 보다
-          <span className={styles.highlight}> 15% </span>
-          높게 달성했어요!
-        </Text>
+        {isMobile ? (
+          <p className={styles.victory}>목표를 향해 힘차게 달려보세요!</p>
+        ) : (
+          <Text weight="NORMAL" variant="BODY">
+            이번 달은 전체 사용자의 평균 보다
+            <span className={styles.highlight}> 15% </span>
+            높게 달성했어요!
+          </Text>
+        )}
       </div>
       <ResponsiveContainer width={'100%'} aspect={isMobile ? 1.3 : 4}>
-        <AreaChart data={data} margin={{ top: 20, bottom: 0 }}>
+        <AreaChart
+          data={data}
+          margin={{ top: 20, bottom: 0, left: isMobile ? -40 : 0 }}
+        >
           <defs>
             <linearGradient id="color-my" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#9be8cd" stopOpacity={0.5} />
@@ -74,7 +81,7 @@ const Graph = () => {
 
 export default Graph;
 
-const CustomTooltip = (props) => {
+const CustomTooltip = (props: any) => {
   const { active, payload, label } = props;
   if (active && payload && payload.length >= 2) {
     return (

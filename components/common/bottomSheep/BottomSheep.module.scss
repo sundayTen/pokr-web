@@ -13,7 +13,7 @@
   & .container {
     @apply absolute left-0 bottom-0 right-0 w-full bg-white;
 
-    padding: 24px;
+    padding: 24px 24px 50px;
     animation: slideUp linear 0.2s forwards;
     border-radius: 16px 16px 0 0;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
@@ -22,7 +22,7 @@
       @apply relative;
 
       & h2 {
-        @apply font-bold text-xl;
+        @apply font-semibold text-lg;
       }
 
       & .closeBtn {
@@ -30,9 +30,10 @@
       }
 
       & p {
-        @apply text-sm;
+        @apply text-base;
 
         margin-top: 6px;
+        line-height: 24px;
         color: var(--text-body);
       }
     }
@@ -49,6 +50,28 @@
 
     & .container {
       animation-name: slideDown;
+    }
+  }
+
+  & button {
+    &[class*='submit-btn'] {
+      @apply text-base font-semibold rounded-lg w-full;
+
+      height: 60px;
+      margin-top: 24px;
+      color: var(--text-body);
+      border: solid 2px var(--border-gray);
+    }
+
+    &[class*='select-btn'] {
+      @apply w-full text-left text-lg rounded-lg mb-2;
+
+      height: 58px;
+
+      &[class*='selected'] {
+        background: right 12px top 50%/24px no-repeat #fff
+          url('/images/bottom-sheet-checked.png');
+      }
     }
   }
 }

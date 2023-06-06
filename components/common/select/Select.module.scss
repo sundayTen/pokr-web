@@ -2,12 +2,11 @@
   @apply relative inline-block;
 
   & .selectedValue {
-    @apply bg-white;
+    @apply bg-white mobile:text-sm rounded-lg;
 
     height: 40px;
     line-height: 40px;
     padding: 0 38px 0 12px;
-    border-radius: 8px;
     border: 1px solid var(--border-gray);
     background: right 7px top 50%/22px no-repeat #fff
       url('/images/down-arrow.png');
@@ -18,6 +17,13 @@
       & + ul {
         @apply block;
       }
+    }
+
+    @screen mobile {
+      height: 36px;
+      line-height: 36px;
+      padding: 0 34px 0 12px;
+      background-position: top 50%/12px;
     }
   }
 

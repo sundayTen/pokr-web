@@ -1,6 +1,9 @@
 .root {
   @apply w-96 mobile:w-full;
-  grid-area: aside;
+
+  @screen desktop {
+    grid-area: aside;
+  }
 
   .header {
     @apply mb-6;

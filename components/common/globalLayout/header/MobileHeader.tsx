@@ -1,28 +1,20 @@
-import AutoHeightImage from '@components/common/autoHeightImage';
 import React from 'react';
-
+import Link from 'next/link';
+import AutoHeightImage from '@components/common/autoHeightImage';
 import styles from './MobileHeader.module.scss';
 
 const MobileHeader = () => {
   return (
     <header className={styles.root}>
-      <button type="button">
+      <Link href="/" className={styles.logoContainer}>
         <AutoHeightImage
-          src="/images/left-arrow.png"
-          alt="검색"
-          width={28}
-          height={28}
+          src="/images/logo.png"
+          width={24}
+          height={24}
+          alt="myOKR 로고"
         />
-      </button>
-      <h1>대시보드</h1>
-      {/* <button type="button">
-        <AutoHeightImage
-          src="/images/search-black.png"
-          alt="검색"
-          width={28}
-          height={28}
-        />
-      </button> */}
+        myOKR
+      </Link>
     </header>
   );
 };

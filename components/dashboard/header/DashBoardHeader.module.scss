@@ -1,29 +1,39 @@
 .root {
-  grid-area: header;
+  @screen desktop {
+    grid-area: header;
+  }
 
-  .inputContainer {
+  & .inputContainer {
     @apply flex items-center;
   }
 
-  .buttonContainer {
+  & .buttonContainer {
     @apply flex flex-row justify-between gap-x-2;
 
     & button {
       @apply flex w-10 h-10 p-2 items-center justify-center;
+
       border: 1px solid var(--content-gray3);
-      background-color: var(--light-gray);
+      background-color: #fff;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+      margin-top: 30px;
+    }
+  }
+
+  & .moButtonContainer {
+    @apply flex;
+
+    & button {
+      @apply w-10 h-10 flex justify-center items-center mr-2;
+
+      margin-top: 20px;
+      border: 1px solid var(--content-gray3);
+      background-color: #fff;
     }
   }
 
   & h2 {
-    @apply text-xl font-bold text-pri-400 mobile:text-base;
-  }
-
-  & input {
-    @apply flex-1 text-4xl font-bold bg-transparent border-0 outline-none cursor-default max-w-full;
-
-    margin-top: 8px;
-    color: var(--text-heading);
+    @apply text-xl font-bold text-pri-400 mobile:text-lg mobile:font-semibold;
   }
 
   & p {
@@ -32,14 +42,22 @@
     color: var(--text-body);
   }
 
+  & .objectivesTitle {
+    @apply flex-1 text-4xl font-bold bg-transparent border-0 outline-none cursor-default max-w-full;
+
+    margin-top: 8px;
+    color: var(--text-heading);
+  }
+
   & button {
     @apply desktop:hidden text-base text-white w-full font-bold;
 
-    height: 48px;
-    margin-top: 30px;
     border-radius: 8px;
     background-color: var(--pri-400);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .objectChangeButton {
+    @apply relative;
   }
 
   @screen mobile {
@@ -47,9 +65,10 @@
 
     padding: 24px;
 
-    & input {
-      margin: 0 0 5px;
-      font-size: 26px;
+    & .objectivesTitle {
+      margin: 5px 0 0;
+      font-size: 24px;
+      line-height: 34px;
     }
   }
 }

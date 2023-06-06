@@ -37,7 +37,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <html lang="kn">
       <body>
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           <OverlayProvider>
             <GlobalLayout>{children}</GlobalLayout>
           </OverlayProvider>

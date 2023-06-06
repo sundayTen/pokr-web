@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './KeyResultList.module.scss';
-import KeyResultItem from './KeyResultItem';
+import Image from 'next/image';
+import SuspenseComponent from '@components/common/suspenseComponent';
 
 // 특정 날짜의 주요 행동을 보여주는 컴포넌트
 const KeyResultList = () => {
@@ -14,11 +15,16 @@ const KeyResultList = () => {
 
         <button className={styles.labelContainer}>
           <span className={styles.label}>자세히 보기</span>
-          <span className={styles.label}>{`->`}</span>
+          <Image
+            src={'/images/arrow_right.png'}
+            width={16}
+            height={16}
+            alt="자세히 보기 버튼 아이콘"
+          />
         </button>
       </div>
 
-      <KeyResultItem title="이직 준비" />
+      <SuspenseComponent></SuspenseComponent>
     </div>
   );
 };

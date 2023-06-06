@@ -5,7 +5,7 @@ import styles from '@components/common/button/Button.module.scss';
 interface ButtonProps {
   label: string;
   buttonStyle?: 'PAINTED' | 'BORDER' | 'BLACK';
-  size?: 'LARGE' | 'MEDIUM' | 'SMALL' | 'XLARGE';
+  size?: 'FULL' | 'LARGE' | 'MEDIUM' | 'SMALL' | 'XLARGE';
   disabled?: boolean;
   onClick: () => void;
 }
@@ -26,6 +26,7 @@ const Button = (props: ButtonProps) => {
       onClick={onClick}
       disabled={disabled}
       className={cn(styles.root, {
+        [styles.full]: size === 'FULL',
         [styles.xlarge]: size === 'XLARGE',
         [styles.large]: size === 'LARGE',
         [styles.medium]: size === 'MEDIUM',

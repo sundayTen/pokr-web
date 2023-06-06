@@ -3,6 +3,12 @@
 
   padding: 0 10px;
 
+  &.full {
+    @apply w-full text-base font-bold rounded-lg;
+
+    height: 60px;
+  }
+
   &.xlarge {
     @apply text-lg;
 

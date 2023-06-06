@@ -1,32 +1,20 @@
 import React from 'react';
 import styles from '@components/dashboard/aside/DashBoardAside.module.scss';
-import { OKR } from '@type/okr';
 import Calendar from './WeekCalendar';
 import InitiativeList from './KeyResultList';
-import { useQuery } from '@tanstack/react-query';
-import { fetchOkr } from '@api/okr';
+import Header from './header';
 
-interface DashboardAsideProps {
-  okr: OKR[];
-}
+interface DashboardAsideProps {}
 
-const DashboardAside = ({ okr }: DashboardAsideProps) => {
-  const { data } = useQuery(['okr'], fetchOkr, {});
-
+const DashboardAside = (props: DashboardAsideProps) => {
   return (
     <aside className={styles.root}>
-      <div className={styles.header}>
-        <h1>2023년 1월 1일</h1>
-      </div>
+      <Header />
 
       <div className={styles.card}>
         <Calendar />
 
         <InitiativeList />
-
-        {data?.map((datum) => (
-          <p>{datum.objectiveTitle}</p>
-        ))}
       </div>
     </aside>
   );
