@@ -1,11 +1,11 @@
-import OutsideClickDetector from '@components/common/outsideClickDetector';
-import Text from '@components/common/text';
 import React, {
   forwardRef,
   useCallback,
   useImperativeHandle,
   useState,
 } from 'react';
+import OutsideClickDetector from '@components/common/outsideClickDetector';
+import Text from '@components/common/text';
 import styles from './ChangeGoalModal.module.scss';
 
 interface ChangeGoalModalProps {}

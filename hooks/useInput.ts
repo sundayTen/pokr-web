@@ -1,5 +1,5 @@
 import { removeSpaceInString } from '@utils/string';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, ChangeEvent } from 'react';
 
 interface Options {
   initialValue?: string;
@@ -11,7 +11,9 @@ interface Options {
 
 interface ReturnType {
   value: string;
-  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeInput: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
   isError: boolean;
   reset: () => void;
 }
