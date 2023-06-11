@@ -10,6 +10,8 @@ import styles from './KeyResultDetail.module.scss';
 import KeyResultDetailHeader from './header';
 import KeyResultDetailSummary from './summary';
 import KeyResultDetailInitiatives from './initiatives';
+import { useOverlay } from '@toss/use-overlay';
+import DropKeyResultModal from '@components/shared/dropKeyResultModal';
 
 interface KeyResultDetailProps {}
 export interface KeyResultDetailRef {
@@ -20,6 +22,7 @@ export interface KeyResultDetailRef {
 const KeyResultDetail = forwardRef<KeyResultDetailRef, KeyResultDetailProps>(
   (props, ref) => {
     const [isVisible, setIsVisible] = useState(false);
+    const { open: openModal } = useOverlay();
 
     const open = useCallback(() => {
       setTimeout(() => {
@@ -40,6 +43,16 @@ const KeyResultDetail = forwardRef<KeyResultDetailRef, KeyResultDetailProps>(
       [open, close],
     );
 
+    const dropKeyResult = () => {
+      openModal(({ exit }) => {
+        return <DropKeyResultModal close={exit} />;
+      });
+    };
+
+    if (!isVisible) {
+      return <></>;
+    }
+
     return (
       <OutsideClickDetector onOutsideClick={close}>
         <aside
@@ -49,8 +62,9 @@ const KeyResultDetail = forwardRef<KeyResultDetailRef, KeyResultDetailProps>(
           })}
         >
           <KeyResultDetailHeader
+            status={'달성완료'}
             onClickClose={close}
-            onClickDrop={close}
+            onClickDrop={dropKeyResult}
             onClickWrite={close}
           />
           <div className={styles.content}>

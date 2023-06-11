@@ -15,7 +15,9 @@ const ProgressBar = ({ total, current }: ProgressBarProps) => {
           style={{
             width: `${calculatePercent(total, current)}%`,
           }}
-        />
+        >
+          <div className={styles.activeBar} />
+        </div>
       </div>
       <span className={styles.label}>{`${calculatePercent(
         total,

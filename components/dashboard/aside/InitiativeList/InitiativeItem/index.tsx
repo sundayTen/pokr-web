@@ -1,4 +1,6 @@
 import CheckBox from '@components/common/checkbox';
+import Radio from '@components/common/radio';
+import Text from '@components/common/text';
 import { getElapsedTime } from '@utils/date';
 import React, { useState } from 'react';
 import styles from './InitiativeItem.module.scss';
@@ -14,7 +16,10 @@ const InitiativeItem = () => {
 
   return (
     <div className={styles.root} onClick={onClickItem}>
-      <CheckBox label="이력서 작성하기" isChecked={isChecked} />
+      <div className={styles.titleContainer}>
+        <Radio status="checked" />
+        <Text variant="LABEL">부동산 탐방</Text>
+      </div>
 
       <div className={styles.additionalDataContainer}>
         <span className={styles.deadline}>

@@ -8,11 +8,26 @@
 
   .activeContainer {
     @apply absolute left-0 h-3 rounded-md;
-    background-color: var(--pri-400);
+
+    .activeBar {
+      @apply h-3 rounded-md;
+      background-color: var(--pri-400);
+      animation: expandAnimation 1s forwards;
+    }
   }
 
   .label {
     @apply ml-2 text-label2;
     color: var(--text-body);
+  }
+}
+
+@keyframes expandAnimation {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
   }
 }

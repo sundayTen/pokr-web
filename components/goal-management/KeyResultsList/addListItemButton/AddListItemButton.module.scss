@@ -1,6 +1,5 @@
 .root {
   @apply flex items-center cursor-pointer;
-  padding: 14px 48px; // ?? 안됨..
 
   .label {
     @apply text-label1 cursor-pointer;

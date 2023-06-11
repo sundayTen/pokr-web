@@ -5,7 +5,11 @@
     @apply flex justify-between mb-4;
 
     .labelContainer {
-      @apply flex;
+      @apply flex items-center;
+
+      span + span {
+        margin-left: 6px;
+      }
     }
 
     .label {
