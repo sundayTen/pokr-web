@@ -8,9 +8,28 @@
   }
 
   .day {
-    @apply w-10 h-10 flex items-center justify-center text-subtitle rounded-full text-center cursor-pointer;
-    color: var(--text-heading);
+    @apply w-10 h-10 flex items-center justify-center rounded-full cursor-pointer;
     margin: 6px 0px;
+
+    &.today {
+      background-color: var(--text-heading);
+    }
+
+    &.isCurrentDate {
+      @apply rounded-none;
+      border: 1px solid black;
+    }
+
+    .todayFont {
+      color: #fff;
+    }
+    .afterDateFont {
+      color: var(--text-disabled);
+    }
+    & > span {
+      @apply text-center text-lg font-extrabold;
+      color: var(--text-heading);
+    }
   }
 
   .balls {

@@ -1,4 +1,5 @@
 import userStore from '@store/user';
+import { ValueOf } from '@type/common';
 import { BASE_URL } from './path';
 
 interface FetcherRequest {
@@ -6,8 +7,16 @@ interface FetcherRequest {
   config?: FetchConfig;
 }
 
+export const HTTP_METHOD_TYPE = {
+  GET: 'GET',
+  POST: 'POST',
+  PATCH: 'PATCH',
+  PUT: 'PUT',
+  DELETE: 'DELETE',
+} as const;
+
 interface FetchConfig {
-  method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
+  method: ValueOf<typeof HTTP_METHOD_TYPE>;
   headers?: any;
   mode?: 'cors' | 'navigate' | 'no-cors' | 'same-origin';
   cache?:
@@ -21,7 +30,7 @@ interface FetchConfig {
 }
 
 const defaultConfig: FetchConfig = {
-  method: 'GET',
+  method: HTTP_METHOD_TYPE.GET,
   cache: 'default', // SSR 타입에 따라 분기
   mode: 'cors',
   headers: {
@@ -67,9 +76,6 @@ export const fetcher = async <T>({
 const handleError = (status: number) => {
   switch (status) {
     case 401:
-      // window?.localStorage?.removeItem('accessToken');
-      // userStore.setState({ userToken: null });
-      // window.history.pushState('', '', `/`);
       throw new Error('인증 문제 발생');
     case 404:
       throw new Error('데이터를 찾을 수 없음');

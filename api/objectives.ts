@@ -1,5 +1,5 @@
 import { OKR_OBJECTIVES_TYPE } from '@type/okr';
-import { fetcher } from './fetcher';
+import { fetcher, HTTP_METHOD_TYPE } from './fetcher';
 import { OBJECTIVES } from './path';
 
 export const getObjectives = async (
@@ -27,7 +27,7 @@ export const createObjectives = async ({
     const res: { id: number } = await fetcher({
       path: OBJECTIVES,
       config: {
-        method: 'POST',
+        method: HTTP_METHOD_TYPE.POST,
         body: JSON.stringify({
           title,
           year,
@@ -46,7 +46,7 @@ export const copyObjectives = async (id: number): Promise<{ id: number }> => {
     const res: { id: number } = await fetcher({
       path: `${OBJECTIVES}/${id}/copy`,
       config: {
-        method: 'POST',
+        method: HTTP_METHOD_TYPE.POST,
       },
     });
     return res;
@@ -71,7 +71,7 @@ export const editObjectives = async ({
     const res = await fetcher({
       path: `${OBJECTIVES}/${id}`,
       config: {
-        method: 'PATCH',
+        method: HTTP_METHOD_TYPE.PATCH,
         body: JSON.stringify({
           title,
           achievement,
@@ -92,7 +92,7 @@ export const deleteObjectives = async (id: number) => {
     const res = await fetcher({
       path: `${OBJECTIVES}/${id}`,
       config: {
-        method: 'DELETE',
+        method: HTTP_METHOD_TYPE.DELETE,
       },
     });
     return res;
