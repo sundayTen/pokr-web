@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './KeyResultList.module.scss';
 import Image from 'next/image';
-import SuspenseComponent from '@components/common/suspenseComponent';
 
 // 특정 날짜의 주요 행동을 보여주는 컴포넌트
 const KeyResultList = () => {
@@ -23,8 +22,6 @@ const KeyResultList = () => {
           />
         </button>
       </div>
-
-      <SuspenseComponent></SuspenseComponent>
     </div>
   );
 };

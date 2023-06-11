@@ -25,7 +25,7 @@ const CalendarItem = ({
       <div
         className={cn(styles.day, {
           [styles.today]: isToday,
-          [styles.isCurrentDate]: isCurrentDate,
+          [styles.isCurrentDate]: isToday ? false : isCurrentDate,
         })}
       >
         <span

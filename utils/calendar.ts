@@ -1,5 +1,6 @@
-import { ValueOf } from '@type/common';
 import dayjs from 'dayjs';
+
+export const WEEK_UNIT = 7;
 
 // dayjs 로케일 설정 오류로 임시 처리
 export const WEEK_KR = {
@@ -11,11 +12,6 @@ export const WEEK_KR = {
   Saturday: '토',
   Sunday: '일',
 } as const;
-
-interface WEEK_CALENDAR_UNIT {
-  dayOfTheWeek: ValueOf<typeof WEEK_KR>;
-  date: dayjs.Dayjs;
-}
 
 // 특정 날짜가 속한 주를 반환합니다.
 export const generateWeek = (date: dayjs.Dayjs): dayjs.Dayjs[] => {
@@ -31,19 +27,4 @@ export const generateWeek = (date: dayjs.Dayjs): dayjs.Dayjs[] => {
   }
 
   return weekRange;
-};
-
-/**
- * 1주일 날짜를 요일별 일만 string으로 반환합니다.
- * @param week
- */
-export const getWeekWithFormat = (
-  week: dayjs.Dayjs[],
-): WEEK_CALENDAR_UNIT[] => {
-  return week.map((day) => {
-    return {
-      dayOfTheWeek: WEEK_KR[day.format('dddd')],
-      date: day,
-    };
-  });
 };
