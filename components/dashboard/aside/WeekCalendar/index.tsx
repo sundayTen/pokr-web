@@ -1,43 +1,28 @@
+import { generateWeek, getWeekWithFormat } from '@utils/calendar';
+import dayjs, { Dayjs } from 'dayjs';
 import React from 'react';
 import styles from './Calendar.module.scss';
 import CalendarItem from './CalendarItem';
 
-const dummy = [
-  {
-    dayOftheWeek: '월',
-    day: 1,
-  },
-  {
-    dayOftheWeek: '화',
-    day: 3,
-  },
-  {
-    dayOftheWeek: '수',
-    day: 5,
-  },
-  {
-    dayOftheWeek: '목',
-    day: 7,
-  },
-  {
-    dayOftheWeek: '금',
-    day: 9,
-  },
-  {
-    dayOftheWeek: '토',
-    day: 11,
-  },
-  {
-    dayOftheWeek: '일',
-    day: 32,
-  },
-];
+const Calendar = ({
+  currentDate,
+  changeDate,
+}: {
+  currentDate: dayjs.Dayjs;
+  changeDate: (date: dayjs.Dayjs) => void;
+}) => {
+  const week = getWeekWithFormat(generateWeek(currentDate));
 
-const Calendar = () => {
   return (
     <div className={styles.root}>
-      {dummy.map((d) => (
-        <CalendarItem day={d.day} dayOftheWeek={d.dayOftheWeek} key={d.day} />
+      {week.map((day) => (
+        <CalendarItem
+          date={day.date}
+          dayOfTheWeek={day.dayOfTheWeek}
+          key={day.date.format('YYYY.MM.DD')}
+          onClickItem={changeDate}
+          currentDate={currentDate}
+        />
       ))}
     </div>
   );

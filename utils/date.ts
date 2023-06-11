@@ -60,7 +60,6 @@ export const getDuration = (targetDate: DATE) =>
 const isCurrentYear = (targetDate: DATE) =>
   dayjs(targetDate).year() === dayjs().year();
 /**
- * Date 객체를 겟차 날짜 양식에 맞게 변환합니다.
  * @param { DATE } date
  * @return { DATE } formatted date
  */
