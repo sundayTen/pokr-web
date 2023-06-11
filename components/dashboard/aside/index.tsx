@@ -4,6 +4,7 @@ import Calendar from './WeekCalendar';
 import InitiativeList from './KeyResultList';
 import Header from './header';
 import dayjs from 'dayjs';
+import { WEEK_UNIT } from '@utils/calendar';
 
 interface DashboardAsideProps {}
 
@@ -15,10 +16,10 @@ const DashboardAside = (props: DashboardAsideProps) => {
   };
 
   const onClickPrev = () => {
-    setCurrentDate(currentDate.add(-7, 'day').startOf('week').add(1));
+    setCurrentDate(currentDate.add(-WEEK_UNIT, 'day').startOf('week').add(1));
   };
   const onClickNext = () => {
-    setCurrentDate(currentDate.add(7, 'day').startOf('week').add(1));
+    setCurrentDate(currentDate.add(WEEK_UNIT, 'day').startOf('week').add(1));
   };
   const changeDate = (date: dayjs.Dayjs) => {
     setCurrentDate(date);
