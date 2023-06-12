@@ -1,14 +1,23 @@
 .root {
-  @apply h-10 flex rounded-lg items-center cursor-pointer;
+  @apply relative h-10 flex rounded-lg items-center cursor-pointer;
   border: 1px solid var(--content-gray3);
   margin-bottom: 6px;
+  padding: 10px 16px;
 
   .code {
-    @apply w-1 h-6 bg-orange-400 rounded-r-sm;
+    @apply absolute top-1.5 left-0 w-1 h-6 bg-orange-400 rounded-r-sm;
+  }
+
+  .content {
+    @apply flex items-center justify-between w-full;
+  }
+
+  .titleContainer {
+    @apply flex;
   }
 
   .title {
-    @apply text-label1 ml-3;
+    @apply text-label1;
     color: var(--text-body);
   }
 }

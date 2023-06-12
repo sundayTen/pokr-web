@@ -1,11 +1,15 @@
 .root {
-  @apply mt-4;
+  @apply mt-8 bg-slate-600;
 
   .header {
     @apply flex justify-between mb-4;
 
     .labelContainer {
-      @apply flex;
+      @apply flex items-center;
+
+      span + span {
+        margin-left: 6px;
+      }
     }
 
     .label {

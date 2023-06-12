@@ -71,12 +71,15 @@ const CreateObjective = ({ close }: { close: () => void }) => {
           onChange={onChangeInput}
         />
         {error && <p className={styles.errorText}>{error}</p>}
-        <label className={styles.selectLabel}>목표 연도</label>
-        <Select
-          value={targetYear}
-          options={YEARS}
-          onChange={(e) => setTargetYear(e)}
-        />
+
+        <div className={styles.selectContainer}>
+          <label className={styles.selectLabel}>목표 연도</label>
+          <Select
+            value={targetYear}
+            options={YEARS}
+            onChange={(e) => setTargetYear(e)}
+          />
+        </div>
       </div>
     </Modal>
   );

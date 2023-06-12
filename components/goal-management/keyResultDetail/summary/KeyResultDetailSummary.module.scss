@@ -1,0 +1,12 @@
+.root {
+  .template {
+    @apply grid;
+    grid-template-columns: 80px auto;
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 16px;
+  }
+
+  .textAreaContainer {
+    @apply mt-4;
+  }
+}

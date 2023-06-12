@@ -1,10 +1,16 @@
+import { FETCH_OKR_PAYLOAD } from './../types/okr';
 import { OKR as OKR_TYPE } from '@type/okr';
 import { fetcher } from './fetcher';
 import { OKR, OKR_YEARS } from './path';
 
-export const fetchOkr = async (): Promise<OKR_TYPE[]> => {
+export const fetchOkr = async ({
+  start_date,
+  end_date,
+}: FETCH_OKR_PAYLOAD): Promise<OKR_TYPE[]> => {
   try {
-    const res = await fetcher<OKR_TYPE[]>({ path: OKR });
+    const res = await fetcher<OKR_TYPE[]>({
+      path: `${OKR}?start_date=${start_date}&end_date=${end_date}`,
+    });
     return res;
   } catch (error) {
     throw error;

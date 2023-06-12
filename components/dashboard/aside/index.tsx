@@ -5,6 +5,7 @@ import InitiativeList from './KeyResultList';
 import Header from './header';
 import dayjs from 'dayjs';
 import { WEEK_UNIT } from '@utils/calendar';
+import SuspenseComponent from '@components/common/suspenseComponent';
 
 interface DashboardAsideProps {}
 
@@ -36,7 +37,12 @@ const DashboardAside = (props: DashboardAsideProps) => {
       <div className={styles.card}>
         <Calendar currentDate={currentDate} changeDate={changeDate} />
 
-        <InitiativeList />
+        <SuspenseComponent errorMessage="주간 할일 목록 가져오기 실패">
+          <InitiativeList
+            startDate={currentDate.startOf('week').format('YYYY-MM-DD')}
+            endDate={currentDate.endOf('week').format('YYYY-MM-DD')}
+          />
+        </SuspenseComponent>
       </div>
     </aside>
   );

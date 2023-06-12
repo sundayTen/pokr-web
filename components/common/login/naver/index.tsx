@@ -20,15 +20,15 @@ const NaverLogin = ({ setUserInfo }: NaverLoginProps) => {
         changeUserToken(res.accessToken);
         setUserInfo(true);
 
-        window.opener.location.href = process.env.NEXT_PUBILC_API_URL;
+        window.opener.location.href = process.env.NEXT_PUBLIC_APU_URL;
         window.close();
       }
     },
   });
 
   const naverLogin = new window.naver.LoginWithNaverId({
-    clientId: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
-    callbackUrl: process.env.NEXT_PUBILC_API_URL,
+    clientId: 'cQFRFVIemURhMedWkfYL', // process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
+    callbackUrl: 'https://myokr-routine.com', //process.env.NEXT_PUBLIC_APU_URL,
     isPopup: true,
     loginButton: { color: 'white', type: 1, height: 40 },
   });

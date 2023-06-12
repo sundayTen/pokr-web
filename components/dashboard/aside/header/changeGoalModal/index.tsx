@@ -1,12 +1,13 @@
-import OutsideClickDetector from '@components/common/outsideClickDetector';
-import Text from '@components/common/text';
 import React, {
   forwardRef,
   useCallback,
   useImperativeHandle,
   useState,
 } from 'react';
+import OutsideClickDetector from '@components/common/outsideClickDetector';
+import Text from '@components/common/text';
 import styles from './ChangeGoalModal.module.scss';
+import goalManagementStore from '@store/goal-management';
 
 interface ChangeGoalModalProps {}
 
@@ -18,6 +19,7 @@ export interface ChangeGoalModalRef {
 const ChangeGoalModal = forwardRef<ChangeGoalModalRef, ChangeGoalModalProps>(
   (_props, ref) => {
     const [isVisible, setIsVisible] = useState(false);
+    const { objectivesList } = goalManagementStore();
 
     const open = useCallback(() => {
       setIsVisible(true);
@@ -36,6 +38,8 @@ const ChangeGoalModal = forwardRef<ChangeGoalModalRef, ChangeGoalModalProps>(
       [open, close],
     );
 
+    const onClickItem = () => {};
+
     if (!isVisible) {
       return <></>;
     }
@@ -50,15 +54,15 @@ const ChangeGoalModal = forwardRef<ChangeGoalModalRef, ChangeGoalModalProps>(
             <li className={styles.itemContainer}>
               <Text variant="LABEL">전체 목표 달성도 보기</Text>
             </li>
-            <li className={styles.itemContainer}>
-              <Text variant="LABEL">퇴사하기</Text>
-            </li>
-            <li className={styles.itemContainer}>
-              <Text variant="LABEL">이직하기</Text>
-            </li>
-            <li className={styles.itemContainer}>
-              <Text variant="LABEL">놀러가기</Text>
-            </li>
+            {objectivesList.map((objective) => (
+              <li
+                key={objective.id}
+                className={styles.itemContainer}
+                onClick={onClickItem}
+              >
+                <Text variant="LABEL">{objective.title}</Text>
+              </li>
+            ))}
           </ul>
         </div>
       </OutsideClickDetector>
