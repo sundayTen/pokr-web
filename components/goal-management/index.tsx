@@ -39,12 +39,6 @@ const GoalManagement = () => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <Button
-        label="모달 켜자"
-        buttonStyle="PAINTED"
-        size="LARGE"
-        onClick={() => detailRef.current?.open()}
-      />
       <SuspenseComponent errorMessage="목표 리스트를 가져오는 중 에러">
         <GoalManagementHeader objectiveLength={objectivesList.length} />
         <GoalCardList cards={objectivesList} />
