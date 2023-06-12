@@ -1,0 +1,8 @@
+.root {
+  @apply flex items-center;
+  padding: 12px 0px;
+
+  button + p {
+    @apply ml-2;
+  }
+}

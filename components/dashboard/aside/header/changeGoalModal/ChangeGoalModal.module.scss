@@ -1,5 +1,5 @@
 .root {
-  @apply absolute top-12 right-0 w-72 rounded-lg;
+  @apply absolute top-12 right-0 w-72 rounded-lg z-50;
   border: 1px solid var(--border-gray);
   background-color: white;
 

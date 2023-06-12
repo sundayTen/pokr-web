@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import cn from 'classnames';
 import styles from '@components/common/button/Button.module.scss';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   buttonStyle?: 'PAINTED' | 'BORDER' | 'BLACK';
   size?: 'FULL' | 'LARGE' | 'MEDIUM' | 'SMALL' | 'XLARGE';
   disabled?: boolean;
-  onClick: () => void;
 }
 
 const Button = (props: ButtonProps) => {
@@ -16,14 +15,12 @@ const Button = (props: ButtonProps) => {
     buttonStyle = 'BORDER',
     size = 'MEDIUM',
     disabled,
-    onClick,
     ...rest
   } = props;
 
   return (
     <button
       type="button"
-      onClick={onClick}
       disabled={disabled}
       className={cn(styles.root, {
         [styles.full]: size === 'FULL',

@@ -46,3 +46,8 @@ export interface OKR_OBJECTIVES_TYPE {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface FETCH_OKR_PAYLOAD {
+  start_date: string;
+  end_date: string;
+}
