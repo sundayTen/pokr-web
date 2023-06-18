@@ -1,0 +1,11 @@
+.root {
+  @apply flex bg-white p-4;
+  width: 640px;
+  height: 414px;
+
+  .divider {
+    height: 100%;
+    width: 1px;
+    background-color: #ebebeb;
+  }
+}

@@ -28,3 +28,30 @@ export const generateWeek = (date: dayjs.Dayjs): dayjs.Dayjs[] => {
 
   return weekRange;
 };
+
+/**
+ * 한 달치 달력 데이터를 반환합니다.
+ * @param {string} year YYYY
+ * @param {string} month MM
+ * @returns
+ */
+export const getCalendar = (year: string, month: string) => {
+  const date = dayjs(`${year}-${month}-01`);
+  const startDay = date.startOf('month').day();
+  const lastDay = date.endOf('month').date();
+  const calendarData = [];
+
+  if (startDay > 0) {
+    for (let i = 0; i < startDay; i++) {
+      calendarData.push({ date: '', day: '' });
+    }
+  }
+
+  for (let i = 1; i <= lastDay; i++) {
+    const formattedDate = date.date(i).format('YYYY-MM-DD');
+    const day = date.date(i).format('dddd');
+    calendarData.push({ date: formattedDate, day });
+  }
+
+  return calendarData;
+};

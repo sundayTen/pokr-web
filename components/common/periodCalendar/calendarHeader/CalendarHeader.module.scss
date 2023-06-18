@@ -1,0 +1,13 @@
+.root {
+  @apply flex items-center justify-between;
+
+  .title {
+    text-align: center;
+  }
+
+  .void {
+    width: 24px;
+    height: 24px;
+    background-color: red;
+  }
+}

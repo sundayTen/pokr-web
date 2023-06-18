@@ -1,0 +1,32 @@
+.root {
+  @apply flex flex-1 flex-col;
+
+  .daysOfWeekContainer {
+    @apply flex items-center mb-3;
+
+    .item {
+      @apply text-label1 flex flex-1 text-center;
+      color: var(--text-body);
+    }
+  }
+  .daysContainer {
+    @apply grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    row-gap: 6px;
+
+    .item {
+      @apply h-8 text-center;
+      cursor: pointer;
+
+      &.active {
+        @apply rounded-full w-8;
+        background-color: var(--pri-400);
+      }
+
+      &.included {
+        background-color: #f6f7f9;
+      }
+    }
+  }
+}

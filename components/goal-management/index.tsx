@@ -13,7 +13,7 @@ import PeriodTab from './period-tab';
 import KeyResultsList from './KeyResultsList';
 import SuspenseComponent from '@components/common/suspenseComponent';
 import KeyResultDetail, { KeyResultDetailRef } from './keyResultDetail';
-import Button from '@components/common/button';
+import PeriodCalendar from '@components/common/periodCalendar';
 
 const GoalManagement = () => {
   const detailRef = useRef<KeyResultDetailRef>(null);
@@ -49,7 +49,7 @@ const GoalManagement = () => {
       <SuspenseComponent>
         <KeyResultsList />
       </SuspenseComponent>
-
+      <PeriodCalendar prevMonth="05" nextMonth="06" />
       <KeyResultDetail ref={detailRef} />
     </div>
   );
