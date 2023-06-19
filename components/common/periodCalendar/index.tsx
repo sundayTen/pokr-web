@@ -7,14 +7,6 @@ const PeriodCalendar = ({}) => {
   const [standardDate, setStandardDate] = useState(dayjs());
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
   const [endDate, setEndDate] = useState<Dayjs | null>(null);
-  console.log(
-    '🚀 ~ file: index.tsx:10 ~ PeriodCalendar ~ endDate:',
-    endDate?.format('YYYY MM DD'),
-  );
-  console.log(
-    '🚀 ~ file: index.tsx:10 ~ PeriodCalendar ~ startDate:',
-    startDate?.format('YYYY MM DD'),
-  );
 
   const onChangeMonth = (type: 'prev' | 'next') => {
     setStandardDate((p) => (type === 'prev' ? p.add(-1, 'M') : p.add(1, 'M')));
@@ -24,6 +16,13 @@ const PeriodCalendar = ({}) => {
     // startDate가 비어있으면 우선 채운다.
     if (startDate === null) {
       setStartDate(date);
+      return;
+    }
+
+    //둘다 세팅된 상태라면 초기화하고 시작날짜 세팅
+    if (startDate !== null && endDate !== null) {
+      setStartDate(date);
+      setEndDate(null);
       return;
     }
 

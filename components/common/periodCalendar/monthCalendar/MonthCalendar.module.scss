@@ -5,7 +5,7 @@
     @apply flex items-center mb-3;
 
     .item {
-      @apply text-label1 flex flex-1 text-center;
+      @apply text-label1 flex flex-1 items-center justify-center;
       color: var(--text-body);
     }
   }

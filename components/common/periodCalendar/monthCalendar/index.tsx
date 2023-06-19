@@ -1,5 +1,5 @@
 import { getCalendar } from '@utils/calendar';
-import React, { Fragment } from 'react';
+import React from 'react';
 import CalendarHeader from '../calendarHeader';
 import styles from './MonthCalendar.module.scss';
 import cn from 'classnames';
@@ -15,7 +15,7 @@ interface MonthCalendarProps {
   onChangeMonth: (type: MonthCalendarType) => void;
   onClickDate: (date: Dayjs) => void;
 }
-const DAYS = ['월', '화', '수', '목', '금', '토', '일'];
+const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 const MonthCalendar = ({
   year,
@@ -27,6 +27,7 @@ const MonthCalendar = ({
   onClickDate,
 }: MonthCalendarProps) => {
   const calendarData = getCalendar(year, month);
+  console.log('🚀 ~ file: index.tsx:30 ~ calendarData:', calendarData);
 
   return (
     <div className={styles.root}>
@@ -37,31 +38,29 @@ const MonthCalendar = ({
       />
       <div className={styles.daysOfWeekContainer}>
         {DAYS.map((day) => (
-          <span key={day} className={styles.item}>
-            {day}
-          </span>
+          <div key={day} className={styles.item}>
+            <p>{day}</p>
+          </div>
         ))}
       </div>
+
       <div className={styles.daysContainer}>
         {calendarData.map(({ day, date }) => (
-          <Fragment key={date}>
-            <span
-              onClick={() => onClickDate(dayjs(date))}
-              className={cn(styles.item, {
-                [styles.included]:
-                  dayjs(date).isAfter(startDate) &&
-                  dayjs(date).isBefore(endDate),
-                [styles.start]: dayjs(date).isSame(startDate),
-                [styles.end]: dayjs(date).isSame(endDate),
-              })}
-              key={date}
-            >
-              <p className={styles.activeDate}>{date.slice(-2)}</p>
-              {(startDate?.isSame(date) || endDate?.isSame(date)) && (
-                <span className={styles.active}>{date.slice(-2)}</span>
-              )}
-            </span>
-          </Fragment>
+          <span
+            key={date}
+            onClick={() => onClickDate(dayjs(date))}
+            className={cn(styles.item, {
+              [styles.included]:
+                dayjs(date).isAfter(startDate) && dayjs(date).isBefore(endDate),
+              [styles.start]: dayjs(date).isSame(startDate) && endDate !== null,
+              [styles.end]: dayjs(date).isSame(endDate),
+            })}
+          >
+            <p className={styles.activeDate}>{date.slice(-2)}</p>
+            {(startDate?.isSame(date) || endDate?.isSame(date)) && (
+              <span className={styles.active}>{date.slice(-2)}</span>
+            )}
+          </span>
         ))}
       </div>
     </div>
