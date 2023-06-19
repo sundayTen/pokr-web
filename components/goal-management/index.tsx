@@ -49,7 +49,7 @@ const GoalManagement = () => {
       <SuspenseComponent>
         <KeyResultsList />
       </SuspenseComponent>
-      <PeriodCalendar prevMonth="05" nextMonth="06" />
+      <PeriodCalendar />
       <KeyResultDetail ref={detailRef} />
     </div>
   );

@@ -35,7 +35,7 @@ export const generateWeek = (date: dayjs.Dayjs): dayjs.Dayjs[] => {
  * @param {string} month MM
  * @returns
  */
-export const getCalendar = (year: string, month: string) => {
+export const getCalendar = (year: number, month: number) => {
   const date = dayjs(`${year}-${month}-01`);
   const startDay = date.startOf('month').day();
   const lastDay = date.endOf('month').date();
