@@ -1,0 +1,12 @@
+.root {
+  @apply flex items-center justify-between mb-3;
+
+  .title {
+    text-align: center;
+  }
+
+  .void {
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -26,13 +26,13 @@ export const fetchKeyResult = async (
  * key result를 생성합니다.
  * @param {KEY_RESULT_INPUT} payload
  */
-export const createInitiative = async (payload: KEY_RESULT_INPUT) => {
+export const createKeyResult = async (payload: KEY_RESULT_INPUT) => {
   try {
     const res = await fetcher({
       path: `${KEY_RESULT}`,
       config: {
         method: HTTP_METHOD_TYPE.POST,
-        body: payload,
+        body: JSON.stringify(payload),
       },
     });
     return res;
