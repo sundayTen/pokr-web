@@ -37,7 +37,7 @@ const CreateKeyResult = ({ close }: { close: () => void }) => {
     if (cachedObjectives) {
       setObjectives(cachedObjectives);
     }
-  }, []);
+  }, [queryClient]);
 
   const addKeyResult = async () => {
     if (!keyResult) {
