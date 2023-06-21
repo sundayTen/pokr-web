@@ -1,6 +1,14 @@
 .root {
   @apply w-full;
 
+  .postfixContainer {
+    @apply flex items-center mt-1;
+  }
+
+  .postfix {
+    @apply ml-2;
+  }
+
   label {
     @apply text-label1;
     color: var(--text-body);
@@ -29,7 +37,7 @@
   }
 
   input::placeholder {
-    @apply text-bodyB;
+    @apply text-bodyR;
     color: var(--text-disabled);
   }
 }

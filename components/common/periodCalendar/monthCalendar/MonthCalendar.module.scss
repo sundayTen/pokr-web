@@ -1,0 +1,44 @@
+.root {
+  @apply flex flex-1 flex-col;
+
+  .daysOfWeekContainer {
+    @apply flex items-center mb-3;
+
+    .item {
+      @apply text-label1 flex flex-1 items-center justify-center;
+      color: var(--text-body);
+    }
+  }
+  .daysContainer {
+    @apply grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    row-gap: 6px;
+
+    .item {
+      @apply h-8 text-center relative;
+      cursor: pointer;
+
+      &.included {
+        background-color: #f6f7f9;
+      }
+
+      &.start {
+        background: linear-gradient(to left, #f6f7f9 50%, white 50%);
+      }
+      &.end {
+        background: linear-gradient(to right, #f6f7f9 50%, white 50%);
+      }
+
+      .activeDate {
+        @apply z-10;
+      }
+
+      .active {
+        @apply rounded-full w-8 h-8 absolute top-0 left-1 z-0;
+        background-color: var(--pri-400);
+        color: white;
+      }
+    }
+  }
+}

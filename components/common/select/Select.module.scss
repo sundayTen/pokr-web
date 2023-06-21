@@ -28,7 +28,7 @@
   }
 
   & .options {
-    @apply hidden absolute bg-white w-full;
+    @apply hidden absolute bg-white w-full overflow-hidden;
 
     margin-top: 4px;
     padding: 6px 4px;
@@ -43,7 +43,7 @@
       line-height: 40px;
 
       & button {
-        @apply cursor-pointer w-full text-left;
+        @apply cursor-pointer w-full text-left whitespace-nowrap text-ellipsis;
 
         padding: 0 9px;
         color: var(--content-gray1);

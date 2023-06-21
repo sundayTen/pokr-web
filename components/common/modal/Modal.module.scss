@@ -1,5 +1,4 @@
 .root {
-  @apply overflow-visible;
   .backdrop {
     @apply box-border block fixed top-0 left-0 right-0 bottom-0;
     background-color: rgba(0, 0, 0, 0.6);
@@ -7,12 +6,12 @@
   }
 
   .container {
-    @apply box-border block fixed top-0 left-0 right-0 bottom-0 outline-0 text-center overflow-auto;
+    @apply overflow-visible box-border block fixed top-0 left-0 right-0 bottom-0 outline-0 text-center;
     z-index: 1001;
   }
 
   .contents {
-    @apply text-left overflow-y-auto desktop:top-1/2 desktop:mx-auto desktop:inline-block desktop:relative bg-white;
+    @apply text-left desktop:top-1/2 desktop:mx-auto desktop:inline-block desktop:relative bg-white;
 
     box-sizing: border-box;
 
