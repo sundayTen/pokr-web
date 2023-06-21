@@ -1,0 +1,26 @@
+.root {
+  .dateAndCountContainer {
+    @apply flex items-center mt-6 mb-6 relative;
+
+    label {
+      @apply text-label1;
+      color: var(--text-body);
+    }
+
+    .datesContainer {
+      @apply mr-5;
+      .dates {
+        @apply flex items-center;
+
+        span {
+          margin: 0px 8px;
+        }
+      }
+
+      .date {
+        @apply flex justify-between rounded-lg whitespace-nowrap p-3 w-40;
+        border: 1px solid var(--content-gray3);
+      }
+    }
+  }
+}

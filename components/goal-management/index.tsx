@@ -14,6 +14,7 @@ import KeyResultsList from './KeyResultsList';
 import SuspenseComponent from '@components/common/suspenseComponent';
 import KeyResultDetail, { KeyResultDetailRef } from './keyResultDetail';
 import PeriodCalendar from '@components/common/periodCalendar';
+import { OBJECTIVES } from '@api/path';
 
 const GoalManagement = () => {
   const detailRef = useRef<KeyResultDetailRef>(null);
@@ -22,7 +23,7 @@ const GoalManagement = () => {
   const { userToken } = userStore();
 
   const { data, isSuccess } = useQuery<OKR_OBJECTIVES_TYPE[]>(
-    ['objectives'],
+    [OBJECTIVES],
     () => getObjectives(Number(currentYear)),
     {
       enabled: !!userToken && !!currentYear,
@@ -49,7 +50,6 @@ const GoalManagement = () => {
       <SuspenseComponent>
         <KeyResultsList />
       </SuspenseComponent>
-      <PeriodCalendar />
       <KeyResultDetail ref={detailRef} />
     </div>
   );

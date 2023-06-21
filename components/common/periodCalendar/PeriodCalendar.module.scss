@@ -1,11 +1,37 @@
 .root {
-  @apply flex bg-white p-4 rounded-lg;
-  width: 640px;
-  height: 350px;
+  @apply flex flex-col absolute top-24 bg-white p-4 rounded-lg z-50;
 
-  .divider {
-    height: 100%;
-    width: 1px;
-    background-color: #ebebeb;
+  width: 600px;
+
+  border: 1px solid #ebebeb;
+
+  .calendarContainer {
+    @apply flex;
+
+    .divider {
+      height: 100%;
+      width: 1px;
+      background-color: #ebebeb;
+    }
+  }
+  .buttonGroup {
+    @apply mt-10 text-center flex justify-end;
+
+    button + button {
+      margin-left: 12px;
+    }
+  }
+
+  & .cancelBtn {
+    @apply mobile:w-full mobile:fixed mobile:bg-white mobile:left-0 mobile:bottom-0;
+
+    @screen desktop {
+      margin-left: 12px;
+    }
+
+    @screen mobile {
+      padding: 24px 24px 58px;
+      z-index: 3;
+    }
   }
 }

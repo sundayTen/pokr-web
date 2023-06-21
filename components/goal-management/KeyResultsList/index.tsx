@@ -3,12 +3,19 @@ import styles from './KeyResultsList.module.scss';
 import LabelsHeader from './labelHeader';
 import KeyResultsParentItem from './KeyResultsParentItem';
 import AddListItemButton from './addListItemButton';
+import { useOverlay } from '@toss/use-overlay';
+import CreateKeyResult from '@components/shared/createKeyResult';
 
 const KeyResultsList = () => {
   const [activeParent, setActiveParent] = useState<number | null>(null);
+  const { open } = useOverlay();
 
   const toggleParent = (index: number) => {
     setActiveParent(activeParent === index ? null : index);
+  };
+
+  const onClickAddKeyResult = () => {
+    open(({ exit }) => <CreateKeyResult close={exit} />);
   };
 
   return (
@@ -25,7 +32,7 @@ const KeyResultsList = () => {
           onClick={() => toggleParent(1)}
         />
 
-        <AddListItemButton type="keyResults" onClick={() => {}} />
+        <AddListItemButton type="keyResults" onClick={onClickAddKeyResult} />
       </div>
     </div>
   );

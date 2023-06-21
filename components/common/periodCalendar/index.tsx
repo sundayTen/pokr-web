@@ -2,11 +2,28 @@ import React, { useEffect, useState } from 'react';
 import styles from './PeriodCalendar.module.scss';
 import MonthCalendar from './monthCalendar';
 import dayjs, { Dayjs } from 'dayjs';
+import Button from '../button';
+import useIsMobile from '@hooks/useIsMobile';
 
-const PeriodCalendar = ({}) => {
+interface PeriodCalendarProps {
+  startDate: Dayjs | null;
+  setStartDate: (day: Dayjs | null) => void;
+  endDate: Dayjs | null;
+  setEndDate: (day: Dayjs | null) => void;
+  closeCalendar: () => void;
+  resetDates: () => void;
+}
+
+const PeriodCalendar = ({
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  closeCalendar,
+  resetDates,
+}: PeriodCalendarProps) => {
   const [standardDate, setStandardDate] = useState(dayjs());
-  const [startDate, setStartDate] = useState<Dayjs | null>(null);
-  const [endDate, setEndDate] = useState<Dayjs | null>(null);
+  const { isMobile } = useIsMobile();
 
   const onChangeMonth = (type: 'prev' | 'next') => {
     setStandardDate((p) => (type === 'prev' ? p.add(-1, 'M') : p.add(1, 'M')));
@@ -50,25 +67,48 @@ const PeriodCalendar = ({}) => {
 
   return (
     <div className={styles.root}>
-      <MonthCalendar
-        year={standardDate.year()}
-        month={standardDate.month()}
-        type="prev"
-        onChangeMonth={onChangeMonth}
-        onClickDate={onClickDate}
-        startDate={startDate}
-        endDate={endDate}
-      />
-      <div className={styles.divider} />
-      <MonthCalendar
-        year={standardDate.add(1, 'M').year()}
-        month={standardDate.add(1, 'M').month()}
-        type="next"
-        onChangeMonth={onChangeMonth}
-        onClickDate={onClickDate}
-        startDate={startDate}
-        endDate={endDate}
-      />
+      <div className={styles.calendarContainer}>
+        <MonthCalendar
+          year={standardDate.year()}
+          month={standardDate.month()}
+          type="prev"
+          onChangeMonth={onChangeMonth}
+          onClickDate={onClickDate}
+          startDate={startDate}
+          endDate={endDate}
+        />
+        <div className={styles.divider} />
+        <MonthCalendar
+          year={standardDate.add(1, 'M').year()}
+          month={standardDate.add(1, 'M').month()}
+          type="next"
+          onChangeMonth={onChangeMonth}
+          onClickDate={onClickDate}
+          startDate={startDate}
+          endDate={endDate}
+        />
+      </div>
+
+      <div className={styles.buttonGroup}>
+        <Button
+          buttonStyle="BORDER"
+          size="MEDIUM"
+          label={'취소'}
+          onClick={() => {
+            resetDates();
+            closeCalendar();
+          }}
+        />
+
+        <div className={styles.cancelBtn}>
+          <Button
+            buttonStyle="PAINTED"
+            size={isMobile ? 'FULL' : 'MEDIUM'}
+            label="확인"
+            onClick={closeCalendar}
+          />
+        </div>
+      </div>
     </div>
   );
 };

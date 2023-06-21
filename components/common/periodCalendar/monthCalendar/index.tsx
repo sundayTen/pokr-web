@@ -27,7 +27,6 @@ const MonthCalendar = ({
   onClickDate,
 }: MonthCalendarProps) => {
   const calendarData = getCalendar(year, month);
-  console.log('🚀 ~ file: index.tsx:30 ~ calendarData:', calendarData);
 
   return (
     <div className={styles.root}>
