@@ -1,13 +1,18 @@
+import { INITIATIVE_DETAIL } from '@type/initiative';
 import React from 'react';
 import InitiativeItem from './InitiativeItem';
 import styles from './InitiativeList.module.scss';
 
-const InitiativeList = () => {
+const InitiativeList = ({
+  initiatives,
+}: {
+  initiatives: INITIATIVE_DETAIL[];
+}) => {
   return (
     <div className={styles.root}>
-      <InitiativeItem />
-      <InitiativeItem />
-      <InitiativeItem />
+      {initiatives.map((initiative) => (
+        <InitiativeItem item={initiative} key={initiative.id} />
+      ))}
     </div>
   );
 };

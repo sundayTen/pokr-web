@@ -1,40 +1,39 @@
-import CheckboxIcon, { CheckBoxType } from '@components/common/checkBoxIcon';
+import CheckboxIcon from '@components/common/checkBoxIcon';
 import Text from '@components/common/text';
 import React from 'react';
 import styles from './KeyResultsListItem.module.scss';
 import cn from 'classnames';
 import { YYYYMMDD } from '@utils/date';
 import Progress from './Progress';
+import { INITIATIVE_DETAIL } from '@type/initiative';
 
 interface KeyResultsListItem {
-  state: CheckBoxType;
-  title: string;
-  startDate: number;
-  endDate: number;
+  initiativeItem: INITIATIVE_DETAIL;
   onClick: () => void;
 }
 
 const KeyResultsListItem = ({
-  state = 'inactive',
-  title,
-  endDate,
-  startDate,
+  initiativeItem,
   onClick,
 }: KeyResultsListItem) => {
+  const { title, openDate, dueDate, currentMetrics, goalMetrics } =
+    initiativeItem;
   return (
     <li className={styles.root} onClick={onClick}>
       <div className={styles.titleContainer}>
-        <CheckboxIcon state={state} />
+        <CheckboxIcon
+          state={currentMetrics > goalMetrics ? 'active' : 'inactive'}
+        />
         <label className={cn(styles.title, styles.active)}>{title}</label>
       </div>
       <Text variant="BODY" weight="BOLD" style={{ flex: 1 }}>
-        {YYYYMMDD(startDate)}
+        {YYYYMMDD(openDate)}
       </Text>
       <Text variant="BODY" weight="BOLD" style={{ flex: 1 }}>
-        {YYYYMMDD(endDate)}
+        {YYYYMMDD(dueDate)}
       </Text>
 
-      <Progress total={30} current={23} />
+      <Progress total={goalMetrics} current={currentMetrics} />
     </li>
   );
 };

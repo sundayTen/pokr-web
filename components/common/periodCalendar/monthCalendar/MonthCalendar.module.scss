@@ -16,7 +16,7 @@
     row-gap: 6px;
 
     .item {
-      @apply h-8 text-center relative;
+      @apply h-8 text-center relative flex justify-center items-center;
       cursor: pointer;
 
       &.included {
@@ -35,7 +35,7 @@
       }
 
       .active {
-        @apply rounded-full w-8 h-8 absolute top-0 left-1 z-0;
+        @apply rounded-full w-8 h-8 absolute top-0 left-1 z-20 flex items-center justify-center;
         background-color: var(--pri-400);
         color: white;
       }

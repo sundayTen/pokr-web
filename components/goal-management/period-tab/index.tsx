@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import styles from './PeriodTab.module.scss';
 import cn from 'classnames';
+import { ValueOf } from '@type/common';
+import goalManagementStore from '@store/goal-management';
 
 interface PeriodTabProps {}
 
 const PeriodTab = (props: PeriodTabProps) => {
-  const [activeTab, setActiveTab] = useState<PERIOD_TYPE>('전체');
+  const { currentTab, changeCurrentTab } = goalManagementStore();
 
-  const onClickTab = (tab: PERIOD_TYPE) => {
-    setActiveTab(tab);
+  const onClickTab = (tab: ValueOf<typeof PERIOD_TYPE>) => {
+    changeCurrentTab(tab);
   };
 
   return (
@@ -19,14 +21,14 @@ const PeriodTab = (props: PeriodTabProps) => {
           className={cn([
             styles.tab,
             {
-              [styles.active]: activeTab === period,
+              [styles.active]: currentTab === period,
             },
           ])}
           onClick={() => onClickTab(period)}
         >
           <span
             className={cn(styles.label, {
-              [styles.active]: activeTab === period,
+              [styles.active]: currentTab === period,
             })}
           >
             {period}
@@ -39,5 +41,18 @@ const PeriodTab = (props: PeriodTabProps) => {
 
 export default PeriodTab;
 
-type PERIOD_TYPE = '전체' | '1분기' | '2분기' | '3분기' | '4분기';
-const PERIODS: PERIOD_TYPE[] = ['전체', '1분기', '2분기', '3분기', '4분기'];
+export const PERIOD_TYPE = {
+  WHOLE: '전체',
+  '1Q': '1분기',
+  '2Q': '2분기',
+  '3Q': '3분기',
+  '4Q': '4분기',
+} as const;
+
+const PERIODS: ValueOf<typeof PERIOD_TYPE>[] = [
+  PERIOD_TYPE.WHOLE,
+  PERIOD_TYPE['1Q'],
+  PERIOD_TYPE['2Q'],
+  PERIOD_TYPE['3Q'],
+  PERIOD_TYPE['4Q'],
+];
