@@ -1,30 +1,31 @@
-import { createKeyResult } from '@api/keyResult';
-import { KEY_RESULT, OBJECTIVES, OKR } from '@api/path';
+import { createInitiative } from '@api/initiatives';
+import { INITIATIVE, OKR } from '@api/path';
 import Input from '@components/common/input';
 import Modal from '@components/common/modal';
 import PeriodCalendar from '@components/common/periodCalendar';
 import Select from '@components/common/select';
 import TextArea from '@components/common/textarea';
-import { generatePeriodStartEndDate } from '@components/goal-management/KeyResultsList/useFetchKeyResultsWithPeriod';
+import useFetchKeyResultsWithPeriod, {
+  generatePeriodStartEndDate,
+} from '@components/goal-management/KeyResultsList/useFetchKeyResultsWithPeriod';
 import useInput from '@hooks/useInput';
 import goalManagementStore from '@store/goal-management';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ID } from '@type/common';
-import { OKR_OBJECTIVES_TYPE } from '@type/okr';
 import { Dayjs } from 'dayjs';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import styles from './CreateKeyResult.module.scss';
+import styles from './CreateInitiative.module.scss';
 
-const CreateKeyResult = ({
-  close,
-  objectiveId,
-}: {
+interface CreateInitiativeProps {
   close: () => void;
-  objectiveId: ID | null;
-}) => {
+  keyResultId: ID;
+}
+
+const CreateInitiative = ({ close, keyResultId }: CreateInitiativeProps) => {
+  const queryClient = useQueryClient();
   const { currentTab } = goalManagementStore();
-  const { value: keyResult, onChangeInput: onChangeKeyResult } = useInput();
+  const { value: initiative, onChangeInput: onChangeInitiative } = useInput();
   const { value: count, onChangeInput: onChangeCount } = useInput({
     type: 'number',
   });
@@ -33,29 +34,28 @@ const CreateKeyResult = ({
   const [startDate, setStartDate] = useState<Dayjs | null>(null);
   const [endDate, setEndDate] = useState<Dayjs | null>(null);
   const [calendarVisible, setCalendarVisible] = useState(false);
-  const [objectives, setObjectives] = useState<OKR_OBJECTIVES_TYPE[]>([]);
-  const [targetObjective, setTargetObjective] = useState<string | null>(null);
-  const { mutateAsync } = useMutation([KEY_RESULT], createKeyResult);
-  const queryClient = useQueryClient();
+  const keyResults = useFetchKeyResultsWithPeriod();
+  const [targetKeyResult, setTargetKeyResult] = useState<string | null>(null);
+  const { mutateAsync } = useMutation(
+    [INITIATIVE, keyResultId],
+    createInitiative,
+  );
 
   useEffect(() => {
-    const cachedObjectives = queryClient.getQueryData<OKR_OBJECTIVES_TYPE[]>([
-      OBJECTIVES,
-    ]);
-
-    if (cachedObjectives) {
-      setObjectives(cachedObjectives);
-      const target = cachedObjectives.find(
-        (objective) => objective.id === objectiveId,
-      );
-      if (target) {
-        setTargetObjective(target.title);
-      }
+    if (keyResults.length === 0 || !keyResultId) {
+      return;
     }
-  }, [queryClient, objectiveId]);
+    const target = keyResults?.find(
+      (keyResult) => keyResult.id === keyResultId,
+    );
 
-  const addKeyResult = async () => {
-    if (!keyResult) {
+    if (target) {
+      setTargetKeyResult(target.title);
+    }
+  }, [keyResults.length, keyResultId]);
+
+  const addInitiative = async () => {
+    if (!initiative) {
       setError('주요 행동을 입력해주세요.');
       return;
     }
@@ -66,20 +66,21 @@ const CreateKeyResult = ({
       return;
     }
 
-    const foundObjective = objectives.find(
-      (objective) => objective.title === targetObjective,
+    const target = keyResults.find(
+      (keyResult) => keyResult.title === targetKeyResult,
     );
 
-    if (!foundObjective) {
+    if (!target) {
       return;
     }
 
     const response = await mutateAsync({
-      title: keyResult,
+      keyResultId: target.id,
+      title: initiative,
       description,
       openDate: startDate.format('YYYY-MM-DD'),
       dueDate: endDate.format('YYYY-MM-DD'),
-      objectiveId: foundObjective.id,
+      goalMetrics: Number(count),
     });
 
     if (typeof response?.id === 'number') {
@@ -107,19 +108,19 @@ const CreateKeyResult = ({
       cancelButtonPressed={close}
       close={close}
       confirmButtonLabel="확인"
-      confirmButtonPressed={addKeyResult}
+      confirmButtonPressed={addInitiative}
     >
       <div className={styles.root}>
         <Select
-          value={targetObjective ?? '목표를 입력해주세요'}
-          options={objectives.map((objective) => objective.title)}
-          onChange={(e) => setTargetObjective(e)}
+          value={targetKeyResult ?? '목표를 입력해주세요'}
+          options={keyResults.map((keyResult) => keyResult.title)}
+          onChange={(e) => setTargetKeyResult(e)}
         />
         <Input
           label="주요 행동"
           placeholder="주요 행동을 입력해주세요"
-          value={keyResult}
-          onChange={onChangeKeyResult}
+          value={initiative}
+          onChange={onChangeInitiative}
         />
         {error && <p className={styles.errorText}>{error}</p>}
 
@@ -179,4 +180,4 @@ const CreateKeyResult = ({
   );
 };
 
-export default CreateKeyResult;
+export default CreateInitiative;

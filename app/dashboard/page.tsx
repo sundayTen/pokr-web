@@ -1,13 +1,15 @@
 import React from 'react';
 import DashBoard from '@components/dashboard';
-import { fetchOkr } from '@api/okr';
+import { fetchOkrYears } from '@api/okr';
+import { getObjectives } from '@api/objectives';
 
 const Page = async () => {
-  // const data = await fetchOkr();
+  const years = await fetchOkrYears();
+  const objectiveList = await getObjectives(years[0]);
 
   return (
     <>
-      <DashBoard />
+      <DashBoard currentYear={years[0]} objectiveList={objectiveList} />
     </>
   );
 };

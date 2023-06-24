@@ -1,18 +1,17 @@
 .root {
-  @apply flex flex-col absolute top-24 bg-white p-4 rounded-lg z-50;
+  @apply flex flex-col absolute top-20 bg-white p-4 rounded-lg z-50 overflow-scroll;
 
-  width: 600px;
-
+  width: 640px;
   border: 1px solid #ebebeb;
+
+  .divider {
+    height: 100%;
+    width: 1px;
+    background-color: #ebebeb;
+  }
 
   .calendarContainer {
     @apply flex;
-
-    .divider {
-      height: 100%;
-      width: 1px;
-      background-color: #ebebeb;
-    }
   }
   .buttonGroup {
     @apply mt-10 text-center flex justify-end;

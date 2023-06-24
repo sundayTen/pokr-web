@@ -13,16 +13,19 @@ import PeriodTab from './period-tab';
 import KeyResultsList from './KeyResultsList';
 import SuspenseComponent from '@components/common/suspenseComponent';
 import KeyResultDetail, { KeyResultDetailRef } from './keyResultDetail';
-import PeriodCalendar from '@components/common/periodCalendar';
 import { OBJECTIVES } from '@api/path';
 
 const GoalManagement = () => {
   const detailRef = useRef<KeyResultDetailRef>(null);
-  const { currentYear, objectivesList, changeObjectivesList } =
-    goalManagementStore();
+  const {
+    currentYear,
+    objectivesList,
+    changeObjectivesList,
+    changeCurrentObjectiveId,
+  } = goalManagementStore();
   const { userToken } = userStore();
 
-  const { data, isSuccess } = useQuery<OKR_OBJECTIVES_TYPE[]>(
+  const { data } = useQuery<OKR_OBJECTIVES_TYPE[]>(
     [OBJECTIVES],
     () => getObjectives(Number(currentYear)),
     {
@@ -33,10 +36,17 @@ const GoalManagement = () => {
   );
 
   useEffect(() => {
-    if (data && userToken) changeObjectivesList(data);
+    if (!userToken) {
+      return;
+    }
 
-    return () => {};
-  }, [data]);
+    if (data) {
+      changeObjectivesList(data);
+      if (data.length > 0) {
+        changeCurrentObjectiveId(data[0].id);
+      }
+    }
+  }, [!!data]);
 
   return (
     <div style={{ position: 'relative' }}>
@@ -44,9 +54,9 @@ const GoalManagement = () => {
         <GoalManagementHeader objectiveLength={objectivesList.length} />
         <GoalCardList cards={objectivesList} />
       </SuspenseComponent>
-      <SuspenseComponent>
-        <PeriodTab />
-      </SuspenseComponent>
+
+      <PeriodTab />
+
       <SuspenseComponent>
         <KeyResultsList />
       </SuspenseComponent>
