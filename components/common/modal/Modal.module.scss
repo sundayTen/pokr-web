@@ -59,8 +59,6 @@
   }
 
   .mainContainer {
-    @apply desktop:overflow-auto;
-
     @screen desktop {
       max-height: 720px;
       margin: 0 -24px;
