@@ -9,6 +9,7 @@ import { fetchOkrYears } from '@api/okr';
 import Button from '@components/common/button';
 import CreateObjective from '@components/shared/createObjective';
 import { useOverlay } from '@toss/use-overlay';
+import { OKR_YEARS } from '@api/path';
 
 const GoalManagementHeader = ({
   objectiveLength,
@@ -20,7 +21,7 @@ const GoalManagementHeader = ({
   const [years, setYears] = useState<number[]>([]);
   const { open } = useOverlay();
 
-  const { data, isSuccess } = useQuery(['okr_years'], fetchOkrYears, {
+  const { data, isSuccess } = useQuery([OKR_YEARS], fetchOkrYears, {
     enabled: !!userToken,
     suspense: true,
     useErrorBoundary: true,

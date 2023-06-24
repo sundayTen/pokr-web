@@ -32,7 +32,7 @@ export const createInitiative = async (payload: INITIATIVE_INPUT) => {
       path: `${INITIATIVE}`,
       config: {
         method: HTTP_METHOD_TYPE.POST,
-        body: payload,
+        body: JSON.stringify(payload),
       },
     });
     return res;

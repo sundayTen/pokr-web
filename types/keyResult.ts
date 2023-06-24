@@ -1,4 +1,5 @@
 import { DATE, ID } from './common';
+import { INITIATIVE_DETAIL } from './initiative';
 
 export interface KEY_RESULT_DETAIL {
   id: ID;
@@ -10,6 +11,7 @@ export interface KEY_RESULT_DETAIL {
   achievementScore: number;
   createdAt: DATE;
   updatedAt: DATE;
+  initiatives: INITIATIVE_DETAIL[];
 }
 
 export interface KEY_RESULT_INPUT {

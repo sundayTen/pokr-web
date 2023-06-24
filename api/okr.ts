@@ -1,5 +1,5 @@
 import { FETCH_OKR_PAYLOAD } from './../types/okr';
-import { OKR as OKR_TYPE } from '@type/okr';
+import { OKR_TYPE } from '@type/okr';
 import { fetcher } from './fetcher';
 import { OKR, OKR_YEARS } from './path';
 

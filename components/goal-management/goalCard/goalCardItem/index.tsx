@@ -15,23 +15,25 @@ import { useOverlay } from '@toss/use-overlay';
 import Alert from '@components/common/alert';
 
 const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
-  const { objectivesList, changeObjectivesList } = goalManagementStore();
+  const {
+    objectivesList,
+    changeObjectivesList,
+    currentObjectiveId,
+    changeCurrentObjectiveId,
+  } = goalManagementStore();
   const [title, setTitle] = useState<string>(data.title);
   const [showMore, setShowMore] = useState(false);
-  // const [errorText, setErrorText] = useState('');
   const [edit, setEdit] = useState(false);
   const titleRef = useRef() as React.MutableRefObject<HTMLTextAreaElement>;
   const btnRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
-  const today = dayjs().format('YYYY-MM-DD');
   const lastDay = dayjs().format('YYYY.12.31');
   const { open } = useOverlay();
   const onOpenAlert = (errorText: string, fn: () => void) => {
-    open(({ isOpen, exit, close }) => {
+    open(({ close }) => {
       return (
         <Alert
           content={errorText}
           confirmButtonPressed={() => {
-            // fn();
             close();
           }}
         />
@@ -105,6 +107,10 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
     }
   }, [title, edit]);
 
+  const onClickCard = () => {
+    changeCurrentObjectiveId(data.id);
+  };
+
   useEffect(() => {
     const handleCloseSelect = (e: React.BaseSyntheticEvent | MouseEvent) => {
       if (showMore && (!btnRef.current || !btnRef.current.contains(e.target))) {
@@ -127,10 +133,10 @@ const GoalCardItem = ({ data }: { data: OKR_OBJECTIVES_TYPE }) => {
 
   return (
     <div
-      className={cn(styles.root, { [styles.selected]: data.id === 5 })}
-      onClick={() => {
-        // keyResults
-      }}
+      className={cn(styles.root, {
+        [styles.selected]: data.id === currentObjectiveId,
+      })}
+      onClick={onClickCard}
     >
       <div className={styles.top}>
         <span

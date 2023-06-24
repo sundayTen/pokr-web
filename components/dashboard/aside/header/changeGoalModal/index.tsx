@@ -8,6 +8,7 @@ import OutsideClickDetector from '@components/common/outsideClickDetector';
 import Text from '@components/common/text';
 import styles from './ChangeGoalModal.module.scss';
 import goalManagementStore from '@store/goal-management';
+import { ID } from '@type/common';
 
 interface ChangeGoalModalProps {}
 
@@ -19,7 +20,7 @@ export interface ChangeGoalModalRef {
 const ChangeGoalModal = forwardRef<ChangeGoalModalRef, ChangeGoalModalProps>(
   (_props, ref) => {
     const [isVisible, setIsVisible] = useState(false);
-    const { objectivesList } = goalManagementStore();
+    const { objectivesList, changeCurrentObjectiveId } = goalManagementStore();
 
     const open = useCallback(() => {
       setIsVisible(true);
@@ -38,7 +39,10 @@ const ChangeGoalModal = forwardRef<ChangeGoalModalRef, ChangeGoalModalProps>(
       [open, close],
     );
 
-    const onClickItem = () => {};
+    const onClickItem = (id: ID) => {
+      changeCurrentObjectiveId(id);
+      close();
+    };
 
     if (!isVisible) {
       return <></>;
@@ -58,7 +62,7 @@ const ChangeGoalModal = forwardRef<ChangeGoalModalRef, ChangeGoalModalProps>(
               <li
                 key={objective.id}
                 className={styles.itemContainer}
-                onClick={onClickItem}
+                onClick={() => onClickItem(objective.id)}
               >
                 <Text variant="LABEL">{objective.title}</Text>
               </li>

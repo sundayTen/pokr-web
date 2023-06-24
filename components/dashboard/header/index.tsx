@@ -12,13 +12,14 @@ import useIsMobile from '@hooks/useIsMobile';
 
 const DashBoardHeader = () => {
   const { isMobile } = useIsMobile();
-  const { currentYear } = goalManagementStore();
+  const { currentYear, currentObjectiveId, objectivesList } =
+    goalManagementStore();
   const [leftTimes, setLeftTimes] = useState<string>();
   const { open } = useOverlay();
   const modalRef = useRef<ChangeGoalModalRef>(null);
 
   const onClickEdit = () => {
-    open(({ isOpen, exit, close }) => {
+    open(({ exit }) => {
       return <CreateObjective close={exit} />;
     });
   };
@@ -49,7 +50,9 @@ const DashBoardHeader = () => {
       <h2>{currentYear}년은</h2>
       <div className={styles.inputContainer}>
         <h1 className={styles.objectivesTitle}>
-          목표명을 여기에 적어주세요 최대 두 줄까지 작성 가능합니다.
+          {objectivesList.find(
+            (objective) => objective.id === currentObjectiveId,
+          )?.title ?? '??'}
         </h1>
         {!isMobile && (
           <div className={styles.buttonContainer}>

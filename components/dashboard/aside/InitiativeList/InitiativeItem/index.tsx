@@ -1,13 +1,13 @@
 import CheckBox from '@components/common/checkbox';
 import Radio from '@components/common/radio';
 import Text from '@components/common/text';
+import { INITIATIVE_DETAIL } from '@type/initiative';
 import { getElapsedTime } from '@utils/date';
 import React, { useState } from 'react';
 import styles from './InitiativeItem.module.scss';
 
-const DUMMY_DEADLINE = '2021-10-10';
-
-const InitiativeItem = () => {
+const InitiativeItem = ({ item }: { item: INITIATIVE_DETAIL }) => {
+  const { dueDate, title, goalMetrics, currentMetrics } = item;
   const [isChecked, setIsChecked] = useState(false);
 
   const onClickItem = () => {
@@ -18,14 +18,14 @@ const InitiativeItem = () => {
     <div className={styles.root} onClick={onClickItem}>
       <div className={styles.titleContainer}>
         <Radio status="checked" />
-        <Text variant="LABEL">부동산 탐방</Text>
+        <Text variant="LABEL">{title}</Text>
       </div>
 
       <div className={styles.additionalDataContainer}>
-        <span className={styles.deadline}>
-          {getElapsedTime(DUMMY_DEADLINE)}
-        </span>
-        <span className={styles.count}>10 / 12</span>
+        <span className={styles.deadline}>{getElapsedTime(dueDate)}</span>
+        <span
+          className={styles.count}
+        >{`${currentMetrics} / ${goalMetrics}`}</span>
       </div>
     </div>
   );

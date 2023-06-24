@@ -8,15 +8,21 @@ import { YYYYMMDD } from '@utils/date';
 import ProgressBar from './ProgressBar';
 import ToggleArrow from '@components/common/toggleArrow';
 import AddListItemButton from '../addListItemButton';
+import { KEY_RESULT_DETAIL } from '@type/keyResult';
+import { ID } from '@type/common';
 
 interface KeyResultsParentItemProps {
+  keyResultItem: KEY_RESULT_DETAIL;
   isActive: boolean;
   onClick: () => void;
+  onClickAddInitiative: (keyResultId: ID) => void;
 }
 
 const KeyResultsParentItem = ({
+  keyResultItem,
   isActive,
   onClick,
+  onClickAddInitiative,
 }: KeyResultsParentItemProps) => {
   return (
     <div className={styles.root}>
@@ -25,39 +31,35 @@ const KeyResultsParentItem = ({
       <div className={styles.parent} onClick={onClick}>
         <div className={styles.titleContainer}>
           <ToggleArrow isActive={isActive} />
-          <span className={styles.label}>100평 땅 매입하기</span>
-          <CountBall count={6} />
+          <span className={styles.label}>{keyResultItem.title}</span>
+          <CountBall count={keyResultItem.achievementScore} />
         </div>
         <Text variant="BODY" weight="BOLD" style={{ flex: 1 }}>
-          {YYYYMMDD(Date.now().toString())}
+          {YYYYMMDD(keyResultItem.openDate)}
         </Text>
         <Text variant="BODY" weight="BOLD" style={{ flex: 1 }}>
-          {YYYYMMDD(Date.now().toString())}
+          {YYYYMMDD(keyResultItem.dueDate)}
         </Text>
 
-        <ProgressBar total={30} current={11} />
+        <ProgressBar total={100} current={keyResultItem.achievementScore} />
       </div>
 
       {isActive && (
         <div className={styles.children}>
           <div className={styles.initiativesContainer}>
             <LabelsHeader type="initiatives" />
-            <KeyResultsListItem
-              title="마감일 7일 이내인 주요 행동"
-              state="inactive"
-              startDate={Date.now()}
-              endDate={Date.now()}
-              onClick={() => {}}
-            />
-            <KeyResultsListItem
-              title="마감일 7일 이내인 주요 행동"
-              state="inactive"
-              startDate={Date.now()}
-              endDate={Date.now()}
-              onClick={() => {}}
-            />
+            {keyResultItem.initiatives.map((initiative) => (
+              <KeyResultsListItem
+                initiativeItem={initiative}
+                onClick={() => {}}
+                key={initiative.id}
+              />
+            ))}
 
-            <AddListItemButton type="initiatives" onClick={() => {}} />
+            <AddListItemButton
+              type="initiatives"
+              onClick={() => onClickAddInitiative(keyResultItem.id)}
+            />
           </div>
         </div>
       )}

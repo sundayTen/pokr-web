@@ -1,14 +1,15 @@
 import ToggleArrow from '@components/common/toggleArrow';
 import CountBall from '@components/goal-management/KeyResultsList/KeyResultsParentItem/CountBall';
+import { KEY_RESULT_DETAIL } from '@type/keyResult';
 import React, { useState } from 'react';
 import InitiativeList from '../../InitiativeList';
 import styles from './KeyResultItem.module.scss';
 
 interface KeyResultItemProps {
-  title: string;
+  keyResultItem: KEY_RESULT_DETAIL;
 }
 
-const KeyResultItem = ({ title }: KeyResultItemProps) => {
+const KeyResultItem = ({ keyResultItem }: KeyResultItemProps) => {
   const [isOpened, setIsOpened] = useState(false);
 
   const onClickItem = () => {
@@ -21,14 +22,16 @@ const KeyResultItem = ({ title }: KeyResultItemProps) => {
         <div className={styles.code} />
         <div className={styles.content}>
           <div className={styles.titleContainer}>
-            <span className={styles.label}>100평 땅 매입하기</span>
-            <CountBall count={6} />
+            <span className={styles.label}>{keyResultItem.title}</span>
+            <CountBall count={keyResultItem.achievementScore} />
           </div>
 
           <ToggleArrow isActive={isOpened} />
         </div>
       </div>
-      {isOpened && <InitiativeList />}
+      {isOpened && keyResultItem.initiatives.length > 0 && (
+        <InitiativeList initiatives={keyResultItem.initiatives} />
+      )}
     </>
   );
 };

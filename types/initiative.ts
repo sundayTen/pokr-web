@@ -1,4 +1,4 @@
-import { DATE } from './common';
+import { DATE, ID } from './common';
 
 export interface INITIATIVE_DETAIL {
   id: number;
@@ -20,5 +20,5 @@ export interface INITIATIVE_INPUT {
   openDate: DATE;
   dueDate: DATE;
   goalMetrics: number;
-  currentMetrics: number;
+  keyResultId: ID;
 }

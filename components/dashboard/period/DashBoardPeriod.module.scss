@@ -5,7 +5,7 @@
     @apply flex justify-between items-center mobile:left-0 mobile:bg-white mobile:w-full;
 
     & > .periodCategory {
-      @apply desktop:flex desktop:text-base bg-white;
+      @apply desktop:flex desktop:text-base mobile:bg-white;
 
       @screen desktop {
         margin: 40px 0 20px;
