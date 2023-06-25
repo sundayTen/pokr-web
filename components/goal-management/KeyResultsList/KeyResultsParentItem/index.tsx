@@ -32,7 +32,7 @@ const KeyResultsParentItem = ({
         <div className={styles.titleContainer}>
           <ToggleArrow isActive={isActive} />
           <span className={styles.label}>{keyResultItem.title}</span>
-          <CountBall count={keyResultItem.achievementScore} />
+          <CountBall count={keyResultItem.initiatives.length} />
         </div>
         <Text variant="BODY" weight="BOLD" style={{ flex: 1 }}>
           {YYYYMMDD(keyResultItem.openDate)}
