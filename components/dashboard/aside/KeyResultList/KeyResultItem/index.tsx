@@ -23,7 +23,7 @@ const KeyResultItem = ({ keyResultItem }: KeyResultItemProps) => {
         <div className={styles.content}>
           <div className={styles.titleContainer}>
             <span className={styles.label}>{keyResultItem.title}</span>
-            <CountBall count={keyResultItem.achievementScore} />
+            <CountBall count={keyResultItem.initiatives.length} />
           </div>
 
           <ToggleArrow isActive={isOpened} />
