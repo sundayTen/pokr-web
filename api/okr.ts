@@ -10,6 +10,10 @@ export const fetchOkr = async ({
   try {
     const res = await fetcher<OKR_TYPE[]>({
       path: `${OKR}?start_date=${start_date}&end_date=${end_date}`,
+      config: {
+        cache: 'default',
+        method: 'GET',
+      },
     });
     return res;
   } catch (error) {
