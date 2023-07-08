@@ -11,8 +11,8 @@ export const getObjectives = async (
     });
     return res;
   } catch (error) {
-    throw error;
     // 에러 핸들링
+    return [];
   }
 };
 

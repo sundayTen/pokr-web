@@ -7,6 +7,7 @@ import { OKR } from '@api/path';
 import { fetchOkr } from '@api/okr';
 import useCreateKeyResultsByPeriod from './useGenerateKeyResultsByPeriod';
 import { OKR_TYPE } from '@type/okr';
+import userStore from '@store/user';
 
 interface KeyResultListProps {
   startDate: string;
@@ -15,6 +16,8 @@ interface KeyResultListProps {
 
 // 특정 날짜의 주요 행동을 보여주는 컴포넌트
 const KeyResultList = ({ startDate, endDate }: KeyResultListProps) => {
+  const { isLogin } = userStore();
+
   const { data: okrData } = useQuery(
     [OKR, startDate, endDate],
     ({ queryKey }) =>
@@ -25,7 +28,7 @@ const KeyResultList = ({ startDate, endDate }: KeyResultListProps) => {
     {
       suspense: true,
       useErrorBoundary: true,
-      enabled: startDate.length === 10 && endDate.length === 10, // 임시 validation check. 날짜 형식 체크를 해야 함.
+      enabled: startDate.length === 10 && endDate.length === 10 && !!isLogin, // 임시 validation check. 날짜 형식 체크를 해야 함.
     },
   );
 

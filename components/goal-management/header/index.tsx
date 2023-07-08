@@ -3,29 +3,23 @@ import { OKR_TYPE } from '@type/okr';
 import Select from '@components/common/select';
 import styles from './GoalManagementHeader.module.scss';
 import goalManagementStore from '@store/goal-management';
-import { useQuery } from '@tanstack/react-query';
 import userStore from '@store/user';
-import { fetchOkrYears } from '@api/okr';
 import Button from '@components/common/button';
 import CreateObjective from '@components/shared/createObjective';
 import { useOverlay } from '@toss/use-overlay';
-import { OKR_YEARS } from '@api/path';
+import useGetOkrYears from '@hooks/useGetOkrYears';
 
 const GoalManagementHeader = ({
   objectiveLength,
 }: {
   objectiveLength: number;
 }) => {
-  const { userToken } = userStore();
+  const { isLogin } = userStore();
   const { currentYear, changeCurrentYear } = goalManagementStore();
   const [years, setYears] = useState<number[]>([]);
   const { open } = useOverlay();
 
-  const { data, isSuccess } = useQuery([OKR_YEARS], fetchOkrYears, {
-    enabled: !!userToken,
-    suspense: true,
-    useErrorBoundary: true,
-  });
+  const { data, isSuccess } = useGetOkrYears();
 
   useEffect(() => {
     if (isSuccess) {

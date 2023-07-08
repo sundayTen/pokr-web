@@ -1,19 +1,15 @@
 'use client';
-// import { fetchOkr, fetchOkrYears } from '@api/okr';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState, useEffect, useRef } from 'react';
-// import { OKR_TYPE } from '@type/okr';
 import GoalCardList from './goalCard';
 import GoalManagementHeader from './header';
 import goalManagementStore from '@store/goal-management';
-import { getObjectives } from '@api/objectives';
 import userStore from '@store/user';
-import { OKR_OBJECTIVES_TYPE } from '@type/okr';
 import PeriodTab from './period-tab';
 import KeyResultsList from './KeyResultsList';
 import SuspenseComponent from '@components/common/suspenseComponent';
 import KeyResultDetail, { KeyResultDetailRef } from './keyResultDetail';
-import { OBJECTIVES } from '@api/path';
+import useGetObjectives from '@hooks/useGetObjectives';
 
 const GoalManagement = () => {
   const detailRef = useRef<KeyResultDetailRef>(null);
@@ -23,30 +19,21 @@ const GoalManagement = () => {
     changeObjectivesList,
     changeCurrentObjectiveId,
   } = goalManagementStore();
-  const { userToken } = userStore();
+  const { isLogin } = userStore();
 
-  const { data } = useQuery<OKR_OBJECTIVES_TYPE[]>(
-    [OBJECTIVES],
-    () => getObjectives(Number(currentYear)),
-    {
-      enabled: !!userToken && !!currentYear,
-      suspense: true,
-      useErrorBoundary: true,
-    },
-  );
+  const { data, refetch } = useGetObjectives(Number(currentYear));
 
   useEffect(() => {
-    if (!userToken) {
-      return;
-    }
+    if (isLogin && currentYear) refetch();
 
     if (data) {
       changeObjectivesList(data);
+
       if (data.length > 0) {
         changeCurrentObjectiveId(data[0].id);
       }
     }
-  }, [!!data]);
+  }, [data, isLogin, currentYear]);
 
   return (
     <div style={{ position: 'relative' }}>

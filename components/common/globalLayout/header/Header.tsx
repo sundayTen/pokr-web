@@ -5,6 +5,7 @@ import Script from 'next/script';
 import NaverLogin from '@components/common/login/naver';
 import userStore from '@store/user';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export interface NaverUserProps {
   age?: any;
@@ -18,21 +19,28 @@ export interface NaverUserProps {
 }
 
 const Header = () => {
-  const { userToken, changeUserToken } = userStore();
-  const [userInfo, setUserInfo] = useState(userToken ? true : false);
+  const router = useRouter();
+  const { userToken, changeUserToken, isLogin, setIsLogin } = userStore();
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
   useEffect(() => {
-    if (userToken) setUserInfo(true);
-    else setUserInfo(false);
-  }, [userToken]);
+    const getStorageToken = localStorage.getItem('accessToken');
+
+    if (getStorageToken || isLogin) {
+      if (getStorageToken) changeUserToken(getStorageToken);
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [userToken, isLogin]);
 
   const handleLogout = useCallback(() => {
     window?.localStorage?.removeItem('accessToken');
 
     changeUserToken(null);
-    setUserInfo(false);
-  }, [userInfo]);
+    setIsLogin(false);
+    router.push('/');
+  }, [userToken]);
 
   return (
     <>
@@ -52,12 +60,7 @@ const Header = () => {
           myOKR
         </Link>
         <div className={styles.user}>
-          {scriptLoaded && !userInfo && (
-            <div className={styles.naverLoginBtn}>
-              <NaverLogin setUserInfo={setUserInfo} />
-            </div>
-          )}
-          {userInfo && (
+          {isLogin ? (
             <>
               <div className={styles.profile} />
               <button
@@ -68,6 +71,10 @@ const Header = () => {
                 로그아웃
               </button>
             </>
+          ) : (
+            <div className={styles.naverLoginBtn}>
+              {scriptLoaded && <NaverLogin />}
+            </div>
           )}
         </div>
       </header>

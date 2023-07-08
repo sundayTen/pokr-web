@@ -25,14 +25,6 @@ declare global {
 }
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const { changeUserToken } = userStore();
-
-  useEffect(() => {
-    const getStorageToken = localStorage.getItem('accessToken');
-
-    if (getStorageToken) changeUserToken(getStorageToken);
-  }, []);
-
   return (
     <html lang="kn">
       <body>
