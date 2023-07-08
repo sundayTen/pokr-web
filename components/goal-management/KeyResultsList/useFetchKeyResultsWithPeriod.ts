@@ -1,6 +1,7 @@
 import { fetchOkr } from '@api/okr';
 import { OKR } from '@api/path';
 import goalManagementStore from '@store/goal-management';
+import userStore from '@store/user';
 import { useQuery } from '@tanstack/react-query';
 import { ValueOf } from '@type/common';
 import { KEY_RESULT_DETAIL } from '@type/keyResult';
@@ -10,6 +11,7 @@ import { PERIOD_TYPE } from '../period-tab';
 
 const useFetchKeyResultsWithPeriod = () => {
   const { currentTab, currentObjectiveId } = goalManagementStore();
+  const { isLogin } = userStore();
   const [keyResults, setKeyResults] = useState<KEY_RESULT_DETAIL[]>([]);
   const {
     data: okrData,
@@ -25,7 +27,7 @@ const useFetchKeyResultsWithPeriod = () => {
     {
       suspense: true,
       useErrorBoundary: true,
-      enabled: currentTab !== null,
+      enabled: isLogin && currentTab !== null,
     },
   );
 

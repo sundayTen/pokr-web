@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import { OKR } from '@api/path';
 import { fetchOkr } from '@api/okr';
 import useCreateKeyResultsByPeriod from './useGenerateKeyResultsByPeriod';
-import { OKR_TYPE } from '@type/okr';
 import userStore from '@store/user';
 
 interface KeyResultListProps {
