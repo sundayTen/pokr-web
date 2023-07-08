@@ -2,12 +2,16 @@ import { create } from 'zustand';
 
 interface UserTokenStore {
   userToken: string | null;
-  changeUserToken: (data: string | null) => void;
+  isLogin: boolean;
+  changeUserToken: (token: string | null) => void;
+  setIsLogin: (state: boolean) => void;
 }
 
 const userStore = create<UserTokenStore>((set) => ({
   userToken: null,
-  changeUserToken: (data: string | null) => set({ userToken: data }),
+  isLogin: false,
+  changeUserToken: (token: string | null) => set({ userToken: token }),
+  setIsLogin: (state: boolean) => set({ isLogin: state }),
 }));
 
 export default userStore;

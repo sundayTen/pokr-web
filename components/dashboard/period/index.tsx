@@ -34,7 +34,7 @@ const getOffsetTop = (element: any) => {
 };
 
 const DashBoardPeriod = () => {
-  const { userToken } = userStore();
+  const { isLogin } = userStore();
   const { isMobile } = useIsMobile();
   const { changeGraphData } = dashBoardStore();
   const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
@@ -49,7 +49,6 @@ const DashBoardPeriod = () => {
     show: false,
   });
   const periodRef = useRef<HTMLDivElement | null>(null);
-  // const periodChildRef = useRef<HTMLDivElement | null>(null);
   const deadline = `December, 31, ${new Date().getFullYear()}`;
 
   let metricsNumber = 1;
@@ -61,6 +60,7 @@ const DashBoardPeriod = () => {
       suspense: true,
       staleTime: 3000,
       initialData: [],
+      enabled: !!isLogin,
       onSuccess: (data: METRICS[]) => {
         const setGraphData = data.reduce((acc: GRAPH_DATA[], cur: METRICS) => {
           return [
@@ -82,7 +82,7 @@ const DashBoardPeriod = () => {
     ['objectives'],
     fetchMetricsObjects,
     {
-      enabled: !!userToken,
+      enabled: !!isLogin,
       initialData: [],
       onSuccess: (data: METRICS_OBJECTIVES_DATA[]) => {
         const objectivesData = data.reduce(

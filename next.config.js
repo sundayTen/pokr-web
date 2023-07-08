@@ -29,6 +29,12 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  rewrites: () => [
+    {
+      source: '/v1/nid/me',
+      destination: 'https://openapi.naver.com/v1/nid/me',
+    },
+  ],
 };
 
 module.exports = withBundleAnalyzer(withImages(nextConfig));

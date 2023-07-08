@@ -55,8 +55,6 @@ export const fetcher = async <T>({
     defaultConfig.headers.Authorization = `Bearer ${store.userToken}`;
   }
 
-  console.log(path);
-
   try {
     const response = await fetch(`${BASE_URL}/${path}`, {
       ...defaultConfig,

@@ -4,14 +4,10 @@ import { fetchOkrYears } from '@api/okr';
 import { getObjectives } from '@api/objectives';
 
 const Page = async () => {
-  const years = await fetchOkrYears();
-  const objectiveList = await getObjectives(years[0]);
+  // const years = await fetchOkrYears();
+  // const objectiveList = await getObjectives(years?.[0]);
 
-  return (
-    <>
-      <DashBoard currentYear={years[0]} objectiveList={objectiveList} />
-    </>
-  );
+  return <DashBoard />;
 };
 
 export default Page;
