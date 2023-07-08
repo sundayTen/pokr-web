@@ -10,6 +10,7 @@ import KeyResultsList from './KeyResultsList';
 import SuspenseComponent from '@components/common/suspenseComponent';
 import KeyResultDetail, { KeyResultDetailRef } from './keyResultDetail';
 import useGetObjectives from '@hooks/useGetObjectives';
+import { useRouter } from 'next/navigation';
 
 const GoalManagement = () => {
   const detailRef = useRef<KeyResultDetailRef>(null);
@@ -20,10 +21,14 @@ const GoalManagement = () => {
     changeCurrentObjectiveId,
   } = goalManagementStore();
   const { isLogin } = userStore();
+  const { replace } = useRouter();
 
   const { data, refetch } = useGetObjectives(Number(currentYear));
 
   useEffect(() => {
+    if (!isLogin) {
+      replace('/');
+    }
     if (isLogin && currentYear) refetch();
 
     if (data) {
