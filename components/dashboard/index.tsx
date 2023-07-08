@@ -10,8 +10,10 @@ import goalManagementStore from '@store/goal-management';
 import userStore from '@store/user';
 import useGetOkrYears from '@hooks/useGetOkrYears';
 import useGetObjectives from '@hooks/useGetObjectives';
+import { useRouter } from 'next/navigation';
 
 const DashBoard = () => {
+  const { replace } = useRouter();
   const { isLogin } = userStore();
   const { data: currentYears } = useGetOkrYears();
   const { data: objectiveList, refetch } = useGetObjectives(
@@ -21,6 +23,9 @@ const DashBoard = () => {
     goalManagementStore();
 
   useEffect(() => {
+    if (!isLogin) {
+      replace('/');
+    }
     if (currentYears && currentYears?.length > 0) {
       changeCurrentYear(currentYears[0]);
       refetch();
@@ -29,7 +34,7 @@ const DashBoard = () => {
       changeObjectivesList(objectiveList);
       changeCurrentObjectiveId(objectiveList[0]?.id);
     }
-  }, [isLogin, currentYears, objectiveList]);
+  }, [isLogin, replace, currentYears, objectiveList]);
 
   return (
     <>
