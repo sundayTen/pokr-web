@@ -1,10 +1,9 @@
 'use client';
 import './globals.scss';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import userStore from '@store/user';
 import GlobalLayout from '@components/common/globalLayout';
 import { OverlayProvider } from '@toss/use-overlay';
 
