@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import PieChart from './PieChart';
+import PieProgress from './PieChart';
 import styles from './Progress.module.scss';
 
 interface ProgressProps {
@@ -12,7 +12,7 @@ const Progress = ({ total, current }: ProgressProps) => {
   return (
     <div className={styles.root}>
       {current < total ? (
-        <PieChart />
+        <PieProgress ratio={current / total} />
       ) : (
         <Image
           src={'/images/complete.png'}
