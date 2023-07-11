@@ -1,33 +1,32 @@
-import React from 'react';
-import styles from './PieChart.module.scss';
-import cn from 'classnames';
-const PieChart = () => {
+import React, { PureComponent } from 'react';
+import { PieChart, Pie, Cell } from 'recharts';
+const COLORS = ['#FBBE63', '#F3F4F5'];
+const PieProgress = ({ ratio }: { ratio: number }) => {
+  const data = [
+    { name: 'current', value: ratio },
+    {
+      name: 'total',
+      value: 1 - ratio,
+    },
+  ];
   return (
-    <div>
-      <div className={styles.chartPieWrap}>
-        <svg className={styles.chartPie} width="24" height="24">
-          <circle
-            className={cn(styles.pieCircle, styles.pie_circle1)}
-            cx="12"
-            cy="12"
-            r="10"
-          />
-          <circle
-            className={cn(styles.pieCircle, styles.pie_circle2)}
-            cx="12"
-            cy="12"
-            r="10"
-          />
-          <circle
-            className={cn(styles.pieCircle, styles.pie_bg)}
-            cx="12"
-            cy="12"
-            r="10"
-          />
-        </svg>
-      </div>
-    </div>
+    <PieChart width={24} height={24}>
+      <Pie
+        data={data}
+        cx="50%"
+        cy="50%"
+        innerRadius={6}
+        outerRadius={10}
+        dataKey="value"
+        animationBegin={0}
+        fill={COLORS[1]}
+      >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+        ))}
+      </Pie>
+    </PieChart>
   );
 };
 
-export default PieChart;
+export default PieProgress;
