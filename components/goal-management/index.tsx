@@ -52,7 +52,6 @@ const GoalManagement = () => {
       <SuspenseComponent>
         <KeyResultsList />
       </SuspenseComponent>
-      <KeyResultDetail ref={detailRef} />
     </div>
   );
 };

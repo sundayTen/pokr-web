@@ -3,14 +3,7 @@
   top: 68px;
   height: calc(100vh - 68px);
   z-index: 999;
-
-  &.show {
-    animation: slideIn 0.3s ease-in-out;
-  }
-
-  &.close {
-    animation: slideOut 0.3s ease-in-out forwards;
-  }
+  animation: slideIn 0.3s ease-in-out;
 
   .content {
     @apply p-6;
@@ -23,14 +16,5 @@
   }
   to {
     transform: translateX(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
   }
 }
