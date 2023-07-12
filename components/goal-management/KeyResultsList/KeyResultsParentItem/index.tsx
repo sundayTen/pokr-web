@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './KeyResultsParentItem.module.scss';
 import KeyResultsListItem from '../KeyResultsListItem';
 import LabelsHeader from '../labelHeader';
@@ -10,6 +10,8 @@ import ToggleArrow from '@components/common/toggleArrow';
 import AddListItemButton from '../addListItemButton';
 import { KEY_RESULT_DETAIL } from '@type/keyResult';
 import { ID } from '@type/common';
+import { useOverlay } from '@toss/use-overlay';
+import KeyResultDetail from '@components/goal-management/keyResultDetail';
 
 interface KeyResultsParentItemProps {
   keyResultItem: KEY_RESULT_DETAIL;
@@ -24,6 +26,14 @@ const KeyResultsParentItem = ({
   onClick,
   onClickAddInitiative,
 }: KeyResultsParentItemProps) => {
+  const { open } = useOverlay();
+
+  const onClickInitiativeItem = () => {
+    open(({ exit }) => (
+      <KeyResultDetail keyResultId={keyResultItem.id} close={exit} />
+    ));
+  };
+
   return (
     <div className={styles.root}>
       <div className={styles.colorBlock} />
@@ -51,7 +61,7 @@ const KeyResultsParentItem = ({
             {keyResultItem.initiatives.map((initiative) => (
               <KeyResultsListItem
                 initiativeItem={initiative}
-                onClick={() => {}}
+                onClick={onClickInitiativeItem}
                 key={initiative.id}
               />
             ))}
