@@ -7,11 +7,10 @@ import KeyResultDetailInitiatives from './initiatives';
 import { useOverlay } from '@toss/use-overlay';
 import DropKeyResultModal from '@components/shared/dropKeyResultModal';
 import { ID } from '@type/common';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import goalManagementStore from '@store/goal-management';
-import { KEY_RESULT, OKR } from '@api/path';
+import { OKR } from '@api/path';
 import { generatePeriodStartEndDate } from '../KeyResultsList/useFetchKeyResultsWithPeriod';
-import { fetchKeyResult } from '@api/keyResult';
 import CreateInitiative from '@components/shared/createInitiative';
 import { KEY_RESULT_DETAIL } from '@type/keyResult';
 
