@@ -2,9 +2,15 @@ import Image from 'next/image';
 import React from 'react';
 import styles from './AddListItemButton.module.scss';
 import cn from 'classnames';
+import { ValueOf } from '@type/common';
+
+export const ADD_BUTTON_TYPE = {
+  KEY_RESULTS: 'keyResults',
+  INITIATIVES: 'initiatives',
+} as const;
 
 interface AddListItemButtonProps {
-  type: 'keyResults' | 'initiatives';
+  type: ValueOf<typeof ADD_BUTTON_TYPE>;
   onClick: () => void;
 }
 
@@ -12,7 +18,7 @@ const AddListItemButton = ({ type, onClick }: AddListItemButtonProps) => {
   return (
     <div
       className={cn(styles.root, {
-        [styles.isInitiative]: type === 'initiatives',
+        [styles.isInitiative]: type === ADD_BUTTON_TYPE.INITIATIVES,
       })}
       onClick={onClick}
     >
@@ -29,6 +35,8 @@ const AddListItemButton = ({ type, onClick }: AddListItemButtonProps) => {
 
 export default AddListItemButton;
 
-const getLabel = (type: 'keyResults' | 'initiatives') => {
-  return type === 'keyResults' ? '핵심 지표 추가' : '새로운 주요 행동 추가';
+const getLabel = (type: ValueOf<typeof ADD_BUTTON_TYPE>) => {
+  return type === ADD_BUTTON_TYPE.KEY_RESULTS
+    ? '핵심 지표 추가'
+    : '새로운 주요 행동 추가';
 };
