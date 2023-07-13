@@ -1,6 +1,6 @@
+import { useEffect, useState } from 'react';
 import { KEY_RESULT_DETAIL } from '@type/keyResult';
-import { OKR, OKR_TYPE } from '@type/okr';
-import React, { useEffect, useState } from 'react';
+import { OKR_TYPE } from '@type/okr';
 
 const useCreateKeyResultsByPeriod = (okr?: OKR_TYPE[]) => {
   const [keyResultsByOkr, setKeyResultsByOkr] = useState<KEY_RESULT_DETAIL[]>(
