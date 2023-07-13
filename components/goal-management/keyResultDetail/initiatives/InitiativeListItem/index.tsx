@@ -1,17 +1,37 @@
 import React from 'react';
 import styles from './InitiativeListItem.module.scss';
-import Radio from '@components/common/radio';
+import Radio, { RADIO_STATUS } from '@components/common/radio';
 import Text from '@components/common/text';
+import { ValueOf } from '@type/common';
+import { INITIATIVE_STATUS } from '..';
 
 interface InitiativeListItemProps {
+  title: string;
+  status: ValueOf<typeof INITIATIVE_STATUS>;
   onClick: () => void;
 }
 
-const InitiativeListItem = ({ onClick }: InitiativeListItemProps) => {
+const InitiativeListItem = ({
+  title,
+  status,
+  onClick,
+}: InitiativeListItemProps) => {
   return (
-    <button className={styles.root} disabled={false}>
-      <Radio status="checked" />
-      <Text variant="BODY">이력서 작성하기</Text>
+    <button
+      className={styles.root}
+      disabled={status === INITIATIVE_STATUS.DISABLED}
+      onClick={onClick}
+    >
+      <Radio
+        status={
+          status === INITIATIVE_STATUS.DONE
+            ? RADIO_STATUS.CHECKED
+            : status === INITIATIVE_STATUS.DISABLED
+            ? RADIO_STATUS.DISABLED
+            : RADIO_STATUS.UNCHECKED
+        }
+      />
+      <Text variant="BODY">{title ?? '?'}</Text>
     </button>
   );
 };
