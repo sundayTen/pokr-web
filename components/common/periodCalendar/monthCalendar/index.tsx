@@ -44,9 +44,9 @@ const MonthCalendar = ({
       </div>
 
       <div className={styles.daysContainer}>
-        {calendarData.map(({ day, date }) => (
+        {calendarData.map(({ day, date }, index) => (
           <span
-            key={date}
+            key={`${date}_${day}_${index}`}
             onClick={() => onClickDate(dayjs(date))}
             className={cn(styles.item, {
               [styles.included]:

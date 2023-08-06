@@ -23,6 +23,7 @@ const PeriodCalendar = ({
   resetDates,
 }: PeriodCalendarProps) => {
   const [standardDate, setStandardDate] = useState(dayjs());
+
   const { isMobile } = useIsMobile();
 
   const onChangeMonth = (type: 'prev' | 'next') => {
@@ -30,6 +31,10 @@ const PeriodCalendar = ({
   };
 
   const onClickDate = (date: Dayjs) => {
+    // 이상한 날짜면 그대로 있는다.
+    if (!date.isValid()) {
+      return;
+    }
     // startDate가 비어있으면 우선 채운다.
     if (startDate === null) {
       setStartDate(date);
@@ -70,7 +75,7 @@ const PeriodCalendar = ({
       <div className={styles.calendarContainer}>
         <MonthCalendar
           year={standardDate.year()}
-          month={standardDate.month()}
+          month={standardDate.month() + 1}
           type="prev"
           onChangeMonth={onChangeMonth}
           onClickDate={onClickDate}
@@ -80,7 +85,7 @@ const PeriodCalendar = ({
         <div className={styles.divider} />
         <MonthCalendar
           year={standardDate.add(1, 'M').year()}
-          month={standardDate.add(1, 'M').month()}
+          month={standardDate.add(1, 'M').month() + 1}
           type="next"
           onChangeMonth={onChangeMonth}
           onClickDate={onClickDate}
