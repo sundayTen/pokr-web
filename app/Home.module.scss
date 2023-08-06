@@ -1,0 +1,13 @@
+.root {
+  @apply w-full pt-10;
+  height: 100vh;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 60px;
+    background: linear-gradient(to right top, var(--pri-600), var(--pri-200));
+    color: transparent;
+    -webkit-background-clip: text;
+    text-align: center;
+  }
+}

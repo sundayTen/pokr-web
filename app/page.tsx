@@ -1,7 +1,9 @@
+import styles from './Home.module.scss';
+
 const Home = () => {
   return (
-    <div>
-      <h1>POKR HOME</h1>
+    <div className={styles.root}>
+      <h1>네이버 로그인으로 MyOKR 시작하기</h1>
     </div>
   );
 };
