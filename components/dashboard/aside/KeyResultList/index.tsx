@@ -17,7 +17,7 @@ interface KeyResultListProps {
 const KeyResultList = ({ startDate, endDate }: KeyResultListProps) => {
   const { isLogin } = userStore();
 
-  const { data: okrData } = useQuery(
+  const { data: okrData, isFetching } = useQuery(
     [OKR, startDate, endDate],
     ({ queryKey }) =>
       fetchOkr({
@@ -29,6 +29,10 @@ const KeyResultList = ({ startDate, endDate }: KeyResultListProps) => {
       useErrorBoundary: true,
       enabled: startDate.length === 10 && endDate.length === 10 && !!isLogin, // 임시 validation check. 날짜 형식 체크를 해야 함.
     },
+  );
+  console.log(
+    '🚀 ~ file: index.tsx:21 ~ KeyResultList ~ isFetching:',
+    isFetching,
   );
 
   const keyResults = useCreateKeyResultsByPeriod(okrData);

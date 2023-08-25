@@ -1,4 +1,3 @@
-import CheckBox from '@components/common/checkbox';
 import Radio from '@components/common/radio';
 import Text from '@components/common/text';
 import { ID } from '@type/common';
@@ -26,7 +25,7 @@ const InitiativeItem = ({
     <div className={styles.root} onClick={onClick}>
       <div className={styles.titleContainer}>
         <Radio status="checked" />
-        <Text variant="LABEL">{title}</Text>
+        <Text variant="BODY">{title}</Text>
       </div>
 
       <div className={styles.additionalDataContainer}>

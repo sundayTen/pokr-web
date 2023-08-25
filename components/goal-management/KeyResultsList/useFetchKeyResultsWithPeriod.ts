@@ -17,6 +17,7 @@ const useFetchKeyResultsWithPeriod = () => {
     data: okrData,
     isError,
     isLoading,
+    isFetching,
   } = useQuery(
     [OKR, ...generatePeriodStartEndDate(currentTab)],
     ({ queryKey }) =>
@@ -32,7 +33,13 @@ const useFetchKeyResultsWithPeriod = () => {
   );
 
   useEffect(() => {
-    if (isError || isLoading || !okrData || currentObjectiveId === null) {
+    if (
+      isError ||
+      isLoading ||
+      isFetching ||
+      !okrData ||
+      currentObjectiveId === null
+    ) {
       return;
     }
 
@@ -41,7 +48,7 @@ const useFetchKeyResultsWithPeriod = () => {
     );
 
     setKeyResults(targetKeyResults?.keyResults ?? []);
-  }, [!!okrData, isError, isLoading, currentObjectiveId]);
+  }, [!!okrData, isError, isLoading, isFetching, currentObjectiveId]);
 
   return keyResults;
 };
