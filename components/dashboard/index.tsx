@@ -23,9 +23,6 @@ const DashBoard = () => {
     goalManagementStore();
 
   useEffect(() => {
-    if (!isLogin) {
-      replace('/');
-    }
     if (currentYears && currentYears?.length > 0) {
       changeCurrentYear(currentYears[0]);
       refetch();
