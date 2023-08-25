@@ -53,13 +53,16 @@ const KeyResultDetail = ({
     } catch (error) {}
   }, [currentObjectiveId, currentTab, keyResultId]);
 
-  const dropKeyResult = () => {
+  const dropKeyResult = (id: ID) => {
     openModal(({ exit }) => {
-      return <DropKeyResultModal close={exit} />;
+      return <DropKeyResultModal id={id} close={exit} />;
     });
   };
 
   const onClickAddKeyResult = () => {
+    if (keyResultId === null) {
+      return;
+    }
     setIsAddInitiativeModal(true);
     openModal(({ exit }) => (
       <CreateInitiative
@@ -90,7 +93,7 @@ const KeyResultDetail = ({
         <KeyResultDetailHeader
           status={'달성완료'}
           onClickClose={close}
-          onClickDrop={dropKeyResult}
+          onClickDrop={() => dropKeyResult(targetKeyResult.id)}
           onClickWrite={close}
         />
         <div className={styles.content}>
