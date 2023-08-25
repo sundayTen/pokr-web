@@ -1,12 +1,11 @@
-import { updateInitiativeDone } from './../api/initiatives';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { OKR } from '@api/path';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteKeyResult } from '@api/keyResult';
 
-const useUpdateInitiative = () => {
+const useDropKeyResult = () => {
   const queryClient = useQueryClient();
-
-  const { mutateAsync: update } = useMutation(updateInitiativeDone, {
-    onSuccess: (data, variable, context) => {
+  const { mutateAsync: drop } = useMutation(deleteKeyResult, {
+    onSuccess: () => {
       const targetQueryKeys = queryClient
         .getQueryCache()
         .findAll('query')
@@ -21,9 +20,9 @@ const useUpdateInitiative = () => {
         }),
       );
     },
-    onError: (error) => {},
   });
-  return update;
+
+  return drop;
 };
 
-export default useUpdateInitiative;
+export default useDropKeyResult;

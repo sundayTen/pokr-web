@@ -5,7 +5,7 @@ import { KEY_RESULT } from './path';
 
 /**
  * id로 key-result 데이터를 호출합니다.
- * @param { ID } initiativeId
+ * @param { ID } keyResultId
  * @returns
  */
 export const fetchKeyResult = async (
@@ -42,12 +42,12 @@ export const createKeyResult = async (payload: KEY_RESULT_INPUT) => {
   }
 };
 /**
- * 특정 initiative를 수정합니다.
+ * 특정 key result를 수정합니다.
  * @param {ID} keyResultId
- * @param {INITIATIVE_INPUT} payload
+ * @param {KEY_RESULT_INPUT} payload
  * @returns
  */
-export const updateInitiative = async (
+export const updateKeyResult = async (
   keyResultId: ID,
   payload: KEY_RESULT_INPUT,
 ) => {
@@ -66,11 +66,11 @@ export const updateInitiative = async (
   }
 };
 /**
- * 특정 initiative를 삭제합니다.
+ * 특정 key result를 삭제합니다.
  * @param {ID} keyResultId
  * @returns
  */
-export const deleteInitiative = async (keyResultId: ID) => {
+export const deleteKeyResult = async (keyResultId: ID) => {
   try {
     const res = await fetcher({
       path: `${KEY_RESULT}/${keyResultId}`,
