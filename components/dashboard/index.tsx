@@ -23,9 +23,6 @@ const DashBoard = () => {
     goalManagementStore();
 
   useEffect(() => {
-    if (!isLogin) {
-      replace('/');
-    }
     if (currentYears && currentYears?.length > 0) {
       changeCurrentYear(currentYears[0]);
       refetch();
@@ -41,7 +38,7 @@ const DashBoard = () => {
       <DashBoardHeader />
       <DashboardMain />
       <SuspenseComponent
-        errorMessage="에러가 발생했다"
+        errorMessage="에러가 발생했습니다"
         loadingComponent={<AsideLoading />}
       >
         <DashboardAside />

@@ -1,6 +1,7 @@
 import { updateInitiativeDone } from '@api/initiatives';
 import ToggleArrow from '@components/common/toggleArrow';
 import CountBall from '@components/goal-management/KeyResultsList/KeyResultsParentItem/CountBall';
+import useUpdateInitiative from '@hooks/useUpdateInitiative';
 import { useMutation } from '@tanstack/react-query';
 import { ID } from '@type/common';
 import { KEY_RESULT_DETAIL } from '@type/keyResult';
@@ -14,7 +15,7 @@ interface KeyResultItemProps {
 
 const KeyResultItem = ({ keyResultItem }: KeyResultItemProps) => {
   const [isOpened, setIsOpened] = useState(false);
-  const { mutateAsync } = useMutation(updateInitiativeDone, {});
+  const update = useUpdateInitiative();
 
   const onClickItem = () => {
     setIsOpened(!isOpened);
@@ -22,7 +23,7 @@ const KeyResultItem = ({ keyResultItem }: KeyResultItemProps) => {
 
   const onClickInitiative = async (initiativeId: ID) => {
     try {
-      await mutateAsync(initiativeId);
+      await update(initiativeId);
     } catch (error) {}
   };
 
