@@ -2,18 +2,19 @@
 import userStore from '@store/user';
 import { useEffect } from 'react';
 import styles from './Home.module.scss';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 const Home = () => {
   const { isLogin } = userStore();
   const { replace } = useRouter();
+  const path = usePathname();
 
   useEffect(() => {
-    if (isLogin) {
+    if (path === '/' && isLogin) {
       replace('/dashboard');
       return;
     }
-  }, [isLogin]);
+  }, [isLogin, path]);
 
   return (
     <div className={styles.root}>
