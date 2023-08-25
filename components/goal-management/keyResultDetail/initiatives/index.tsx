@@ -3,6 +3,7 @@ import Text from '@components/common/text';
 import AddListItemButton, {
   ADD_BUTTON_TYPE,
 } from '@components/goal-management/KeyResultsList/addListItemButton';
+import useUpdateInitiative from '@hooks/useUpdateInitiative';
 import { useMutation } from '@tanstack/react-query';
 import { INITIATIVE_DETAIL } from '@type/initiative';
 import dayjs from 'dayjs';
@@ -19,10 +20,11 @@ const KeyResultDetailInitiatives = ({
   initiatives,
   onClickAddInitiative,
 }: KeyResultDetailInitiativesProps) => {
-  const { mutateAsync } = useMutation(updateInitiativeDone, {});
+  const update = useUpdateInitiative();
+
   const onClickItem = async (initiativeId: number) => {
     try {
-      await mutateAsync(initiativeId);
+      await update(initiativeId);
     } catch (error) {}
   };
   return (

@@ -38,7 +38,7 @@ const DashBoard = () => {
       <DashBoardHeader />
       <DashboardMain />
       <SuspenseComponent
-        errorMessage="에러가 발생했다"
+        errorMessage="에러가 발생했습니다"
         loadingComponent={<AsideLoading />}
       >
         <DashboardAside />
