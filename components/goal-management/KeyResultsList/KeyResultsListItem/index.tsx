@@ -22,7 +22,7 @@ const KeyResultsListItem = ({
     <li className={styles.root} onClick={onClick}>
       <div className={styles.titleContainer}>
         <CheckboxIcon
-          state={currentMetrics > goalMetrics ? 'active' : 'inactive'}
+          state={currentMetrics >= goalMetrics ? 'active' : 'inactive'}
         />
         <label className={cn(styles.title, styles.active)}>{title}</label>
       </div>

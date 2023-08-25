@@ -9,7 +9,6 @@ const Home = () => {
   const { replace } = useRouter();
 
   useEffect(() => {
-    console.log('🚀 ~ file: page.tsx:13 ~ useEffect ~ isLogin:', isLogin);
     if (isLogin) {
       replace('/dashboard');
       return;
